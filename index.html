@@ -1,0 +1,2637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HAKA SOLUTIONS | Technology & Digital Business Solutions</title>
+  <meta name="description" content="HAKA SOLUTIONS provides technology-driven digital, data and business solutions designed to help organizations operate smarter and grow efficiently." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       DESIGN SYSTEM VARIABLES & RESET
+       ========================================== */
+    :root {
+      --bg-midnight: #050816;
+      --bg-navy: #070b1e;
+      --bg-footer: #030611;
+      --electric-blue: #2563eb;
+      --cyan-accent: #22d3ee;
+      --violet-accent: #7c3aed;
+      --emerald-accent: #34d399;
+      --text-white: #ffffff;
+      --text-slate-300: #cbd5e1;
+      --text-slate-400: #94a3b8;
+      --text-slate-500: #64748b;
+      --border-glass: rgba(255, 255, 255, 0.1);
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-midnight);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .text-cyan {
+      color: var(--cyan-accent);
+    }
+
+    .text-emerald {
+      color: var(--emerald-accent);
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #60a5fa 0%, #22d3ee 50%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ==========================================
+       1. NAVBAR (STICKY DESKTOP HEADER)
+       ========================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(5, 8, 22, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 13px 0;
+      background: rgba(5, 8, 22, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Brand Logo */
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--electric-blue), var(--cyan-accent), var(--violet-accent));
+      padding: 1.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-box span {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-midnight);
+      border-radius: 7.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--cyan-accent);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-slate-400);
+    }
+
+    /* Desktop Links */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.07em;
+      color: var(--text-slate-300);
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric-blue), var(--cyan-accent));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--cyan-accent);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Desktop CTAs */
+    .desktop-ctas {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .btn-login svg {
+      color: var(--cyan-accent);
+    }
+
+    .btn-login:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+    }
+
+    .btn-primary-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #0ea5e9);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary-sm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(34, 211, 238, 0.45);
+    }
+
+    /* ==========================================
+       2. HAMBURGER & MOBILE NAVIGATION DRAWER
+       ========================================== */
+    .hamburger-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      z-index: 110;
+      transition: border-color 0.25s ease;
+    }
+
+    .hamburger-btn:hover {
+      border-color: rgba(34, 211, 238, 0.5);
+    }
+
+    .hamburger-btn .bar {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Hamburger Morph to X */
+    .hamburger-btn.active .bar-1 {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.active .bar-2 {
+      opacity: 0;
+    }
+
+    .hamburger-btn.active .bar-3 {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Backdrop */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 98;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Slide-Out Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg-navy);
+      border-left: 1px solid var(--border-glass);
+      z-index: 99;
+      padding: 88px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-slate-500);
+      margin-bottom: 12px;
+      padding-left: 12px;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-link .arrow {
+      color: var(--cyan-accent);
+      font-size: 15px;
+    }
+
+    .mobile-nav-link:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+      color: var(--text-white);
+    }
+
+    .drawer-bottom {
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary-full {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-secondary-full {
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+    }
+
+    .btn-secondary-full svg {
+      color: var(--cyan-accent);
+    }
+
+    /* ==========================================
+       3. HERO BANNER SECTION
+       ========================================== */
+    .hero-section {
+      position: relative;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      align-items: center;
+      padding: 72px 0 96px;
+      overflow: hidden;
+    }
+
+    .network-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Ambient Background Glows */
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .glow-blue {
+      width: 380px;
+      height: 380px;
+      background: rgba(37, 99, 235, 0.22);
+      top: -100px;
+      left: -100px;
+    }
+
+    .glow-violet {
+      width: 360px;
+      height: 360px;
+      background: rgba(124, 58, 237, 0.16);
+      top: 25%;
+      right: -80px;
+    }
+
+    .glow-cyan {
+      width: 300px;
+      height: 300px;
+      background: rgba(34, 211, 238, 0.12);
+      bottom: -60px;
+      left: 35%;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* Left Content */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #67e8f9;
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan-accent);
+      box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(34, 211, 238, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+    }
+
+    /* Line-by-Line Hero Text Reveal */
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.25rem, 4.5vw, 3.85rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .line-mask {
+      display: block;
+      overflow: hidden;
+    }
+
+    .line-reveal {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      animation: revealLine 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+
+    @keyframes revealLine {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-subtext {
+      font-size: 17px;
+      color: var(--text-slate-300);
+      max-width: 620px;
+      margin-bottom: 34px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.55s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.7s forwards;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-hero-primary {
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.45);
+    }
+
+    .btn-hero-secondary {
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(34, 211, 238, 0.45);
+    }
+
+    /* Right Column: Glassmorphic Dashboard UI */
+    .dashboard-glass {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.75);
+      transition: transform 0.2s ease-out;
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .window-dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #f43f5e; }
+    .dot-yellow { background: #fbbf24; }
+    .dot-green { background: #34d399; }
+
+    .dash-title {
+      margin-left: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .status-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .dash-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dash-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--border-glass);
+    }
+
+    .dash-item-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .dash-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-blue {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--cyan-accent);
+    }
+
+    .icon-violet {
+      background: rgba(124, 58, 237, 0.2);
+      color: #c4b5fd;
+    }
+
+    .dash-item h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .dash-item p {
+      font-size: 11px;
+      color: var(--text-slate-400);
+    }
+
+    .dash-metric {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .dash-chart-box {
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--border-glass);
+    }
+
+    .chart-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .chart-label {
+      color: var(--text-slate-400);
+    }
+
+    .chart-tag {
+      font-family: monospace;
+      font-size: 11px;
+      color: var(--cyan-accent);
+    }
+
+    .chart-bars {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 6px;
+      height: 64px;
+      align-items: end;
+    }
+
+    .bar-col {
+      width: 100%;
+      height: var(--h);
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(180deg, var(--cyan-accent), rgba(37, 99, 235, 0.5));
+      animation: barGrow 1s ease-out forwards;
+      transform-origin: bottom;
+    }
+
+    @keyframes barGrow {
+      from { transform: scaleY(0); }
+      to { transform: scaleY(1); }
+    }
+
+    .dash-footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .security-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .security-tag svg {
+      color: var(--cyan-accent);
+    }
+
+    /* ==========================================
+       4. FOOTER SECTION
+       ========================================== */
+    .footer {
+      background-color: var(--bg-footer);
+      border-top: 1px solid var(--border-glass);
+      padding: 64px 0 32px;
+      color: var(--text-slate-300);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: #67e8f9;
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: var(--text-slate-400);
+      max-width: 320px;
+    }
+
+    .footer-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-slate-400);
+      margin-top: 4px;
+    }
+
+    .footer-address svg {
+      color: var(--cyan-accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .footer-heading {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-white);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan-accent);
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-slate-500);
+    }
+
+    .legal-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .legal-links a:hover {
+      color: var(--text-slate-300);
+    }
+
+    .divider {
+      color: #334155;
+    }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS (1024 / 768 / 430 / 390 / 375px)
+       ========================================== */
+    @media (max-width: 1120px) {
+      .desktop-nav,
+      .desktop-ctas {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 48px 0 72px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Mobile Viewports: 430px / 390px / 375px */
+    @media (max-width: 430px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero-headline {
+        font-size: 2rem;
+      }
+
+      .hero-subtext {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-hero-primary,
+      .btn-hero-secondary {
+        width: 100%;
+        text-align: center;
+      }
+
+      .dashboard-glass {
+        padding: 16px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-brand {
+        grid-column: span 1;
+      }
+
+      .mobile-drawer {
+        max-width: 100%;
+      }
+    }
+
+    /* ==========================================
+       VIEWPORT FIT HOMEPAGE SECTIONS (6 SECTIONS)
+       ========================================== */
+    .vp-section {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 32px 0;
+      box-sizing: border-box;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      scroll-snap-align: start;
+    }
+
+    .vp-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      max-height: calc(100vh - 40px);
+    }
+
+    .vp-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.16;
+      width: 440px;
+      height: 440px;
+    }
+
+    .glow-cyan { top: 15%; right: -100px; background: var(--cyan-accent); }
+    .glow-violet { top: 10%; left: -120px; background: var(--violet-accent); }
+    .glow-emerald { bottom: 5%; right: -80px; background: var(--emerald-accent); }
+
+    .vp-header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .vp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.08);
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--cyan-accent);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan-accent);
+      box-shadow: 0 0 8px var(--cyan-accent);
+    }
+
+    .vp-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.65rem, 2.3vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .vp-subtitle {
+      font-size: 13.5px;
+      color: var(--text-slate-400);
+      max-width: 660px;
+      margin: 0 auto;
+      line-height: 1.45;
+    }
+
+    .glass-panel {
+      background: rgba(7, 11, 30, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-panel:hover {
+      border-color: rgba(34, 211, 238, 0.35);
+      box-shadow: 0 10px 32px rgba(2, 6, 23, 0.55);
+      transform: translateY(-2px);
+    }
+
+    /* ===================================================
+       SHARED VIEWPORT COMPONENTS & BUTTONS
+       =================================================== */
+    .icon-blue { background: rgba(37, 99, 235, 0.16); color: #60a5fa; border: 1px solid rgba(37, 99, 235, 0.32); }
+    .icon-cyan { background: rgba(34, 211, 238, 0.16); color: var(--cyan-accent); border: 1px solid rgba(34, 211, 238, 0.32); }
+    .icon-violet { background: rgba(124, 58, 237, 0.16); color: #a78bfa; border: 1px solid rgba(124, 58, 237, 0.32); }
+    .icon-emerald { background: rgba(52, 211, 153, 0.16); color: var(--emerald-accent); border: 1px solid rgba(52, 211, 153, 0.32); }
+
+    .btn-vp-primary {
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-vp-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(34, 211, 238, 0.4);
+    }
+    .btn-sm { padding: 5px 12px; font-size: 10.5px; }
+
+    .vp-cta-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 18px;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .cta-txt { font-size: 11.5px; color: var(--text-slate-300); }
+    .vp-fineprint { font-size: 10px; color: var(--text-slate-500); text-align: center; margin-top: 4px; }
+    .vp-status-ribbon {
+      text-align: center;
+      font-size: 10.5px;
+      letter-spacing: 0.05em;
+      color: var(--text-slate-400);
+      margin-top: 8px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    /* SECTION 1: ABOUT (Asymmetric Editorial Dossier + Live Telemetry) */
+    .about-dossier-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .dossier-left {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .dossier-tag-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .dossier-pill { font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; }
+    .dossier-status { font-size: 9.5px; font-weight: 700; }
+    .dossier-headline {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .dossier-p {
+      font-size: 11.5px;
+      color: var(--text-slate-400);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .dossier-features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .d-feat-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 5px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .d-feat-icon { font-size: 13px; }
+    .dossier-quote-box {
+      font-size: 10.5px;
+      font-style: italic;
+      color: var(--text-slate-400);
+      border-left: 2px solid var(--cyan-accent);
+      padding-left: 10px;
+      margin-top: 4px;
+    }
+    .dossier-right {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .telemetry-bar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+    }
+    .telemetry-title {
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--text-slate-200);
+    }
+    .pulse-beacon { font-size: 9.5px; font-weight: 700; }
+    .telemetry-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .t-meter-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10.5px;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .t-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .t-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, var(--cyan-accent));
+      border-radius: 999px;
+    }
+    .fill-emerald { background: linear-gradient(90deg, #10b981, #34d399); }
+    .fill-violet { background: linear-gradient(90deg, #8b5cf6, #c084fc); }
+    .telemetry-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 8px;
+    }
+    .t-stat-num { font-family: var(--font-heading); font-size: 17px; font-weight: 800; }
+    .t-stat-label { font-size: 9.5px; color: var(--text-slate-400); }
+    .telemetry-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 4px;
+    }
+    .t-foot-meta { font-size: 10px; color: var(--text-slate-400); display: flex; align-items: center; gap: 6px; }
+
+    /* SECTION 2: SERVICES (Bento Grid Architecture) */
+    .bento-services-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1.85fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .bento-hero-card {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      background: linear-gradient(145deg, rgba(7, 14, 40, 0.85), rgba(4, 9, 26, 0.9));
+    }
+    .bento-tag-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .bento-pill { font-size: 9.5px; font-weight: 800; letter-spacing: 0.08em; }
+    .bento-num { font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--cyan-accent); }
+    .bento-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 800;
+      margin: 4px 0;
+    }
+    .bento-desc {
+      font-size: 11.5px;
+      color: var(--text-slate-300);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .bento-flow-viz {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      margin-bottom: 10px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .viz-step {
+      padding: 3px 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      color: var(--text-slate-300);
+    }
+    .viz-step.active {
+      background: rgba(34, 211, 238, 0.2);
+      color: var(--cyan-accent);
+      border: 1px solid rgba(34, 211, 238, 0.4);
+    }
+    .viz-arrow { color: var(--text-slate-500); font-size: 10px; }
+    .bento-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .tag-chip {
+      font-size: 9.5px;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-slate-300);
+    }
+    .bento-action-link {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cyan-accent);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .bento-action-link:hover { text-decoration: underline; color: #fff; }
+    .bento-quad-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .bento-sub-card {
+      padding: 12px 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .b-sub-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+    .b-sub-idx {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--cyan-accent);
+      background: rgba(34, 211, 238, 0.1);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    .b-sub-title { font-family: var(--font-heading); font-size: 13px; font-weight: 700; }
+    .b-sub-desc { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; margin-bottom: 6px; }
+    .b-sub-tech { font-size: 9.5px; font-weight: 600; letter-spacing: 0.03em; }
+
+    /* SECTION 3: SOLUTIONS (3-Platform Showcase Deck with Elevated Center) */
+    .platform-decks-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.22fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .deck-card {
+      padding: 15px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .deck-featured {
+      border: 1px solid rgba(34, 211, 238, 0.4);
+      background: linear-gradient(175deg, rgba(10, 20, 50, 0.9), rgba(5, 10, 30, 0.92));
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(14, 165, 233, 0.15);
+    }
+    .deck-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .deck-flagship-pill {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: var(--cyan-accent);
+      background: rgba(34, 211, 238, 0.12);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 4px;
+    }
+    .deck-title { font-family: var(--font-heading); font-size: 15px; font-weight: 800; margin-bottom: 4px; }
+    .deck-desc { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; margin-bottom: 8px; }
+    .deck-stream-viz {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .s-val { font-family: var(--font-heading); font-size: 13px; font-weight: 800; display: block; }
+    .s-lbl { font-size: 8.5px; color: var(--text-slate-400); text-transform: uppercase; }
+    .deck-feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      font-size: 10.5px;
+      color: var(--text-slate-300);
+    }
+    .deck-feature-list li span { color: var(--cyan-accent); margin-right: 4px; font-weight: 700; }
+    .featured-list li span { color: var(--emerald-accent); }
+    .btn-deck { width: 100%; text-align: center; padding: 6px; }
+    .deck-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 9.5px;
+      font-weight: 700;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 6px;
+    }
+    .deck-tag { color: var(--text-slate-400); font-weight: 600; }
+
+    /* SECTION 4: WHY US (High-Contrast Manifesto + 6 Neon Tiles) */
+    .why-chamber-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1.9fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .why-manifesto-col {
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(155deg, rgba(8, 16, 42, 0.88), rgba(2, 6, 23, 0.95));
+      border: 1px solid rgba(34, 211, 238, 0.22);
+    }
+    .manifesto-tag { font-size: 9.5px; font-weight: 800; letter-spacing: 0.08em; }
+    .manifesto-title { font-family: var(--font-heading); font-size: 17px; font-weight: 800; line-height: 1.25; margin: 4px 0; }
+    .manifesto-desc { font-size: 11px; color: var(--text-slate-300); line-height: 1.4; margin-bottom: 8px; }
+    .manifesto-kpi-block {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .m-val { font-family: var(--font-heading); font-size: 16px; font-weight: 800; display: block; }
+    .m-lbl { font-size: 8.5px; color: var(--text-slate-400); text-transform: uppercase; }
+    .btn-manifesto { width: 100%; text-align: center; }
+    .why-neon-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .why-neon-tile {
+      padding: 11px 13px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(8, 13, 34, 0.65);
+      transition: all 0.2s ease;
+    }
+    .why-neon-tile:hover {
+      border-color: rgba(34, 211, 238, 0.4);
+      background: rgba(12, 20, 50, 0.85);
+      transform: translateY(-2px);
+    }
+    .tile-icon { font-size: 16px; margin-bottom: 3px; }
+    .tile-title { font-family: var(--font-heading); font-size: 12.5px; font-weight: 700; margin-bottom: 3px; }
+    .tile-desc { font-size: 10.5px; color: var(--text-slate-400); line-height: 1.35; }
+    .why-bottom-strip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      padding: 7px 16px;
+      font-size: 10.5px;
+      color: var(--text-slate-300);
+      margin-top: 10px;
+    }
+
+    /* SECTION 5: TECHNOLOGY (Interactive Terminal + Stack Strips) */
+    .tech-terminal-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 1.35fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .terminal-col {
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      background: #040816;
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(15, 23, 42, 0.95);
+      padding: 7px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .term-dots { display: flex; gap: 5px; }
+    .t-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .t-dot.red { background: #ef4444; }
+    .t-dot.yellow { background: #eab308; }
+    .t-dot.green { background: #22c55e; }
+    .term-title { font-family: monospace; font-size: 10.5px; color: var(--text-slate-300); }
+    .term-status { font-family: monospace; font-size: 9.5px; font-weight: 700; }
+    .terminal-body {
+      padding: 12px 14px;
+      flex-grow: 1;
+      font-size: 10.5px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .t-prompt { color: var(--cyan-accent); font-weight: 700; margin-right: 4px; }
+    .t-cursor { animation: blink 1s infinite; color: var(--cyan-accent); font-weight: 800; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .term-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 12px;
+      background: rgba(2, 6, 23, 0.8);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-family: monospace;
+      font-size: 9.5px;
+      color: var(--text-slate-400);
+    }
+    .tech-stack-strips {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .stack-strip-card {
+      padding: 11px 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .strip-header { display: flex; align-items: center; gap: 8px; }
+    .strip-badge {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .strip-title { font-family: var(--font-heading); font-size: 13px; font-weight: 700; }
+    .strip-desc { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; }
+    .strip-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
+    .strip-tags span {
+      font-size: 9.5px;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--text-slate-300);
+    }
+
+    /* SECTION 6: HOW WE WORK (Connected Horizontal Journey Roadmap) */
+    .roadmap-track-wrapper {
+      position: relative;
+      margin-bottom: 10px;
+    }
+    .roadmap-rail {
+      position: absolute;
+      top: 24px;
+      left: 6%;
+      right: 6%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan-accent), var(--emerald-accent), var(--violet-accent));
+      opacity: 0.35;
+      z-index: 1;
+    }
+    .roadmap-stages-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+    .stage-step-card {
+      padding: 13px 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: rgba(7, 12, 32, 0.85);
+      border-radius: 12px;
+    }
+    .stage-head-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .stage-num { font-family: var(--font-heading); font-size: 18px; font-weight: 800; }
+    .stage-status { font-size: 9px; font-weight: 800; letter-spacing: 0.06em; }
+    .stage-title { font-family: var(--font-heading); font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .stage-desc { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; margin-bottom: 6px; flex-grow: 1; }
+    .stage-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 10px;
+      color: var(--text-slate-300);
+      background: rgba(0, 0, 0, 0.25);
+      padding: 5px 8px;
+      border-radius: 6px;
+    }
+    .stage-bullets span { color: var(--cyan-accent); font-weight: 600; }
+    .process-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 18px;
+      gap: 14px;
+    }
+    .proc-ft-left { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-slate-300); }
+    .roadmap-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 10.5px;
+      color: var(--text-slate-400);
+      margin-top: 6px;
+    }
+    .meta-tag { font-weight: 600; color: var(--text-slate-300); }
+    .meta-dot { color: var(--cyan-accent); }
+
+    /* SECTION 7: CONTACT (Command Center + Intake Form) */
+    .contact-command-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .command-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .hq-card {
+      padding: 13px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hq-top-row { display: flex; justify-content: space-between; align-items: center; }
+    .hq-badge { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; }
+    .hq-beacon { font-size: 9.5px; font-weight: 700; }
+    .hq-company { font-family: var(--font-heading); font-size: 13.5px; font-weight: 800; }
+    .hq-address { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; }
+    .hq-sla-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10.5px;
+      color: var(--cyan-accent);
+      background: rgba(34, 211, 238, 0.08);
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      margin-top: 2px;
+    }
+    .channels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .chan-card {
+      padding: 9px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chan-icon { font-size: 15px; }
+    .chan-meta { display: flex; flex-direction: column; font-size: 10px; }
+    .chan-meta strong { font-size: 11px; color: #fff; }
+    .chan-meta span { color: var(--text-slate-400); font-size: 9.5px; }
+    .command-trust-card {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      font-size: 10.5px;
+      color: var(--text-slate-300);
+    }
+    .consult-form {
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .c-form-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+    .c-form-title { font-family: var(--font-heading); font-size: 13.5px; font-weight: 700; }
+    .c-form-pill { font-size: 9px; font-weight: 800; letter-spacing: 0.05em; }
+    .c-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .vp-input {
+      width: 100%;
+      padding: 7px 11px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 11.5px;
+      outline: none;
+      font-family: var(--font-body);
+      transition: border-color 0.2s ease;
+      box-sizing: border-box;
+    }
+    .vp-input:focus {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 10px rgba(34, 211, 238, 0.2);
+    }
+    .vp-select { cursor: pointer; background-color: var(--bg-navy); }
+    .vp-textarea { resize: none; font-family: var(--font-body); }
+    .btn-submit-full { width: 100%; padding: 8px; margin-top: 2px; font-size: 11.5px; }
+    .c-form-foot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 9.5px;
+      color: var(--text-slate-400);
+      margin-top: 1px;
+    }
+    .vp-contact-strip { font-size: 10px; color: var(--text-slate-500); text-align: center; margin-top: 4px; }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .vp-section { min-height: 100vh; height: auto; padding: 40px 0; }
+      .vp-container { max-height: none; }
+      .about-dossier-grid,
+      .bento-services-grid,
+      .platform-decks-grid,
+      .why-chamber-layout,
+      .tech-terminal-layout,
+      .contact-command-layout {
+        grid-template-columns: 1fr;
+      }
+      .roadmap-stages-grid { grid-template-columns: repeat(2, 1fr); }
+      .roadmap-rail { display: none; }
+    }
+    @media (max-width: 640px) {
+      .why-neon-matrix { grid-template-columns: 1fr; }
+      .bento-quad-grid { grid-template-columns: 1fr; }
+      .roadmap-stages-grid { grid-template-columns: 1fr; }
+      .channels-grid, .c-form-row { grid-template-columns: 1fr; }
+      .vp-cta-banner, .process-footer { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       1. NAVBAR & 2. HAMBURGER NAVIGATION
+       ========================================== -->
+  <header id="navbar" class="navbar">
+    <div class="container navbar-container">
+      
+      <!-- Brand Logo -->
+      <a href="#home" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+        <div class="logo-box">
+          <span>H</span>
+        </div>
+        <div class="logo-text">
+          <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+          <span class="brand-subtitle">Digital &amp; Tech</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link active">HOME</a>
+        <a href="#about" class="nav-link">ABOUT US</a>
+        <a href="#services" class="nav-link">SERVICES</a>
+        <a href="#solutions" class="nav-link">SOLUTIONS</a>
+        <a href="#why-us" class="nav-link">WHY US</a>
+        <a href="#technology" class="nav-link">TECHNOLOGY</a>
+        <a href="#how-we-work" class="nav-link">HOW WE WORK</a>
+        <a href="#contact" class="nav-link">CONTACT</a>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="desktop-ctas">
+        <!-- Optional: Client Login -->
+        <a href="#login" class="btn-login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Client Login
+        </a>
+
+        <!-- Primary CTA: Let's Talk -->
+        <a href="#contact" class="btn-primary-sm">
+          Let's Talk
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Hamburger Toggle Button (Mobile & Tablet) -->
+      <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle Mobile Navigation" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Backdrop -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+  <!-- Mobile Hamburger Slide-Out Drawer -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="drawer-top">
+      <p class="drawer-label">Navigation Menu</p>
+      <ul class="mobile-nav-list">
+        <li><a href="#home" class="mobile-nav-link"><span>HOME</span><span class="arrow">↗</span></a></li>
+        <li><a href="#about" class="mobile-nav-link"><span>ABOUT US</span><span class="arrow">↗</span></a></li>
+        <li><a href="#services" class="mobile-nav-link"><span>SERVICES</span><span class="arrow">↗</span></a></li>
+        <li><a href="#solutions" class="mobile-nav-link"><span>SOLUTIONS</span><span class="arrow">↗</span></a></li>
+        <li><a href="#why-us" class="mobile-nav-link"><span>WHY HAKA</span><span class="arrow">↗</span></a></li>
+        <li><a href="#technology" class="mobile-nav-link"><span>TECHNOLOGY</span><span class="arrow">↗</span></a></li>
+        <li><a href="#how-we-work" class="mobile-nav-link"><span>HOW WE WORK</span><span class="arrow">↗</span></a></li>
+        <li><a href="#contact" class="mobile-nav-link"><span>CONTACT</span><span class="arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="drawer-bottom">
+      <a href="#contact" class="btn-primary-full mobile-close-trigger">
+        Let's Talk →
+      </a>
+      <a href="#login" class="btn-secondary-full mobile-close-trigger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Client Login
+      </a>
+    </div>
+  </aside>
+
+
+  <!-- ==========================================
+       3. HERO BANNER SECTION
+       ========================================== -->
+  <main>
+    <section id="home" class="hero-section">
+      <!-- Animated Network & Data Particles Canvas -->
+      <canvas id="network-canvas" class="network-canvas"></canvas>
+
+      <!-- Subtle Radial Gradient Glows -->
+      <div class="glow glow-blue"></div>
+      <div class="glow glow-violet"></div>
+      <div class="glow glow-cyan"></div>
+
+      <div class="container hero-grid">
+        
+        <!-- Left Column: Hero Text & Buttons -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span>HAKA SOLUTIONS • DIGITAL &amp; TECH PARTNER</span>
+          </div>
+
+          <!-- Line-by-Line Hero Text Reveal -->
+          <h1 class="hero-headline">
+            <span class="line-mask">
+              <span class="line-reveal delay-1">Powering Businesses</span>
+            </span>
+            <span class="line-mask">
+              <span class="line-reveal delay-2">Through Smarter</span>
+            </span>
+            <span class="line-mask">
+              <span class="line-reveal delay-3 text-gradient">Digital Solutions</span>
+            </span>
+          </h1>
+
+          <!-- Supporting Text -->
+          <p class="hero-subtext">
+            HAKA SOLUTIONS delivers reliable technology, digital operations and business support solutions designed to help organizations work smarter, scale faster and achieve sustainable growth.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-actions">
+            <a href="#solutions" class="btn-hero-primary">
+              Explore Our Solutions →
+            </a>
+            <a href="#contact" class="btn-hero-secondary">
+              Talk to Us →
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Dashboard-Style Glassmorphism UI -->
+        <div class="hero-visual">
+          <div id="dashboard-card" class="dashboard-glass">
+            
+            <!-- Dashboard Header -->
+            <div class="dash-header">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="dash-title">haka-core://operations-ui</span>
+              </div>
+              <span class="status-pill">● LIVE SYNC</span>
+            </div>
+
+            <!-- Dashboard Modules -->
+            <div class="dash-body">
+              
+              <!-- Module 1 -->
+              <div class="dash-item">
+                <div class="dash-item-left">
+                  <div class="dash-icon icon-blue">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                      <rect x="9" y="9" width="6" height="6"></rect>
+                      <line x1="9" y1="1" x2="9" y2="4"></line>
+                      <line x1="15" y1="1" x2="15" y2="4"></line>
+                      <line x1="9" y1="20" x2="9" y2="23"></line>
+                      <line x1="15" y1="20" x2="15" y2="23"></line>
+                      <line x1="20" y1="9" x2="23" y2="9"></line>
+                      <line x1="20" y1="14" x2="23" y2="14"></line>
+                      <line x1="1" y1="9" x2="4" y2="9"></line>
+                      <line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>AI &amp; Business Automation</h4>
+                    <p>Intelligent workflow optimization</p>
+                  </div>
+                </div>
+                <span class="dash-metric text-cyan">99.9%</span>
+              </div>
+
+              <!-- Module 2 -->
+              <div class="dash-item">
+                <div class="dash-item-left">
+                  <div class="dash-icon icon-violet">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                      <polyline points="2 17 12 22 22 17"></polyline>
+                      <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Data &amp; Digital Operations</h4>
+                    <p>Structured processing &amp; verification</p>
+                  </div>
+                </div>
+                <span class="dash-metric text-emerald">ACTIVE</span>
+              </div>
+
+              <!-- Module 3: Animated Telemetry Chart -->
+              <div class="dash-chart-box">
+                <div class="chart-top">
+                  <span class="chart-label">Operational Efficiency Stream</span>
+                  <span class="chart-tag">Real-Time</span>
+                </div>
+                <div class="chart-bars">
+                  <div class="bar-col" style="--h: 42%;"></div>
+                  <div class="bar-col" style="--h: 65%;"></div>
+                  <div class="bar-col" style="--h: 50%;"></div>
+                  <div class="bar-col" style="--h: 82%;"></div>
+                  <div class="bar-col" style="--h: 68%;"></div>
+                  <div class="bar-col" style="--h: 94%;"></div>
+                  <div class="bar-col" style="--h: 60%;"></div>
+                  <div class="bar-col" style="--h: 78%;"></div>
+                  <div class="bar-col" style="--h: 88%;"></div>
+                  <div class="bar-col" style="--h: 74%;"></div>
+                  <div class="bar-col" style="--h: 100%;"></div>
+                  <div class="bar-col" style="--h: 90%;"></div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Dashboard Footer -->
+            <div class="dash-footer">
+              <div class="security-tag">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Enterprise Data Protection &amp; Secure Workflows</span>
+              </div>
+              <span class="dash-arrow">→</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="about" class="vp-section">
+      <div class="vp-glow glow-blue"></div>
+      <div class="container vp-container">
+        <div class="vp-header">
+          <div class="vp-badge"><span class="badge-dot"></span><span>WHO WE ARE</span></div>
+          <h2 class="vp-title">Engineering Digital Foundations That <span class="text-gradient">Power Growth</span></h2>
+          <p class="vp-subtitle">HAKA SOLUTIONS delivers enterprise data engineering, process automation, and managed operational infrastructure.</p>
+        </div>
+        <div class="about-dossier-grid">
+          <div class="dossier-left glass-panel">
+            <div class="dossier-tag-row">
+              <span class="dossier-pill text-cyan">ESTABLISHED OPERATIONAL RIGOR</span>
+              <span class="dossier-status text-emerald">● ACTIVE PARTNER</span>
+            </div>
+            <h3 class="dossier-headline">Technology. People. Uncompromising Execution.</h3>
+            <p class="dossier-p">We architect scalable digital workflows that bridge complex technology stacks and human execution, eliminating friction across enterprise operations.</p>
+            <div class="dossier-features-list">
+              <div class="d-feat-item"><span class="d-feat-icon">⚡</span><div><strong>Elastic Operations:</strong> Scalable pods deployed in under 72 hours.</div></div>
+              <div class="d-feat-item"><span class="d-feat-icon">🛡️</span><div><strong>Zero-Trust Security:</strong> Strict NDA compliance and 256-bit encrypted data pipelines.</div></div>
+              <div class="d-feat-item"><span class="d-feat-icon">📈</span><div><strong>Measurable ROI:</strong> 40% average reduction in operational cycle times.</div></div>
+            </div>
+            <div class="dossier-quote-box">
+              <span class="dossier-quote-text">"Our mission is simple: provide the dependable technological backbone growing organizations need."</span>
+            </div>
+          </div>
+          <div class="dossier-right glass-panel">
+            <div class="telemetry-bar-head">
+              <span class="telemetry-title">LIVE OPERATIONAL TELEMETRY</span>
+              <span class="pulse-beacon text-cyan">REAL-TIME MONITOR</span>
+            </div>
+            <div class="telemetry-metrics">
+              <div class="t-meter"><div class="t-meter-top"><span>Service SLA Adherence</span><span class="text-cyan">99.98%</span></div><div class="t-bar-bg"><div class="t-bar-fill" style="width: 99.98%"></div></div></div>
+              <div class="t-meter"><div class="t-meter-top"><span>Data Processing Accuracy</span><span class="text-emerald">99.94%</span></div><div class="t-bar-bg"><div class="t-bar-fill fill-emerald" style="width: 99.94%"></div></div></div>
+              <div class="t-meter"><div class="t-meter-top"><span>Workflow Automation Uptime</span><span class="text-violet">100.0%</span></div><div class="t-bar-bg"><div class="t-bar-fill fill-violet" style="width: 100%"></div></div></div>
+            </div>
+            <div class="telemetry-stats-grid">
+              <div class="t-stat-card"><span class="t-stat-num text-cyan">250+</span><span class="t-stat-label">Enterprise Deployments</span></div>
+              <div class="t-stat-card"><span class="t-stat-num text-emerald">15M+</span><span class="t-stat-label">Processed Records</span></div>
+              <div class="t-stat-card"><span class="t-stat-num text-gradient">24/7</span><span class="t-stat-label">Continuous Coverage</span></div>
+            </div>
+            <div class="telemetry-footer">
+              <div class="t-foot-meta"><span class="badge-dot"></span><span>ISO &amp; Zero-Trust Protocol Compliant</span></div>
+              <a href="#services" class="btn-vp-primary btn-sm">Explore Capabilities →</a>
+            </div>
+          </div>
+        </div>
+        <div class="vp-status-ribbon"><span>Technology • People • Progress • Built for Global Enterprise Agility</span></div>
+        <p class="vp-fineprint">Verified operational benchmarks tracked under enterprise SLA protocols.</p>
+      </div>
+    </section>
+
+    <section id="services" class="vp-section">
+      <div class="vp-glow glow-cyan"></div>
+      <div class="container vp-container">
+        <div class="vp-header">
+          <div class="vp-badge"><span class="badge-dot"></span><span>CAPABILITIES &amp; SERVICES</span></div>
+          <h2 class="vp-title">Modular <span class="text-gradient">Technology &amp; Operations</span> Architecture</h2>
+          <p class="vp-subtitle">End-to-end operational services structured for high throughput, data integrity, and autonomous workflows.</p>
+        </div>
+        <div class="bento-services-grid">
+          <div class="bento-hero-card glass-panel">
+            <div class="bento-tag-row"><span class="bento-pill text-cyan">FLAGSHIP DISCIPLINE</span><span class="bento-num">01</span></div>
+            <h3 class="bento-title">Data &amp; Digital Operations</h3>
+            <p class="bento-desc">High-volume data processing, document digitization, validation pipelines, and continuous digital operational management tailored for enterprise precision.</p>
+            <div class="bento-flow-viz">
+              <div class="viz-step">Raw Input</div><span class="viz-arrow">→</span>
+              <div class="viz-step">Automated QA</div><span class="viz-arrow">→</span>
+              <div class="viz-step">Human Review</div><span class="viz-arrow">→</span>
+              <div class="viz-step active">Verified Data</div>
+            </div>
+            <div class="bento-tags"><span class="tag-chip">ETL Pipelines</span><span class="tag-chip">Data Hygiene</span><span class="tag-chip">Doc Digitization</span></div>
+            <a href="#contact" class="bento-action-link">Deploy Operations Pod →</a>
+          </div>
+          <div class="bento-quad-grid">
+            <div class="bento-sub-card glass-panel">
+              <div class="b-sub-head"><span class="b-sub-idx">02</span><h4 class="b-sub-title">Technology Solutions</h4></div>
+              <p class="b-sub-desc">Custom web apps, internal admin dashboards, and scalable database systems built to streamline enterprise tasks.</p>
+              <span class="b-sub-tech text-cyan">Custom Web • Internal Portals • DB Architecture</span>
+            </div>
+            <div class="bento-sub-card glass-panel">
+              <div class="b-sub-head"><span class="b-sub-idx">03</span><h4 class="b-sub-title">Business Process Support</h4></div>
+              <p class="b-sub-desc">Dedicated back-office workflow execution, virtual teams, and managed documentation services with verified KPIs.</p>
+              <span class="b-sub-tech text-emerald">Back-Office • Workflow Support • SLA Management</span>
+            </div>
+            <div class="bento-sub-card glass-panel">
+              <div class="b-sub-head"><span class="b-sub-idx">04</span><h4 class="b-sub-title">Automation &amp; Integration</h4></div>
+              <p class="b-sub-desc">Intelligent API integrations, scheduled cron triggers, and automated notification bots to cut manual work.</p>
+              <span class="b-sub-tech text-cyan">Webhook Triggers • Multi-App Sync • RPA</span>
+            </div>
+            <div class="bento-sub-card glass-panel">
+              <div class="b-sub-head"><span class="b-sub-idx">05</span><h4 class="b-sub-title">Custom Solutions &amp; Support</h4></div>
+              <p class="b-sub-desc">Tailored operational pods, ongoing maintenance, and technology advisory adapted to your organizational pace.</p>
+              <span class="b-sub-tech text-violet">Tailored Pods • Dedicated PM • 24/7 Support</span>
+            </div>
+          </div>
+        </div>
+        <div class="vp-cta-banner glass-panel">
+          <span class="cta-txt">Require specialized service SLA terms or confidential NDA execution?</span>
+          <a href="#contact" class="btn-vp-primary">Request Customized Proposal →</a></div>
+      </div>
+    </section>
+
+    <section id="solutions" class="vp-section">
+      <div class="vp-glow glow-violet"></div>
+      <div class="container vp-container">
+        <div class="vp-header">
+          <div class="vp-badge"><span class="badge-dot"></span><span>SYSTEMS &amp; PLATFORMS</span></div>
+          <h2 class="vp-title">Scalable <span class="text-gradient">Operational Platforms</span></h2>
+          <p class="vp-subtitle">Purpose-built enterprise platforms engineered to manage workflows, verify data integrity, and accelerate speed.</p>
+        </div>
+        <div class="platform-decks-grid">
+          <div class="deck-card glass-panel">
+            <div class="deck-badge text-slate-400">PLATFORM 01</div>
+            <h3 class="deck-title">Digital Workforce Platform</h3>
+            <p class="deck-desc">Human-in-the-loop technology ecosystem pairing skilled operational talent with smart verification tooling for seamless execution.</p>
+            <ul class="deck-feature-list">
+              <li><span>✓</span> Managed Task Orchestration</li>
+              <li><span>✓</span> Live Productivity Telemetry</li>
+              <li><span>✓</span> Scalable Dedicated Pods</li>
+            </ul>
+            <div class="deck-status-bar"><span class="text-cyan">● ELASTIC SCALE</span><span class="deck-tag">ON-DEMAND</span></div>
+          </div>
+          <div class="deck-card deck-featured glass-panel">
+            <div class="deck-flagship-pill">⭐ CORE ENTERPRISE ENGINE</div>
+            <h3 class="deck-title text-gradient">Data Operations &amp; Ingestion</h3>
+            <p class="deck-desc">High-throughput data structuring engine converting unstructured datasets into validated, business-ready repositories.</p>
+            <div class="deck-stream-viz">
+              <div class="stream-metric"><span class="s-val text-cyan">99.94%</span><span class="s-lbl">Validation</span></div>
+              <div class="stream-metric"><span class="s-val text-emerald">&lt; 4ms</span><span class="s-lbl">Latency</span></div>
+              <div class="stream-metric"><span class="s-val text-violet">Zero</span><span class="s-lbl">Data Loss</span></div>
+            </div>
+            <ul class="deck-feature-list featured-list">
+              <li><span>✦</span> Automated Schema Cleansing &amp; Deduplication</li>
+              <li><span>✦</span> Real-Time Webhook &amp; REST Ingestion</li>
+              <li><span>✦</span> Enterprise Audit Trail &amp; Governance</li>
+            </ul>
+            <a href="#contact" class="btn-vp-primary btn-deck">Deploy Pipeline →</a>
+          </div>
+          <div class="deck-card glass-panel">
+            <div class="deck-badge text-slate-400">PLATFORM 03</div>
+            <h3 class="deck-title">Business Automation Engine</h3>
+            <p class="deck-desc">Rule-based process automation bridging disparate enterprise apps, auto-dispatching work orders and eliminating human error.</p>
+            <ul class="deck-feature-list">
+              <li><span>✓</span> Cross-Platform Event Triggers</li>
+              <li><span>✓</span> Automated Alert Dispatches</li>
+              <li><span>✓</span> Zero Disruption Integration</li>
+            </ul>
+            <div class="deck-status-bar"><span class="text-emerald">● REAL-TIME SYNC</span><span class="deck-tag">AUTOMATED</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-us" class="vp-section">
+      <div class="vp-glow glow-blue"></div>
+      <div class="container vp-container">
+        <div class="vp-header">
+          <div class="vp-badge"><span class="badge-dot"></span><span>THE HAKA ADVANTAGE</span></div>
+          <h2 class="vp-title">Built For <span class="text-gradient">Reliability, Scale</span> &amp; Governance</h2>
+          <p class="vp-subtitle">Enterprise engineering rigor combined with operational discipline for sustainable, long-term partnerships.</p>
+        </div>
+        <div class="why-chamber-layout">
+          <div class="why-manifesto-col glass-panel">
+            <span class="manifesto-tag text-cyan">OPERATIONAL PLEDGE</span>
+            <h3 class="manifesto-title">We Deliver Predictable Excellence, Not Empty Promises.</h3>
+            <p class="manifesto-desc">HAKA SOLUTIONS stands apart with ironclad SLA guarantees, disciplined project governance, and transparent weekly sprint outcomes.</p>
+            <div class="manifesto-kpi-block">
+              <div class="m-kpi"><span class="m-val text-cyan">99.98%</span><span class="m-lbl">SLA Met</span></div>
+              <div class="m-kpi"><span class="m-val text-emerald">Zero</span><span class="m-lbl">Security Leaks</span></div>
+              <div class="m-kpi"><span class="m-val text-gradient">2 Hr</span><span class="m-lbl">Response Time</span></div>
+            </div>
+            <a href="#contact" class="btn-vp-primary btn-manifesto">Initiate Reliable Engagement →</a>
+          </div>
+          <div class="why-neon-matrix">
+            <div class="why-neon-tile glass-panel">
+              <div class="tile-icon text-cyan">🛡️</div><h4 class="tile-title">High Reliability</h4>
+              <p class="tile-desc">Redundant execution architecture ensuring zero operational downtime for mission-critical workflows.</p>
+            </div>
+            <div class="why-neon-tile glass-panel">
+              <div class="tile-icon text-emerald">📈</div><h4 class="tile-title">Elastic Scale</h4>
+              <p class="tile-desc">Scale engineering or operational pods from 2 to 50+ members frictionlessly within days.</p>
+            </div>
+            <div class="why-neon-tile glass-panel">
+              <div class="tile-icon text-violet">⚙️</div><h4 class="tile-title">Technology Driven</h4>
+              <p class="tile-desc">Modern cloud infrastructure, smart automation bots, and automated validation tooling across all tasks.</p>
+            </div>
+            <div class="why-neon-tile glass-panel">
+              <div class="tile-icon text-cyan">🔒</div><h4 class="tile-title">Ironclad Security</h4>
+              <p class="tile-desc">Zero-trust permissions, encrypted workspaces, and strict NDA legal protections for complete IP safety.</p>
+            </div>
+            <div class="why-neon-tile glass-panel">
+              <div class="tile-icon text-emerald">🔄</div><h4 class="tile-title">Agile Flexibility</h4>
+              <p class="tile-desc">Flexible sprint contracts that adapt rapidly to evolving business targets and seasonal workload spikes.</p>
+            </div>
+            <div class="why-neon-tile glass-panel">
+              <div class="tile-icon text-blue">🤝</div><h4 class="tile-title">Long-Term Partnership</h4>
+              <p class="tile-desc">Continuous post-deployment optimization, proactive governance, and dedicated account leadership.</p>
+            </div>
+          </div>
+        </div>
+        <div class="why-bottom-strip glass-panel"><span class="pulse-dot"></span><span>100% Verified Deliverables &bull; ISO-Aligned Governance &bull; Dedicated Project Leadership</span></div>
+      </div>
+    </section>
+
+    <section id="technology" class="vp-section">
+      <div class="vp-glow glow-emerald"></div>
+      <div class="container vp-container">
+        <div class="vp-header">
+          <div class="vp-badge"><span class="badge-dot"></span><span>ENGINEERING STACK</span></div>
+          <h2 class="vp-title">Modern <span class="text-gradient">Technology Ecosystem</span></h2>
+          <p class="vp-subtitle">Production-hardened cloud architecture, streaming data pipelines, and intelligent automation frameworks.</p>
+        </div>
+        <div class="tech-terminal-layout">
+          <div class="terminal-col glass-panel">
+            <div class="terminal-bar">
+              <div class="term-dots"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span></div>
+              <span class="term-title">haka-core@cloud-cluster:~</span>
+              <span class="term-status text-emerald">ONLINE</span>
+            </div>
+            <div class="terminal-body font-mono">
+              <p class="term-line"><span class="t-prompt">$</span> haka-stack --verify-health --environment=production</p>
+              <p class="term-line text-slate-400">[INFO] Initializing cloud cluster verification...</p>
+              <p class="term-line text-cyan">&gt; Data Pipelines: ACTIVE (15M+ records synced / sec)</p>
+              <p class="term-line text-emerald">&gt; Cloud Infrastructure: HEALTHY (99.98% SLA)</p>
+              <p class="term-line text-violet">&gt; Automation Triggers: STANDBY (0ms event latency)</p>
+              <p class="term-line text-amber">&gt; Security Layer: TLS 1.3 / AES-256 ZERO-TRUST</p>
+              <p class="term-line text-emerald">[SUCCESS] All 5 technology clusters operational without error.</p>
+              <p class="term-line blink"><span class="t-prompt">$</span> <span class="t-cursor">_</span></p>
+            </div>
+            <div class="term-footer"><span class="text-cyan">Cluster Nodes: 12</span><span>Region: Global Multi-Zone</span><span class="text-emerald">Uptime: 99.98%</span></div>
+          </div>
+          <div class="tech-stack-strips">
+            <div class="stack-strip-card glass-panel">
+              <div class="strip-header"><span class="strip-badge text-cyan">DATA &amp; ETL</span><h4 class="strip-title">Data Ingestion &amp; Analytics</h4></div>
+              <p class="strip-desc">Distributed ETL pipelines, automated deduplication, and low-latency analytics data warehouses.</p>
+              <div class="strip-tags"><span>Python ETL</span><span>PostgreSQL</span><span>Redis Cache</span><span>Apache Spark</span></div>
+            </div>
+            <div class="stack-strip-card glass-panel">
+              <div class="strip-header"><span class="strip-badge text-emerald">CLOUD NATIVE</span><h4 class="strip-title">Cloud Infrastructure &amp; APIs</h4></div>
+              <p class="strip-desc">Serverless microservices, auto-scaling container pods, and edge-cached CDN networks.</p>
+              <div class="strip-tags"><span>AWS Cloud</span><span>Docker</span><span>REST / GraphQL</span><span>Cloudflare Edge</span></div>
+            </div>
+            <div class="stack-strip-card glass-panel">
+              <div class="strip-header"><span class="strip-badge text-violet">AI &amp; RPA</span><h4 class="strip-title">Intelligent Automation &amp; AI</h4></div>
+              <p class="strip-desc">Automated document OCR extraction, webhook event orchestrators, and AI assistant integrations.</p>
+              <div class="strip-tags"><span>Doc OCR</span><span>Webhook Triggers</span><span>Workflow Bots</span><span>Predictive AI</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="vp-cta-banner glass-panel">
+          <span class="cta-txt">Ready to modernize your infrastructure or deploy automated data pipelines?</span>
+          <a href="#contact" class="btn-vp-primary">Explore Tech Consultation →</a></div>
+      </div>
+    </section>
+
+    <section id="how-we-work" class="vp-section">
+      <div class="vp-glow glow-violet"></div>
+      <div class="container vp-container">
+        <div class="vp-header">
+          <div class="vp-badge"><span class="badge-dot"></span><span>DELIVERY METHODOLOGY</span></div>
+          <h2 class="vp-title">Our 4-Stage <span class="text-gradient">Execution Framework</span></h2>
+          <p class="vp-subtitle">A transparent, agile engineering lifecycle engineered to mitigate risk, accelerate velocity, and ensure quality.</p>
+        </div>
+        <div class="roadmap-track-wrapper">
+          <div class="roadmap-rail"></div>
+          <div class="roadmap-stages-grid">
+            <div class="stage-step-card glass-panel">
+              <div class="stage-head-row"><span class="stage-num text-cyan">01</span><span class="stage-status text-cyan">DISCOVERY</span></div>
+              <h3 class="stage-title">Understand</h3>
+              <p class="stage-desc">Comprehensive discovery to audit current workflows, identify bottlenecks, and map operational goals.</p>
+              <div class="stage-bullets"><span>✓ Workflow Scoping</span><span>✓ Security Audit</span><span>✓ KPI Mapping</span></div>
+            </div>
+            <div class="stage-step-card glass-panel">
+              <div class="stage-head-row"><span class="stage-num text-emerald">02</span><span class="stage-status text-emerald">DESIGN</span></div>
+              <h3 class="stage-title">Design</h3>
+              <p class="stage-desc">Architect bespoke operational blueprints, pipeline schemas, and staffing models tailored to scale.</p>
+              <div class="stage-bullets"><span>✓ Blueprint Spec</span><span>✓ SLA Design</span><span>✓ Prototype Test</span></div>
+            </div>
+            <div class="stage-step-card glass-panel">
+              <div class="stage-head-row"><span class="stage-num text-cyan">03</span><span class="stage-status text-cyan">DEPLOY</span></div>
+              <h3 class="stage-title">Implement</h3>
+              <p class="stage-desc">Rapid agile sprint deployment, integrating tools, workflows, and dedicated pods with zero friction.</p>
+              <div class="stage-bullets"><span>✓ Agile Sprints</span><span>✓ Pod Onboarding</span><span>✓ Automated QA</span></div>
+            </div>
+            <div class="stage-step-card glass-panel">
+              <div class="stage-head-row"><span class="stage-num text-gradient">04</span><span class="stage-status text-gradient">SCALE</span></div>
+              <h3 class="stage-title">Improve</h3>
+              <p class="stage-desc">Continuous telemetry monitoring, process refinement, and automation upgrades for compounding ROI.</p>
+              <div class="stage-bullets"><span>✓ Weekly Demos</span><span>✓ Telemetry Audits</span><span>✓ Continual Tuning</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="process-footer glass-panel">
+          <div class="proc-ft-left"><span class="pulse-dot"></span><span>Agile 2-week sprints &bull; Daily standups &bull; Guaranteed weekly deliverable signoffs</span></div>
+          <a href="#contact" class="btn-vp-primary">Start Stage 01 Discovery →</a>
+        </div>
+        <div class="roadmap-meta-bar">
+          <span class="meta-tag">Average Time to Sprint 1: &lt; 72 Hours</span>
+          <span class="meta-dot">•</span>
+          <span class="meta-tag">Dedicated Tech Lead Included</span>
+          <span class="meta-dot">•</span>
+          <span class="meta-tag">Zero Lock-In Contracts</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="vp-section">
+      <div class="vp-glow glow-cyan"></div>
+      <div class="container vp-container">
+        <div class="vp-header">
+          <div class="vp-badge"><span class="badge-dot"></span><span>EXECUTIVE CONTACT</span></div>
+          <h2 class="vp-title">Connect With <span class="text-gradient">HAKA SOLUTIONS</span></h2>
+          <p class="vp-subtitle">Initiate a confidential technology consultation, operational discovery session, or bespoke RFP discussion.</p>
+        </div>
+        <div class="contact-command-layout">
+          <div class="command-info-col">
+            <div class="hq-card glass-panel">
+              <div class="hq-top-row"><span class="hq-badge text-cyan">GLOBAL HEADQUARTERS</span><span class="hq-beacon text-emerald">● ACTIVE DESK</span></div>
+              <h3 class="hq-company">HAKA SOLUTIONS PRIVATE LIMITED</h3>
+              <p class="hq-address">Union Bank Back Side, Kattupudi Street, Pallikonda – 635809, Tamil Nadu, India</p>
+              <div class="hq-sla-box"><span>⚡</span><div><strong>SLA Guarantee:</strong> Direct executive response under 2 business hours.</div></div>
+            </div>
+            <div class="channels-grid">
+              <div class="chan-card glass-panel"><span class="chan-icon text-cyan">✉️</span><div class="chan-meta"><strong>Verified Email</strong><span>contact@hakasolutions.com</span></div></div>
+              <div class="chan-card glass-panel"><span class="chan-icon text-emerald">💬</span><div class="chan-meta"><strong>Direct Support</strong><span>Phone &amp; WhatsApp Direct Line</span></div></div>
+            </div>
+            <div class="command-trust-card glass-panel"><span>🛡️</span><span>100% Confidentiality &bull; Mutual NDA Protection &bull; Strict DPDP Governance</span></div>
+          </div>
+          <div class="command-form-col">
+            <form class="consult-form glass-panel" onsubmit="event.preventDefault(); alert('Inquiry received! We will reach out within 2 hours.');">
+              <div class="c-form-head"><span class="c-form-title">Consultation Request</span><span class="c-form-pill text-cyan">ENCRYPTED FORM</span></div>
+              <div class="c-form-row">
+                <input type="text" class="vp-input" placeholder="Full Name" required />
+                <input type="text" class="vp-input" placeholder="Company Name" required />
+              </div>
+              <div class="c-form-row">
+                <input type="email" class="vp-input" placeholder="Work Email Address" required />
+                <input type="tel" class="vp-input" placeholder="Phone / WhatsApp" required />
+              </div>
+              <select class="vp-input vp-select" required>
+                <option value="" disabled selected>Primary Operational Focus Area</option>
+                <option value="data">Data Operations &amp; Ingestion Pipelines</option>
+                <option value="tech">Technology Platforms &amp; Software Development</option>
+                <option value="bpo">Dedicated Business Process Support Pods</option>
+                <option value="automation">Intelligent Automation &amp; Custom Integration</option>
+              </select>
+              <textarea class="vp-input vp-textarea" placeholder="Project Scope or Operational Parameters" rows="2" required></textarea>
+              <button type="submit" class="btn-vp-primary btn-submit-full">Submit Confidential Request →</button>
+              <div class="c-form-foot"><span>⚡ Guaranteed response within 2 hours</span><span>•</span><span>Strict NDA Protected</span></div>
+            </form>
+          </div>
+        </div>
+        <div class="vp-contact-strip"><span>HAKA SOLUTIONS &bull; Pallikonda 635809 &bull; Global Delivery Footprint</span></div>
+        <p class="vp-fineprint">All inquiries are processed under corporate confidentiality and data privacy standards.</p>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ==========================================
+       4. FOOTER SECTION
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand & Tagline Column -->
+        <div class="footer-brand">
+          <a href="#home" class="brand-logo">
+            <div class="logo-box">
+              <span>H</span>
+            </div>
+            <div class="logo-text">
+              <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+            </div>
+          </a>
+
+          <p class="footer-tagline">
+            Technology • Digital Solutions • Business Growth
+          </p>
+
+          <p class="footer-desc">
+            Reliable, technology-driven solutions that help businesses operate more efficiently and grow sustainably.
+          </p>
+
+          <div class="footer-address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Union Bank Back Side, Kattupudi Street, Pallikonda 635809</span>
+          </div>
+        </div>
+
+        <!-- Column 1: Company -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Company</h3>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Solutions -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Solutions</h3>
+          <ul class="footer-links">
+            <li><a href="#digital-operations">Digital Operations</a></li>
+            <li><a href="#data-solutions">Data Solutions</a></li>
+            <li><a href="#technology-solutions">Technology Solutions</a></li>
+            <li><a href="#business-support">Business Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Resources -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#case-studies">Case Studies</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Connect -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Connect</h3>
+          <ul class="footer-links">
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+            <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+            <li><a href="mailto:contact@hakasolutions.com">Email ↗</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Legal & Copyright Bar -->
+      <div class="footer-bottom">
+        <p class="copyright">© <span id="year"></span> HAKA SOLUTIONS. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="#privacy-policy">Privacy Policy</a>
+          <span class="divider">|</span>
+          <a href="#terms">Terms &amp; Conditions</a>
+          <span class="divider">|</span>
+          <a href="#cookie-policy">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Dynamic Copyright Year
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // 2. Sticky Header Elevation on Scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // 3. Mobile Hamburger Menu Logic
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileDrawer = document.getElementById("mobile-drawer");
+      const drawerBackdrop = document.getElementById("drawer-backdrop");
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link, .mobile-close-trigger");
+
+      function toggleMobileMenu() {
+        const isOpen = mobileDrawer.classList.contains("open");
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+
+      function openMobileMenu() {
+        hamburgerBtn.classList.add("active");
+        hamburgerBtn.setAttribute("aria-expanded", "true");
+        mobileDrawer.classList.add("open");
+        drawerBackdrop.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileMenu() {
+        hamburgerBtn.classList.remove("active");
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+        mobileDrawer.classList.remove("open");
+        drawerBackdrop.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      hamburgerBtn.addEventListener("click", toggleMobileMenu);
+      drawerBackdrop.addEventListener("click", closeMobileMenu);
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileDrawer.classList.contains("open")) {
+          closeMobileMenu();
+        }
+      });
+
+      // 4. Hero Background Digital Network & Data Particles Canvas
+      const canvas = document.getElementById("network-canvas");
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        const particleCount = window.innerWidth < 768 ? 28 : 55;
+        const maxDistance = 140;
+
+        function resizeCanvas() {
+          canvas.width = canvas.parentElement.offsetWidth;
+          canvas.height = canvas.parentElement.offsetHeight;
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.55;
+            this.vy = (Math.random() - 0.5) * 0.55;
+            this.radius = Math.random() * 1.8 + 1;
+          }
+
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(34, 211, 238, 0.55)";
+            ctx.fill();
+          }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+
+        function animateNetwork() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < maxDistance) {
+                const opacity = (1 - distance / maxDistance) * 0.22;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          }
+          requestAnimationFrame(animateNetwork);
+        }
+
+        animateNetwork();
+      }
+
+      // 5. Subtle Parallax Tilt on Hero Glassmorphic Dashboard (Desktop)
+      const dashCard = document.getElementById("dashboard-card");
+      if (dashCard && window.matchMedia("(min-width: 1024px)").matches) {
+        dashCard.addEventListener("mousemove", (e) => {
+          const rect = dashCard.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const rotateX = (-y / 25).toFixed(2);
+          const rotateY = (x / 25).toFixed(2);
+          dashCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        dashCard.addEventListener("mouseleave", () => {
+          dashCard.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
