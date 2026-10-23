@@ -117,17 +117,39 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
     }
 
     .logo-box {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 9px;
-      background: linear-gradient(135deg, var(--electric-blue), var(--cyan-accent), var(--violet-accent));
+      background: #ffffff;
       padding: 1.5px;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1.5px solid rgba(34, 211, 238, 0.45);
+      box-shadow: 0 0 14px rgba(34, 211, 238, 0.3);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .brand-logo:hover .logo-box {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      transform: scale(1.04);
+    }
+
+    .brand-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 26%;
+      border-radius: 7px;
+      display: block;
     }
 
     .logo-box span {
@@ -168,16 +190,20 @@
     .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: clamp(12px, 1.6vw, 22px);
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     .nav-link {
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.06em;
       color: var(--text-slate-300);
       padding: 6px 0;
       position: relative;
+      white-space: nowrap;
+      display: inline-block;
       transition: color 0.25s ease;
     }
 
@@ -206,19 +232,22 @@
     .desktop-ctas {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
     }
 
     .btn-login {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 9px 14px;
+      padding: 8px 12px;
       border-radius: 8px;
       font-size: 12px;
       font-weight: 600;
       color: var(--text-slate-300);
       border: 1px solid transparent;
+      white-space: nowrap;
       transition: all 0.25s ease;
     }
 
@@ -236,13 +265,14 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 8px;
       font-size: 12px;
       font-weight: 600;
       color: var(--text-white);
       background: linear-gradient(90deg, var(--electric-blue), #0ea5e9);
       box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+      white-space: nowrap;
       transition: all 0.3s ease;
     }
 
@@ -824,7 +854,7 @@
       display: flex;
       align-items: flex-start;
       gap: 8px;
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-slate-400);
       margin-top: 4px;
     }
@@ -837,7 +867,7 @@
 
     .footer-heading {
       font-family: var(--font-heading);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -868,7 +898,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 16px;
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--text-slate-500);
     }
 
@@ -1020,7 +1050,7 @@
     .glow-emerald { bottom: 5%; right: -80px; background: var(--emerald-accent); }
 
     .vp-header {
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       text-align: center;
     }
 
@@ -1028,15 +1058,15 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 14px;
+      padding: 4px 13px;
       border-radius: 999px;
       background: rgba(34, 211, 238, 0.08);
       border: 1px solid rgba(34, 211, 238, 0.28);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.08em;
       color: var(--cyan-accent);
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       text-transform: uppercase;
     }
 
@@ -1050,19 +1080,19 @@
 
     .vp-title {
       font-family: var(--font-heading);
-      font-size: clamp(1.65rem, 2.3vw, 2.35rem);
+      font-size: clamp(1.75rem, 2.35vw, 2.45rem);
       font-weight: 800;
       line-height: 1.16;
       letter-spacing: -0.02em;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .vp-subtitle {
-      font-size: 13.5px;
+      font-size: 15px;
       color: var(--text-slate-400);
-      max-width: 660px;
+      max-width: 700px;
       margin: 0 auto;
-      line-height: 1.45;
+      line-height: 1.4;
     }
 
     .glass-panel {
@@ -1091,7 +1121,7 @@
     .btn-vp-primary {
       padding: 7px 16px;
       border-radius: 8px;
-      font-size: 11.5px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #fff;
       background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
@@ -1108,25 +1138,25 @@
       transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(34, 211, 238, 0.4);
     }
-    .btn-sm { padding: 5px 12px; font-size: 10.5px; }
+    .btn-sm { padding: 5px 12px; font-size: 12.5px; }
 
     .vp-cta-banner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 9px 18px;
+      padding: 8px 18px;
       gap: 14px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
-    .cta-txt { font-size: 11.5px; color: var(--text-slate-300); }
-    .vp-fineprint { font-size: 10px; color: var(--text-slate-500); text-align: center; margin-top: 4px; }
+    .cta-txt { font-size: 14px; color: var(--text-slate-300); }
+    .vp-fineprint { font-size: 12px; color: var(--text-slate-500); text-align: center; margin-top: 4px; }
     .vp-status-ribbon {
       text-align: center;
-      font-size: 10.5px;
+      font-size: 12.5px;
       letter-spacing: 0.05em;
       color: var(--text-slate-400);
-      margin-top: 8px;
-      padding-top: 6px;
+      margin-top: 6px;
+      padding-top: 5px;
       border-top: 1px dashed rgba(255, 255, 255, 0.1);
     }
 
@@ -1138,7 +1168,7 @@
       align-items: stretch;
     }
     .dossier-left {
-      padding: 16px 20px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1147,51 +1177,51 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    .dossier-pill { font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; }
-    .dossier-status { font-size: 9.5px; font-weight: 700; }
+    .dossier-pill { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; }
+    .dossier-status { font-size: 12px; font-weight: 700; }
     .dossier-headline {
       font-family: var(--font-heading);
-      font-size: 17px;
+      font-size: 19.5px;
       font-weight: 800;
       line-height: 1.25;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .dossier-p {
-      font-size: 11.5px;
+      font-size: 14.5px;
       color: var(--text-slate-400);
-      line-height: 1.4;
-      margin-bottom: 8px;
+      line-height: 1.45;
+      margin-bottom: 6px;
     }
     .dossier-features-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 8px;
+      gap: 5px;
+      margin-bottom: 6px;
     }
     .d-feat-item {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 11px;
+      font-size: 13.5px;
       color: var(--text-slate-300);
       background: rgba(255, 255, 255, 0.03);
       padding: 5px 10px;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.06);
     }
-    .d-feat-icon { font-size: 13px; }
+    .d-feat-icon { font-size: 16px; }
     .dossier-quote-box {
-      font-size: 10.5px;
+      font-size: 13px;
       font-style: italic;
       color: var(--text-slate-400);
       border-left: 2px solid var(--cyan-accent);
       padding-left: 10px;
-      margin-top: 4px;
+      margin-top: 3px;
     }
     .dossier-right {
-      padding: 16px 20px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1201,27 +1231,27 @@
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 6px;
-      margin-bottom: 10px;
+      padding-bottom: 5px;
+      margin-bottom: 8px;
     }
     .telemetry-title {
       font-family: var(--font-heading);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.06em;
       color: var(--text-slate-200);
     }
-    .pulse-beacon { font-size: 9.5px; font-weight: 700; }
+    .pulse-beacon { font-size: 12px; font-weight: 700; }
     .telemetry-metrics {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 10px;
+      gap: 6px;
+      margin-bottom: 8px;
     }
     .t-meter-top {
       display: flex;
       justify-content: space-between;
-      font-size: 10.5px;
+      font-size: 13px;
       font-weight: 600;
       margin-bottom: 3px;
     }
@@ -1245,20 +1275,20 @@
       gap: 8px;
       text-align: center;
       background: rgba(0, 0, 0, 0.25);
-      padding: 8px 10px;
+      padding: 6px 10px;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.05);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .t-stat-num { font-family: var(--font-heading); font-size: 17px; font-weight: 800; }
-    .t-stat-label { font-size: 9.5px; color: var(--text-slate-400); }
+    .t-stat-num { font-family: var(--font-heading); font-size: 20px; font-weight: 800; }
+    .t-stat-label { font-size: 12px; color: var(--text-slate-400); }
     .telemetry-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 4px;
+      padding-top: 3px;
     }
-    .t-foot-meta { font-size: 10px; color: var(--text-slate-400); display: flex; align-items: center; gap: 6px; }
+    .t-foot-meta { font-size: 12px; color: var(--text-slate-400); display: flex; align-items: center; gap: 6px; }
 
     /* SECTION 2: SERVICES (Bento Grid Architecture) */
     .bento-services-grid {
@@ -1268,7 +1298,7 @@
       align-items: stretch;
     }
     .bento-hero-card {
-      padding: 16px 20px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1280,30 +1310,30 @@
       justify-content: space-between;
       align-items: center;
     }
-    .bento-pill { font-size: 9.5px; font-weight: 800; letter-spacing: 0.08em; }
-    .bento-num { font-family: var(--font-heading); font-size: 14px; font-weight: 800; color: var(--cyan-accent); }
+    .bento-pill { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; }
+    .bento-num { font-family: var(--font-heading); font-size: 16px; font-weight: 800; color: var(--cyan-accent); }
     .bento-title {
       font-family: var(--font-heading);
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
-      margin: 4px 0;
+      margin: 3px 0;
     }
     .bento-desc {
-      font-size: 11.5px;
+      font-size: 14.5px;
       color: var(--text-slate-300);
-      line-height: 1.4;
-      margin-bottom: 10px;
+      line-height: 1.45;
+      margin-bottom: 8px;
     }
     .bento-flow-viz {
       display: flex;
       align-items: center;
       gap: 6px;
       background: rgba(0, 0, 0, 0.3);
-      padding: 7px 10px;
+      padding: 5px 10px;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.07);
-      margin-bottom: 10px;
-      font-size: 10px;
+      margin-bottom: 7px;
+      font-size: 12px;
       font-weight: 600;
     }
     .viz-step {
@@ -1311,23 +1341,24 @@
       background: rgba(255, 255, 255, 0.06);
       border-radius: 4px;
       color: var(--text-slate-300);
+      font-size: 12px;
     }
     .viz-step.active {
       background: rgba(34, 211, 238, 0.2);
       color: var(--cyan-accent);
       border: 1px solid rgba(34, 211, 238, 0.4);
     }
-    .viz-arrow { color: var(--text-slate-500); font-size: 10px; }
-    .bento-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .viz-arrow { color: var(--text-slate-500); font-size: 12px; }
+    .bento-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 7px; }
     .tag-chip {
-      font-size: 9.5px;
-      padding: 2px 7px;
+      font-size: 12px;
+      padding: 2px 8px;
       border-radius: 5px;
       background: rgba(255, 255, 255, 0.06);
       color: var(--text-slate-300);
     }
     .bento-action-link {
-      font-size: 11.5px;
+      font-size: 14px;
       font-weight: 700;
       color: var(--cyan-accent);
       text-decoration: none;
@@ -1337,26 +1368,26 @@
     .bento-quad-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 10px;
     }
     .bento-sub-card {
-      padding: 12px 15px;
+      padding: 10px 13px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
     .b-sub-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
     .b-sub-idx {
-      font-size: 10px;
+      font-size: 11.5px;
       font-weight: 800;
       color: var(--cyan-accent);
       background: rgba(34, 211, 238, 0.1);
       padding: 1px 5px;
       border-radius: 4px;
     }
-    .b-sub-title { font-family: var(--font-heading); font-size: 13px; font-weight: 700; }
-    .b-sub-desc { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; margin-bottom: 6px; }
-    .b-sub-tech { font-size: 9.5px; font-weight: 600; letter-spacing: 0.03em; }
+    .b-sub-title { font-family: var(--font-heading); font-size: 15px; font-weight: 700; }
+    .b-sub-desc { font-size: 13.5px; color: var(--text-slate-400); line-height: 1.38; margin-bottom: 4px; }
+    .b-sub-tech { font-size: 12px; font-weight: 600; letter-spacing: 0.03em; }
 
     /* SECTION 3: SOLUTIONS (3-Platform Showcase Deck with Elevated Center) */
     .platform-decks-grid {
@@ -1366,7 +1397,7 @@
       align-items: stretch;
     }
     .deck-card {
-      padding: 15px 18px;
+      padding: 13px 15px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1377,10 +1408,10 @@
       transform: translateY(-4px);
       box-shadow: 0 12px 36px rgba(14, 165, 233, 0.15);
     }
-    .deck-badge { font-size: 10px; font-weight: 800; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .deck-badge { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; margin-bottom: 3px; }
     .deck-flagship-pill {
       display: inline-block;
-      font-size: 9.5px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.06em;
       color: var(--cyan-accent);
@@ -1390,44 +1421,44 @@
       border-radius: 6px;
       margin-bottom: 4px;
     }
-    .deck-title { font-family: var(--font-heading); font-size: 15px; font-weight: 800; margin-bottom: 4px; }
-    .deck-desc { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; margin-bottom: 8px; }
+    .deck-title { font-family: var(--font-heading); font-size: 17.5px; font-weight: 800; margin-bottom: 4px; }
+    .deck-desc { font-size: 14px; color: var(--text-slate-400); line-height: 1.4; margin-bottom: 6px; }
     .deck-stream-viz {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 6px;
       background: rgba(0, 0, 0, 0.35);
-      padding: 6px 8px;
+      padding: 5px 8px;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.06);
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       text-align: center;
     }
-    .s-val { font-family: var(--font-heading); font-size: 13px; font-weight: 800; display: block; }
-    .s-lbl { font-size: 8.5px; color: var(--text-slate-400); text-transform: uppercase; }
+    .s-val { font-family: var(--font-heading); font-size: 15px; font-weight: 800; display: block; }
+    .s-lbl { font-size: 11px; color: var(--text-slate-400); text-transform: uppercase; }
     .deck-feature-list {
       list-style: none;
       padding: 0;
-      margin: 0 0 8px 0;
+      margin: 0 0 5px 0;
       display: flex;
       flex-direction: column;
       gap: 3px;
-      font-size: 10.5px;
+      font-size: 13.5px;
       color: var(--text-slate-300);
     }
     .deck-feature-list li span { color: var(--cyan-accent); margin-right: 4px; font-weight: 700; }
     .featured-list li span { color: var(--emerald-accent); }
-    .btn-deck { width: 100%; text-align: center; padding: 6px; }
+    .btn-deck { width: 100%; text-align: center; padding: 6px; font-size: 13.5px; }
     .deck-status-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 9.5px;
+      font-size: 12px;
       font-weight: 700;
       border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 6px;
+      padding-top: 5px;
     }
-    .deck-tag { color: var(--text-slate-400); font-weight: 600; }
+    .deck-tag { color: var(--text-slate-400); font-weight: 600; font-size: 12px; }
 
     /* SECTION 4: WHY US (High-Contrast Manifesto + 6 Neon Tiles) */
     .why-chamber-layout {
@@ -1437,37 +1468,37 @@
       align-items: stretch;
     }
     .why-manifesto-col {
-      padding: 16px 20px;
+      padding: 14px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       background: linear-gradient(155deg, rgba(8, 16, 42, 0.88), rgba(2, 6, 23, 0.95));
       border: 1px solid rgba(34, 211, 238, 0.22);
     }
-    .manifesto-tag { font-size: 9.5px; font-weight: 800; letter-spacing: 0.08em; }
-    .manifesto-title { font-family: var(--font-heading); font-size: 17px; font-weight: 800; line-height: 1.25; margin: 4px 0; }
-    .manifesto-desc { font-size: 11px; color: var(--text-slate-300); line-height: 1.4; margin-bottom: 8px; }
+    .manifesto-tag { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; }
+    .manifesto-title { font-family: var(--font-heading); font-size: 19.5px; font-weight: 800; line-height: 1.25; margin: 3px 0; }
+    .manifesto-desc { font-size: 14px; color: var(--text-slate-300); line-height: 1.42; margin-bottom: 5px; }
     .manifesto-kpi-block {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       background: rgba(0, 0, 0, 0.35);
-      padding: 8px 10px;
+      padding: 6px 10px;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.06);
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
     }
-    .m-val { font-family: var(--font-heading); font-size: 16px; font-weight: 800; display: block; }
-    .m-lbl { font-size: 8.5px; color: var(--text-slate-400); text-transform: uppercase; }
-    .btn-manifesto { width: 100%; text-align: center; }
+    .m-val { font-family: var(--font-heading); font-size: 19px; font-weight: 800; display: block; }
+    .m-lbl { font-size: 11px; color: var(--text-slate-400); text-transform: uppercase; }
+    .btn-manifesto { width: 100%; text-align: center; font-size: 13.5px; }
     .why-neon-matrix {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 9px;
     }
     .why-neon-tile {
-      padding: 11px 13px;
+      padding: 9px 12px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -1481,18 +1512,18 @@
       background: rgba(12, 20, 50, 0.85);
       transform: translateY(-2px);
     }
-    .tile-icon { font-size: 16px; margin-bottom: 3px; }
-    .tile-title { font-family: var(--font-heading); font-size: 12.5px; font-weight: 700; margin-bottom: 3px; }
-    .tile-desc { font-size: 10.5px; color: var(--text-slate-400); line-height: 1.35; }
+    .tile-icon { font-size: 18px; margin-bottom: 3px; }
+    .tile-title { font-family: var(--font-heading); font-size: 14.5px; font-weight: 700; margin-bottom: 2px; }
+    .tile-desc { font-size: 13px; color: var(--text-slate-400); line-height: 1.38; }
     .why-bottom-strip {
       display: flex;
       align-items: center;
       gap: 8px;
       justify-content: center;
-      padding: 7px 16px;
-      font-size: 10.5px;
+      padding: 6px 16px;
+      font-size: 13px;
       color: var(--text-slate-300);
-      margin-top: 10px;
+      margin-top: 7px;
     }
 
     /* SECTION 5: TECHNOLOGY (Interactive Terminal + Stack Strips) */
@@ -1523,16 +1554,16 @@
     .t-dot.red { background: #ef4444; }
     .t-dot.yellow { background: #eab308; }
     .t-dot.green { background: #22c55e; }
-    .term-title { font-family: monospace; font-size: 10.5px; color: var(--text-slate-300); }
-    .term-status { font-family: monospace; font-size: 9.5px; font-weight: 700; }
+    .term-title { font-family: monospace; font-size: 13px; color: var(--text-slate-300); }
+    .term-status { font-family: monospace; font-size: 12px; font-weight: 700; }
     .terminal-body {
-      padding: 12px 14px;
+      padding: 9px 14px;
       flex-grow: 1;
-      font-size: 10.5px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.48;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
     .t-prompt { color: var(--cyan-accent); font-weight: 700; margin-right: 4px; }
     .t-cursor { animation: blink 1s infinite; color: var(--cyan-accent); font-weight: 800; }
@@ -1540,40 +1571,40 @@
     .term-footer {
       display: flex;
       justify-content: space-between;
-      padding: 6px 12px;
+      padding: 5px 12px;
       background: rgba(2, 6, 23, 0.8);
       border-top: 1px solid rgba(255, 255, 255, 0.06);
       font-family: monospace;
-      font-size: 9.5px;
+      font-size: 12px;
       color: var(--text-slate-400);
     }
     .tech-stack-strips {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
       justify-content: space-between;
     }
     .stack-strip-card {
-      padding: 11px 15px;
+      padding: 9px 13px;
       display: flex;
       flex-direction: column;
       gap: 3px;
     }
     .strip-header { display: flex; align-items: center; gap: 8px; }
     .strip-badge {
-      font-size: 9px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.05em;
       background: rgba(255, 255, 255, 0.06);
       padding: 2px 6px;
       border-radius: 4px;
     }
-    .strip-title { font-family: var(--font-heading); font-size: 13px; font-weight: 700; }
-    .strip-desc { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; }
+    .strip-title { font-family: var(--font-heading); font-size: 15px; font-weight: 700; }
+    .strip-desc { font-size: 13.5px; color: var(--text-slate-400); line-height: 1.38; }
     .strip-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 3px; }
     .strip-tags span {
-      font-size: 9.5px;
-      padding: 1px 6px;
+      font-size: 12px;
+      padding: 2px 7px;
       border-radius: 4px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.07);
@@ -1583,7 +1614,7 @@
     /* SECTION 6: HOW WE WORK (Connected Horizontal Journey Roadmap) */
     .roadmap-track-wrapper {
       position: relative;
-      margin-bottom: 10px;
+      margin-bottom: 7px;
     }
     .roadmap-rail {
       position: absolute;
@@ -1603,7 +1634,7 @@
       z-index: 2;
     }
     .stage-step-card {
-      padding: 13px 15px;
+      padding: 11px 13px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1614,20 +1645,20 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
-    .stage-num { font-family: var(--font-heading); font-size: 18px; font-weight: 800; }
-    .stage-status { font-size: 9px; font-weight: 800; letter-spacing: 0.06em; }
-    .stage-title { font-family: var(--font-heading); font-size: 14px; font-weight: 700; margin-bottom: 3px; }
-    .stage-desc { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; margin-bottom: 6px; flex-grow: 1; }
+    .stage-num { font-family: var(--font-heading); font-size: 21px; font-weight: 800; }
+    .stage-status { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; }
+    .stage-title { font-family: var(--font-heading); font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+    .stage-desc { font-size: 13.5px; color: var(--text-slate-400); line-height: 1.38; margin-bottom: 4px; flex-grow: 1; }
     .stage-bullets {
       display: flex;
       flex-direction: column;
       gap: 2px;
-      font-size: 10px;
+      font-size: 13px;
       color: var(--text-slate-300);
       background: rgba(0, 0, 0, 0.25);
-      padding: 5px 8px;
+      padding: 4px 8px;
       border-radius: 6px;
     }
     .stage-bullets span { color: var(--cyan-accent); font-weight: 600; }
@@ -1635,18 +1666,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 9px 18px;
+      padding: 7px 18px;
       gap: 14px;
     }
-    .proc-ft-left { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-slate-300); }
+    .proc-ft-left { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--text-slate-300); }
     .roadmap-meta-bar {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      font-size: 10.5px;
+      font-size: 12.5px;
       color: var(--text-slate-400);
-      margin-top: 6px;
+      margin-top: 4px;
     }
     .meta-tag { font-weight: 600; color: var(--text-slate-300); }
     .meta-dot { color: var(--cyan-accent); }
@@ -1661,25 +1692,25 @@
     .command-info-col {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 7px;
       justify-content: space-between;
     }
     .hq-card {
-      padding: 13px 16px;
+      padding: 11px 14px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
     .hq-top-row { display: flex; justify-content: space-between; align-items: center; }
-    .hq-badge { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; }
-    .hq-beacon { font-size: 9.5px; font-weight: 700; }
-    .hq-company { font-family: var(--font-heading); font-size: 13.5px; font-weight: 800; }
-    .hq-address { font-size: 11px; color: var(--text-slate-400); line-height: 1.35; }
+    .hq-badge { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; }
+    .hq-beacon { font-size: 12px; font-weight: 700; }
+    .hq-company { font-family: var(--font-heading); font-size: 16px; font-weight: 800; }
+    .hq-address { font-size: 13.5px; color: var(--text-slate-400); line-height: 1.38; }
     .hq-sla-box {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 10.5px;
+      font-size: 12.5px;
       color: var(--cyan-accent);
       background: rgba(34, 211, 238, 0.08);
       padding: 4px 8px;
@@ -1690,35 +1721,35 @@
     .channels-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
     }
     .chan-card {
-      padding: 9px 12px;
+      padding: 7px 12px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .chan-icon { font-size: 15px; }
-    .chan-meta { display: flex; flex-direction: column; font-size: 10px; }
-    .chan-meta strong { font-size: 11px; color: #fff; }
-    .chan-meta span { color: var(--text-slate-400); font-size: 9.5px; }
+    .chan-icon { font-size: 18px; }
+    .chan-meta { display: flex; flex-direction: column; font-size: 12px; }
+    .chan-meta strong { font-size: 13.5px; color: #fff; }
+    .chan-meta span { color: var(--text-slate-400); font-size: 12px; }
     .command-trust-card {
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 12px;
-      font-size: 10.5px;
+      padding: 6px 12px;
+      font-size: 12.5px;
       color: var(--text-slate-300);
     }
     .consult-form {
-      padding: 14px 18px;
+      padding: 12px 15px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
     .c-form-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
-    .c-form-title { font-family: var(--font-heading); font-size: 13.5px; font-weight: 700; }
-    .c-form-pill { font-size: 9px; font-weight: 800; letter-spacing: 0.05em; }
+    .c-form-title { font-family: var(--font-heading); font-size: 16px; font-weight: 700; }
+    .c-form-pill { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; }
     .c-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .vp-input {
       width: 100%;
@@ -1727,7 +1758,7 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.12);
       color: #fff;
-      font-size: 11.5px;
+      font-size: 13.5px;
       outline: none;
       font-family: var(--font-body);
       transition: border-color 0.2s ease;
@@ -1739,17 +1770,17 @@
     }
     .vp-select { cursor: pointer; background-color: var(--bg-navy); }
     .vp-textarea { resize: none; font-family: var(--font-body); }
-    .btn-submit-full { width: 100%; padding: 8px; margin-top: 2px; font-size: 11.5px; }
+    .btn-submit-full { width: 100%; padding: 8px; margin-top: 2px; font-size: 13.5px; }
     .c-form-foot {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      font-size: 9.5px;
+      font-size: 12px;
       color: var(--text-slate-400);
       margin-top: 1px;
     }
-    .vp-contact-strip { font-size: 10px; color: var(--text-slate-500); text-align: center; margin-top: 4px; }
+    .vp-contact-strip { font-size: 12.5px; color: var(--text-slate-500); text-align: center; margin-top: 4px; }
 
     /* Responsive adjustments */
     @media (max-width: 1024px) {
@@ -1786,7 +1817,7 @@
       <!-- Brand Logo -->
       <a href="#home" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
         <div class="logo-box">
-          <span>H</span>
+          <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
         </div>
         <div class="logo-text">
           <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
@@ -2391,9 +2422,9 @@
         
         <!-- Brand & Tagline Column -->
         <div class="footer-brand">
-          <a href="#home" class="brand-logo">
+          <a href="#home" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
             <div class="logo-box">
-              <span>H</span>
+              <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
             </div>
             <div class="logo-text">
               <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
