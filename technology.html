@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technology | HAKA SOLUTIONS - Technology & Digital Business Solutions</title>
+  <meta name="description" content="Explore the HAKA SOLUTIONS technology ecosystem — cloud-native infrastructure, distributed ETL data pipelines, intelligent RPA automation, and zero-trust security." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       DESIGN SYSTEM VARIABLES & RESET
+       ========================================== */
+    :root {
+      --bg-midnight: #050816;
+      --bg-navy: #070b1e;
+      --bg-footer: #030611;
+      --electric-blue: #2563eb;
+      --cyan-accent: #22d3ee;
+      --violet-accent: #7c3aed;
+      --emerald-accent: #34d399;
+      --text-white: #ffffff;
+      --text-slate-300: #cbd5e1;
+      --text-slate-400: #94a3b8;
+      --text-slate-500: #64748b;
+      --border-glass: rgba(255, 255, 255, 0.1);
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-midnight);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .text-cyan {
+      color: var(--cyan-accent);
+    }
+
+    .text-emerald {
+      color: var(--emerald-accent);
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #60a5fa 0%, #22d3ee 50%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ==========================================
+       1. NAVBAR (STICKY DESKTOP HEADER)
+       ========================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(5, 8, 22, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 13px 0;
+      background: rgba(5, 8, 22, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Brand Logo */
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: #ffffff;
+      padding: 1.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid rgba(34, 211, 238, 0.45);
+      box-shadow: 0 0 14px rgba(34, 211, 238, 0.3);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .brand-logo:hover .logo-box {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      transform: scale(1.04);
+    }
+
+    .brand-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 26%;
+      border-radius: 7px;
+      display: block;
+    }
+
+    .logo-box span {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-midnight);
+      border-radius: 7.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--cyan-accent);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-slate-400);
+    }
+
+    /* Desktop Links */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1.6vw, 22px);
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-slate-300);
+      padding: 6px 0;
+      position: relative;
+      white-space: nowrap;
+      display: inline-block;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric-blue), var(--cyan-accent));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--cyan-accent);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Desktop CTAs */
+    .desktop-ctas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .btn-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .btn-login svg {
+      color: var(--cyan-accent);
+    }
+
+    .btn-login:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+    }
+
+    .btn-primary-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #0ea5e9);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary-sm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(34, 211, 238, 0.45);
+    }
+
+    /* ==========================================
+       2. HAMBURGER & MOBILE NAVIGATION DRAWER
+       ========================================== */
+    .hamburger-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      z-index: 110;
+      transition: border-color 0.25s ease;
+    }
+
+    .hamburger-btn:hover {
+      border-color: rgba(34, 211, 238, 0.5);
+    }
+
+    .hamburger-btn .bar {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Hamburger Morph to X */
+    .hamburger-btn.active .bar-1 {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.active .bar-2 {
+      opacity: 0;
+    }
+
+    .hamburger-btn.active .bar-3 {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Backdrop */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 98;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Slide-Out Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg-navy);
+      border-left: 1px solid var(--border-glass);
+      z-index: 99;
+      padding: 88px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-slate-500);
+      margin-bottom: 12px;
+      padding-left: 12px;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-link .arrow {
+      color: var(--cyan-accent);
+      font-size: 15px;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+      color: var(--text-white);
+    }
+
+    .drawer-bottom {
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary-full {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-secondary-full {
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+    }
+
+    .btn-secondary-full svg {
+      color: var(--cyan-accent);
+    }
+
+    /* ==========================================
+       3. HERO BANNER SECTION
+       ========================================== */
+    .hero-section {
+      position: relative;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      align-items: center;
+      padding: 72px 0 96px;
+      overflow: hidden;
+    }
+
+    .network-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Ambient Background Glows */
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .glow-blue {
+      width: 380px;
+      height: 380px;
+      background: rgba(37, 99, 235, 0.22);
+      top: -100px;
+      left: -100px;
+    }
+
+    .glow-violet {
+      width: 360px;
+      height: 360px;
+      background: rgba(124, 58, 237, 0.16);
+      top: 25%;
+      right: -80px;
+    }
+
+    .glow-cyan {
+      width: 300px;
+      height: 300px;
+      background: rgba(34, 211, 238, 0.12);
+      bottom: -60px;
+      left: 35%;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* Left Content */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #67e8f9;
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan-accent);
+      box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(34, 211, 238, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+    }
+
+    /* Line-by-Line Hero Text Reveal */
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.25rem, 4.5vw, 3.85rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .line-mask {
+      display: block;
+      overflow: hidden;
+    }
+
+    .line-reveal {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      animation: revealLine 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+
+    @keyframes revealLine {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-subtext {
+      font-size: 17px;
+      color: var(--text-slate-300);
+      max-width: 620px;
+      margin-bottom: 34px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.55s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.7s forwards;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-hero-primary {
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.45);
+    }
+
+    .btn-hero-secondary {
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(34, 211, 238, 0.45);
+    }
+
+    /* Right Column: Technology Hero Visual & Image Card */
+    .dashboard-glass {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.75);
+      transition: transform 0.2s ease-out;
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .window-dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #f43f5e; }
+    .dot-yellow { background: #fbbf24; }
+    .dot-green { background: #34d399; }
+
+    .dash-title {
+      margin-left: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .status-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .technology-hero-banner-wrap {
+      position: relative;
+      width: 100%;
+      height: 210px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-glass);
+      margin-bottom: 14px;
+    }
+
+    .technology-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88) contrast(1.08);
+      transition: transform 0.5s ease;
+    }
+
+    .dashboard-glass:hover .technology-hero-img {
+      transform: scale(1.04);
+    }
+
+    .technology-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 8, 22, 0.1) 0%, rgba(5, 8, 22, 0.88) 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 14px 16px;
+    }
+
+    .technology-img-caption {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .technology-img-tag {
+      font-family: monospace;
+      font-size: 11px;
+      color: var(--cyan-accent);
+      background: rgba(34, 211, 238, 0.14);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .dash-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dash-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--border-glass);
+    }
+
+    .dash-item-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .dash-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-blue {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--cyan-accent);
+    }
+
+    .icon-violet {
+      background: rgba(124, 58, 237, 0.2);
+      color: #c4b5fd;
+    }
+
+    .dash-item h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .dash-item p {
+      font-size: 11px;
+      color: var(--text-slate-400);
+    }
+
+    .dash-metric {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .dash-footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .security-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .security-tag svg {
+      color: var(--cyan-accent);
+    }
+
+    /* ==========================================
+       4. FOOTER SECTION
+       ========================================== */
+    .footer {
+      background-color: var(--bg-footer);
+      border-top: 1px solid var(--border-glass);
+      padding: 64px 0 32px;
+      color: var(--text-slate-300);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: #67e8f9;
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: var(--text-slate-400);
+      max-width: 320px;
+    }
+
+    .footer-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--text-slate-400);
+      margin-top: 4px;
+    }
+
+    .footer-address svg {
+      color: var(--cyan-accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .footer-heading {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-white);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan-accent);
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12.5px;
+      color: var(--text-slate-500);
+    }
+
+    .legal-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .legal-links a:hover {
+      color: var(--text-slate-300);
+    }
+
+    .divider {
+      color: #334155;
+    }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS (1024 / 768 / 430 / 390 / 375px)
+       ========================================== */
+    @media (max-width: 1120px) {
+      .desktop-nav,
+      .desktop-ctas {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        padding: 48px 0 72px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Mobile Viewports: 430px / 390px / 375px */
+    @media (max-width: 430px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero-headline {
+        font-size: 2rem;
+      }
+
+      .hero-subtext {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .btn-hero-primary,
+      .btn-hero-secondary {
+        width: 100%;
+        text-align: center;
+      }
+
+      .dashboard-glass {
+        padding: 16px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-brand {
+        grid-column: span 1;
+      }
+
+      .mobile-drawer {
+        max-width: 100%;
+      }
+    }
+
+    /* ==========================================
+       SPECIALIZED TECH DOMAINS (3 SECTIONS)
+       ========================================== */
+    .tech-domain-section {
+      padding: 96px 0;
+      position: relative;
+      border-top: 1px solid var(--border-glass);
+      overflow: hidden;
+    }
+
+    .tech-domain-alt {
+      background: linear-gradient(180deg, rgba(7, 11, 30, 0.8) 0%, rgba(5, 8, 22, 0.95) 100%);
+    }
+
+    .tech-grid-2col {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .tech-grid-2col.reversed {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+
+    .tech-domain-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.08);
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--cyan-accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .tech-domain-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.85rem, 2.6vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 18px;
+      color: var(--text-white);
+    }
+
+    .tech-domain-desc {
+      font-size: 15px;
+      color: var(--text-slate-300);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .project-reference-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      background: rgba(37, 99, 235, 0.12);
+      border: 1px solid rgba(37, 99, 235, 0.3);
+      font-size: 13px;
+      font-weight: 600;
+      color: #93c5fd;
+      margin-bottom: 24px;
+    }
+
+    .tech-capabilities-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .cap-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--text-slate-300);
+      line-height: 1.5;
+    }
+
+    .cap-icon {
+      color: var(--cyan-accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .tech-stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-chip {
+      font-family: monospace;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      color: var(--text-slate-200);
+    }
+
+    .tech-panel-glass {
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .tech-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .td-red { background: #f43f5e; }
+    .td-yellow { background: #fbbf24; }
+    .td-green { background: #34d399; }
+
+    .tech-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .tech-stat-box {
+      background: rgba(5, 8, 22, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .tech-stat-val {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--cyan-accent);
+      line-height: 1.1;
+    }
+
+    .tech-stat-lbl {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-slate-400);
+      margin-top: 4px;
+    }
+
+    .tech-code-block {
+      background: rgba(2, 6, 23, 0.75);
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #93c5fd;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 960px) {
+      .tech-grid-2col,
+      .tech-grid-2col.reversed {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .tech-domain-section {
+        padding: 64px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       1. NAVBAR & 2. HAMBURGER NAVIGATION
+       ========================================== -->
+  <header id="navbar" class="navbar">
+    <div class="container navbar-container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+        <div class="logo-box">
+          <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
+        </div>
+        <div class="logo-text">
+          <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="about.html" class="nav-link">ABOUT US</a>
+        <a href="services.html" class="nav-link">SERVICES</a>
+        <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
+        <a href="technology.html" class="nav-link active">TECHNOLOGY</a>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="desktop-ctas">
+        <!-- Optional: Client Login -->
+        <a href="login.html" class="btn-login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Client Login
+        </a>
+
+        <!-- Primary CTA: Let's Talk -->
+        <a href="contact.html" class="btn-primary-sm">
+          Let's Talk
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Hamburger Toggle Button (Mobile & Tablet) -->
+      <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle Mobile Navigation" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Backdrop -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+  <!-- Mobile Hamburger Slide-Out Drawer -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="drawer-top">
+      <p class="drawer-label">Navigation Menu</p>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link"><span>HOME</span><span class="arrow">↗</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link"><span>ABOUT US</span><span class="arrow">↗</span></a></li>
+        <li><a href="services.html" class="mobile-nav-link"><span>SERVICES</span><span class="arrow">↗</span></a></li>
+        <li><a href="portfolio.html" class="mobile-nav-link"><span>PORTFOLIO</span><span class="arrow">↗</span></a></li>
+        <li><a href="technology.html" class="mobile-nav-link active"><span>TECHNOLOGY</span><span class="arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="drawer-bottom">
+      <a href="contact.html" class="btn-primary-full mobile-close-trigger">
+        Let's Talk →
+      </a>
+      <a href="login.html" class="btn-secondary-full mobile-close-trigger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Client Login
+      </a>
+    </div>
+  </aside>
+
+
+  <!-- ==========================================
+       3. HERO BANNER SECTION (TECHNOLOGY)
+       ========================================== -->
+  <main>
+    <section id="technology-hero" class="hero-section">
+      <!-- Animated Network & Data Particles Canvas -->
+      <canvas id="network-canvas" class="network-canvas"></canvas>
+
+      <!-- Subtle Radial Gradient Glows -->
+      <div class="glow glow-blue"></div>
+      <div class="glow glow-violet"></div>
+      <div class="glow glow-cyan"></div>
+
+      <div class="container hero-grid">
+        
+        <!-- Left Column: Technology Hero Text & Buttons -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span>HAKA SOLUTIONS • ENGINEERING &amp; CLOUD STACK</span>
+          </div>
+
+          <!-- Line-by-Line Hero Text Reveal -->
+          <h1 class="hero-headline">
+            <span class="line-mask">
+              <span class="line-reveal delay-1">Production-Hardened</span>
+            </span>
+            <span class="line-mask">
+              <span class="line-reveal delay-2">Cloud, Data &amp; AI</span>
+            </span>
+            <span class="line-mask">
+              <span class="line-reveal delay-3 text-gradient">Technology Ecosystem</span>
+            </span>
+          </h1>
+
+          <!-- Supporting Text -->
+          <p class="hero-subtext">
+            We architect resilient cloud infrastructure, low-latency ETL data pipelines, and intelligent automation frameworks engineered for 99.98% uptime and zero-trust enterprise security.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="hero-actions">
+            <a href="index.html#contact" class="btn-hero-primary">
+              Schedule Tech Consultation →
+            </a>
+            <a href="services.html" class="btn-hero-secondary">
+              Explore Our Capabilities →
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column: Technology Hero Banner Image & Cluster Showcase -->
+        <div class="hero-visual">
+          <div id="dashboard-card" class="dashboard-glass">
+            
+            <!-- Card Header -->
+            <div class="dash-header">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="dash-title">haka-core://cloud-cluster-stack</span>
+              </div>
+              <span class="status-pill">● 99.98% UPTIME</span>
+            </div>
+
+            <!-- Technology Hero Banner Image -->
+            <div class="technology-hero-banner-wrap">
+              <img 
+                src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80" 
+                alt="HAKA SOLUTIONS Cloud Infrastructure and Engineering Stack" 
+                class="technology-hero-img"
+              />
+              <div class="technology-img-overlay">
+                <span class="technology-img-caption">Multi-Zone Cloud &amp; Data Stack</span>
+                <span class="technology-img-tag">12 ACTIVE NODES</span>
+              </div>
+            </div>
+
+            <!-- Technology Highlights -->
+            <div class="dash-body">
+              
+              <!-- Highlight 1: Cloud-Native & APIs -->
+              <div class="dash-item">
+                <div class="dash-item-left">
+                  <div class="dash-icon icon-blue">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Cloud-Native &amp; APIs</h4>
+                    <p>AWS, Docker, PostgreSQL &amp; Edge CDN</p>
+                  </div>
+                </div>
+                <span class="dash-metric text-cyan">MULTI-ZONE</span>
+              </div>
+
+              <!-- Highlight 2: Distributed ETL & AI Automation -->
+              <div class="dash-item">
+                <div class="dash-item-left">
+                  <div class="dash-icon icon-violet">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                      <rect x="9" y="9" width="6" height="6"></rect>
+                      <line x1="9" y1="1" x2="9" y2="4"></line>
+                      <line x1="15" y1="1" x2="15" y2="4"></line>
+                      <line x1="9" y1="20" x2="9" y2="23"></line>
+                      <line x1="15" y1="20" x2="15" y2="23"></line>
+                      <line x1="20" y1="9" x2="23" y2="9"></line>
+                      <line x1="20" y1="14" x2="23" y2="14"></line>
+                      <line x1="1" y1="9" x2="4" y2="9"></line>
+                      <line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>ETL Pipelines &amp; AI RPA</h4>
+                    <p>Python Spark, OCR &amp; Webhook Triggers</p>
+                  </div>
+                </div>
+                <span class="dash-metric text-emerald">&lt; 4ms SYNC</span>
+              </div>
+
+            </div>
+
+            <!-- Card Footer -->
+            <div class="dash-footer">
+              <div class="security-tag">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>TLS 1.3 &amp; AES-256 Zero-Trust Security Architecture</span>
+              </div>
+              <span class="dash-arrow">→</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         TECH SECTION 1: HIGH-CONCURRENCY MICROSERVICES (~70 LINES)
+         ========================================================== -->
+    <section id="tech-microservices" class="tech-domain-section">
+      <div class="container">
+        <div class="tech-grid-2col">
+          <div class="tech-domain-info">
+            <div class="tech-domain-badge">
+              <span class="badge-dot"></span>
+              <span>DOMAIN 01 • HIGH-CONCURRENCY CLOUD SYSTEMS</span>
+            </div>
+            <h2 class="tech-domain-title">
+              Distributed Cloud &amp; <span class="text-gradient">Microservices Engines</span>
+            </h2>
+            <p class="tech-domain-desc">
+              We architect zero-bottleneck cloud environments engineered to absorb massive traffic surges without rate limiting or server degradation. Built with stateless microservices, distributed in-memory caching, and sub-millisecond edge data synchronization.
+            </p>
+            <div class="project-reference-pill">
+              <span>Production Deployed:</span>
+              <strong>Luxury Fashion E-Commerce Showcase &amp; Grand Event Hub</strong>
+            </div>
+            <div class="tech-capabilities-list">
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>Optimistic Seat &amp; Inventory Locking:</strong> Redis cluster atomic counters preventing race conditions and double-booking during 10,000+ simultaneous checkout requests.</span>
+              </div>
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>Edge Storefront Rendering:</strong> Headless Next.js edge caching on Cloudflare Workers delivering sub-50ms catalog browsing and zero flash-sale checkout lag.</span>
+              </div>
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>Zero-Loss Payment Pipelines:</strong> Resilient Stripe API webhook listeners with automatic exponential backoff retries and idempotent ledgering.</span>
+              </div>
+            </div>
+            <div class="tech-stack-row">
+              <span class="tech-chip">Go (Golang)</span>
+              <span class="tech-chip">Next.js 14</span>
+              <span class="tech-chip">Redis Cluster</span>
+              <span class="tech-chip">Cloudflare Workers</span>
+              <span class="tech-chip">Stripe API</span>
+              <span class="tech-chip">Docker</span>
+            </div>
+          </div>
+          <div class="tech-panel-glass">
+            <div class="tech-panel-header">
+              <div class="terminal-dots">
+                <span class="terminal-dot td-red"></span>
+                <span class="terminal-dot td-yellow"></span>
+                <span class="terminal-dot td-green"></span>
+              </div>
+              <span class="dash-title">telemetry://concurrency-benchmark</span>
+            </div>
+            <div class="tech-stat-grid">
+              <div class="tech-stat-box">
+                <div class="tech-stat-val">12,500+</div>
+                <div class="tech-stat-lbl">Concurrent Bookings / 20m</div>
+              </div>
+              <div class="tech-stat-box">
+                <div class="tech-stat-val">0ms</div>
+                <div class="tech-stat-lbl">Race Condition Latency</div>
+              </div>
+            </div>
+            <div class="tech-code-block">
+              // Redis Atomic Lock Protocol (Event Ticketing Engine)<br>
+              const lockKey = `lock:session:${eventId}:${seatId}`;<br>
+              const acquired = await redis.set(lockKey, userId, { NX: true, EX: 30 });<br>
+              if (!acquired) throw new Error("Seat reserved in flight");<br>
+              emit("reservation_confirmed", { seatId, status: "RESERVED", latency: "1.2ms" });
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         TECH SECTION 2: GEOSPATIAL & 3D ALGORITHMIC COMPUTE (~70 LINES)
+         ========================================================== -->
+    <section id="tech-geospatial" class="tech-domain-section tech-domain-alt">
+      <div class="container">
+        <div class="tech-grid-2col reversed">
+          <div class="tech-panel-glass">
+            <div class="tech-panel-header">
+              <div class="terminal-dots">
+                <span class="terminal-dot td-red"></span>
+                <span class="terminal-dot td-yellow"></span>
+                <span class="terminal-dot td-green"></span>
+              </div>
+              <span class="dash-title">geo-cluster://spatial-index-engine</span>
+            </div>
+            <div class="tech-stat-grid">
+              <div class="tech-stat-box">
+                <div class="tech-stat-val">45ms</div>
+                <div class="tech-stat-lbl">Spatial Query Latency</div>
+              </div>
+              <div class="tech-stat-box">
+                <div class="tech-stat-val">4.8x</div>
+                <div class="tech-stat-lbl">Parametric Compute Speed</div>
+              </div>
+            </div>
+            <div class="tech-code-block">
+              // Elasticsearch Geo-Shape Polygon Filter<br>
+              POST /property_units/_search {<br>
+              &nbsp;&nbsp;"query": { "geo_polygon": { "boundary": { "points": coords } } },<br>
+              &nbsp;&nbsp;"aggs": { "pricing_buckets": { "stats": { "field": "price" } } },<br>
+              &nbsp;&nbsp;"indexed_count": 50000, "took_ms": 42<br>
+              }
+            </div>
+          </div>
+          <div class="tech-domain-info">
+            <div class="tech-domain-badge">
+              <span class="badge-dot"></span>
+              <span>DOMAIN 02 • SPATIAL COMPUTE &amp; 3D RENDERING</span>
+            </div>
+            <h2 class="tech-domain-title">
+              Geospatial Indexing &amp; <span class="text-gradient">Algorithmic Modeling</span>
+            </h2>
+            <p class="tech-domain-desc">
+              We engineer GPU-accelerated 3D browser visualizers and high-dimension spatial indexing engines capable of sub-second multi-polygon queries across 50,000+ active geospatial assets without database overhead.
+            </p>
+            <div class="project-reference-pill">
+              <span>Production Deployed:</span>
+              <strong>TS Landscaping &amp; Construction Site &amp; Real Estate Portal</strong>
+            </div>
+            <div class="tech-capabilities-list">
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>WebGL 3D Site Blueprints:</strong> Browser-native canvas rendering allowing contractors and clients to inspect civil terrain models without external plugins.</span>
+              </div>
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>Algorithmic Estimation Engines:</strong> Parametric material bill-of-quantities (BOQ) calculators turning 4-day quote reviews into 15-minute approvals.</span>
+              </div>
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>Geospatial Polygon Filtering:</strong> Mapbox GL vector tiles integrated with Elasticsearch geo-shape indexes responding in under 45ms.</span>
+              </div>
+            </div>
+            <div class="tech-stack-row">
+              <span class="tech-chip">WebGL / Three.js</span>
+              <span class="tech-chip">Elasticsearch 8</span>
+              <span class="tech-chip">Mapbox GL</span>
+              <span class="tech-chip">PostgreSQL / PostGIS</span>
+              <span class="tech-chip">Python Django</span>
+              <span class="tech-chip">AWS ECS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         TECH SECTION 3: REAL-TIME WEBSOCKETS & COMPLIANT IOT (~70 LINES)
+         ========================================================== -->
+    <section id="tech-realtime-iot" class="tech-domain-section">
+      <div class="container">
+        <div class="tech-grid-2col">
+          <div class="tech-domain-info">
+            <div class="tech-domain-badge">
+              <span class="badge-dot"></span>
+              <span>DOMAIN 03 • REAL-TIME PROTOCOLS &amp; COMPLIANCE</span>
+            </div>
+            <h2 class="tech-domain-title">
+              Encrypted Real-Time &amp; <span class="text-gradient">Hardware Event Bridges</span>
+            </h2>
+            <p class="tech-domain-desc">
+              We specialize in peer-to-peer encrypted communication streams and millisecond duplex WebSocket pipelines that synchronize clinical records and kitchen line operations with audited zero-loss precision.
+            </p>
+            <div class="project-reference-pill">
+              <span>Production Deployed:</span>
+              <strong>Healthcare Provider Clinic Network &amp; Restaurant Platform</strong>
+            </div>
+            <div class="tech-capabilities-list">
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>HIPAA-Compliant WebRTC:</strong> Peer-to-peer AES-256 encrypted telehealth video streams with zero sensitive data stored on intermediate relay TURN servers.</span>
+              </div>
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>Real-Time Duplex Order Bus:</strong> Socket.io and Redis Pub/Sub routing tableside QR orders to kitchen line display tablets in under 8ms.</span>
+              </div>
+              <div class="cap-item">
+                <span class="cap-icon">▹</span>
+                <span><strong>POS &amp; Hardware Bridge:</strong> Direct webhook integrations with Square POS, automated receipt printing protocols, and multi-location inventory deduction.</span>
+              </div>
+            </div>
+            <div class="tech-stack-row">
+              <span class="tech-chip">WebRTC</span>
+              <span class="tech-chip">Socket.io</span>
+              <span class="tech-chip">Twilio Messaging</span>
+              <span class="tech-chip">Square POS API</span>
+              <span class="tech-chip">MongoDB Atlas</span>
+              <span class="tech-chip">Firebase Sync</span>
+            </div>
+          </div>
+          <div class="tech-panel-glass">
+            <div class="tech-panel-header">
+              <div class="terminal-dots">
+                <span class="terminal-dot td-red"></span>
+                <span class="terminal-dot td-yellow"></span>
+                <span class="terminal-dot td-green"></span>
+              </div>
+              <span class="dash-title">mesh://duplex-kds-telemetry</span>
+            </div>
+            <div class="tech-stat-grid">
+              <div class="tech-stat-box">
+                <div class="tech-stat-val">&lt; 8ms</div>
+                <div class="tech-stat-lbl">Socket Order Routing</div>
+              </div>
+              <div class="tech-stat-box">
+                <div class="tech-stat-val">100%</div>
+                <div class="tech-stat-lbl">HIPAA &amp; ISO Compliance</div>
+              </div>
+            </div>
+            <div class="tech-code-block">
+              // Real-Time KDS Tablet Event Pipeline<br>
+              io.to(`kitchen_${branchId}`).emit("new_order", {<br>
+              &nbsp;&nbsp;ticketId: "TK-9481", prepStation: "HOT_LINE",<br>
+              &nbsp;&nbsp;tablesideStatus: "PAID", dispatchLatency: "6.4ms"<br>
+              });<br>
+              twilio.messages.create({ to: patientPhone, body: "Slot confirmed" });
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ==========================================
+       4. FOOTER SECTION
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand & Tagline Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+            <div class="logo-box">
+              <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
+            </div>
+            <div class="logo-text">
+              <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+            </div>
+          </a>
+
+          <p class="footer-tagline">
+            Technology • Digital Solutions • Business Growth
+          </p>
+
+          <p class="footer-desc">
+            Reliable, technology-driven solutions that help businesses operate more efficiently and grow sustainably.
+          </p>
+
+          <div class="footer-address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Union Bank Back Side, Kattupudi Street, Pallikonda 635809</span>
+          </div>
+        </div>
+
+        <!-- Column 1: Company -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Company</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Live Projects (6+)</a></li>
+            <li><a href="about.html#leadership">Leadership</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Solutions -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Solutions</h3>
+          <ul class="footer-links">
+            <li><a href="services.html">Digital Operations</a></li>
+            <li><a href="services.html">Data Solutions</a></li>
+            <li><a href="technology.html">Technology Solutions</a></li>
+            <li><a href="services.html">Business Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Resources -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="portfolio.html">Case Studies</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Connect -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Connect</h3>
+          <ul class="footer-links">
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+            <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+            <li><a href="mailto:contact@hakasolutions.com">Email ↗</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Legal & Copyright Bar -->
+      <div class="footer-bottom">
+        <p class="copyright">© <span id="year"></span> HAKA SOLUTIONS. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="#privacy-policy">Privacy Policy</a>
+          <span class="divider">|</span>
+          <a href="#terms">Terms &amp; Conditions</a>
+          <span class="divider">|</span>
+          <a href="#cookie-policy">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Dynamic Copyright Year
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // 2. Sticky Header Elevation on Scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // 3. Mobile Hamburger Menu Logic
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileDrawer = document.getElementById("mobile-drawer");
+      const drawerBackdrop = document.getElementById("drawer-backdrop");
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link, .mobile-close-trigger");
+
+      function toggleMobileMenu() {
+        const isOpen = mobileDrawer.classList.contains("open");
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+
+      function openMobileMenu() {
+        hamburgerBtn.classList.add("active");
+        hamburgerBtn.setAttribute("aria-expanded", "true");
+        mobileDrawer.classList.add("open");
+        drawerBackdrop.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileMenu() {
+        hamburgerBtn.classList.remove("active");
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+        mobileDrawer.classList.remove("open");
+        drawerBackdrop.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      hamburgerBtn.addEventListener("click", toggleMobileMenu);
+      drawerBackdrop.addEventListener("click", closeMobileMenu);
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileDrawer.classList.contains("open")) {
+          closeMobileMenu();
+        }
+      });
+
+      // 4. Hero Background Digital Network & Data Particles Canvas
+      const canvas = document.getElementById("network-canvas");
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        const particleCount = window.innerWidth < 768 ? 28 : 55;
+        const maxDistance = 140;
+
+        function resizeCanvas() {
+          canvas.width = canvas.parentElement.offsetWidth;
+          canvas.height = canvas.parentElement.offsetHeight;
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.55;
+            this.vy = (Math.random() - 0.5) * 0.55;
+            this.radius = Math.random() * 1.8 + 1;
+          }
+
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(34, 211, 238, 0.55)";
+            ctx.fill();
+          }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+
+        function animateNetwork() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < maxDistance) {
+                const opacity = (1 - distance / maxDistance) * 0.22;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          }
+          requestAnimationFrame(animateNetwork);
+        }
+
+        animateNetwork();
+      }
+
+      // 5. Subtle Parallax Tilt on Hero Glassmorphic Dashboard (Desktop)
+      const dashCard = document.getElementById("dashboard-card");
+      if (dashCard && window.matchMedia("(min-width: 1024px)").matches) {
+        dashCard.addEventListener("mousemove", (e) => {
+          const rect = dashCard.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const rotateX = (-y / 25).toFixed(2);
+          const rotateY = (x / 25).toFixed(2);
+          dashCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        dashCard.addEventListener("mouseleave", () => {
+          dashCard.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+        });
+      }
+    });
+  </script>
+</body>
+</html>

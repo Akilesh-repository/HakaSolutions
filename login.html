@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Portal Login | HAKA SOLUTIONS - Technology & Digital Business Solutions</title>
+  <meta name="description" content="Secure client login gateway for HAKA SOLUTIONS enterprise clients. Access production telemetry, project deliverables, and operational pods." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       DESIGN SYSTEM VARIABLES & RESET
+       ========================================== */
+    :root {
+      --bg-midnight: #050816;
+      --bg-navy: #070b1e;
+      --bg-footer: #030611;
+      --electric-blue: #2563eb;
+      --cyan-accent: #22d3ee;
+      --violet-accent: #7c3aed;
+      --emerald-accent: #34d399;
+      --text-white: #ffffff;
+      --text-slate-300: #cbd5e1;
+      --text-slate-400: #94a3b8;
+      --text-slate-500: #64748b;
+      --border-glass: rgba(255, 255, 255, 0.1);
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-midnight);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .text-cyan {
+      color: var(--cyan-accent);
+    }
+
+    .text-emerald {
+      color: var(--emerald-accent);
+    }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #60a5fa 0%, #22d3ee 50%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ==========================================
+       1. NAVBAR (STICKY DESKTOP HEADER)
+       ========================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(5, 8, 22, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 13px 0;
+      background: rgba(5, 8, 22, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Brand Logo (Exact font sizes and layout preserved) */
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: #ffffff;
+      padding: 1.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid rgba(34, 211, 238, 0.45);
+      box-shadow: 0 0 14px rgba(34, 211, 238, 0.3);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .brand-logo:hover .logo-box {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      transform: scale(1.04);
+    }
+
+    .brand-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 26%;
+      border-radius: 7px;
+      display: block;
+    }
+
+    .logo-box span {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-midnight);
+      border-radius: 7.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--cyan-accent);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-slate-400);
+    }
+
+    /* Desktop Links */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1.6vw, 22px);
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-slate-300);
+      padding: 6px 0;
+      position: relative;
+      white-space: nowrap;
+      display: inline-block;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric-blue), var(--cyan-accent));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--cyan-accent);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    /* Desktop CTAs */
+    .desktop-ctas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .btn-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: rgba(34, 211, 238, 0.12);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .btn-login svg {
+      color: var(--cyan-accent);
+    }
+
+    .btn-login:hover {
+      background: rgba(34, 211, 238, 0.22);
+      border-color: var(--cyan-accent);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #0ea5e9);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary-sm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(34, 211, 238, 0.45);
+    }
+
+    /* ==========================================
+       2. HAMBURGER & MOBILE NAVIGATION DRAWER
+       ========================================== */
+    .hamburger-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      z-index: 110;
+      transition: border-color 0.25s ease;
+    }
+
+    .hamburger-btn:hover {
+      border-color: rgba(34, 211, 238, 0.5);
+    }
+
+    .hamburger-btn .bar {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-btn.active .bar-1 {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.active .bar-2 {
+      opacity: 0;
+    }
+
+    .hamburger-btn.active .bar-3 {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 98;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg-navy);
+      border-left: 1px solid var(--border-glass);
+      z-index: 99;
+      padding: 88px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-slate-500);
+      margin-bottom: 12px;
+      padding-left: 12px;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-link .arrow {
+      color: var(--cyan-accent);
+      font-size: 15px;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+      color: var(--text-white);
+    }
+
+    .drawer-bottom {
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary-full {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-secondary-full {
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-white);
+      background: rgba(34, 211, 238, 0.12);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+    }
+
+    .btn-secondary-full svg {
+      color: var(--cyan-accent);
+    }
+
+    /* ==========================================
+       3. LOGIN PORTAL SECTION
+       ========================================== */
+    .login-section {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .network-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.45;
+    }
+
+    .login-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      opacity: 0.16;
+    }
+
+    .glow-1 {
+      top: 10%;
+      left: 15%;
+      width: 450px;
+      height: 450px;
+      background: var(--electric-blue);
+    }
+
+    .glow-2 {
+      bottom: 10%;
+      right: 15%;
+      width: 480px;
+      height: 480px;
+      background: var(--violet-accent);
+    }
+
+    .glow-3 {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 380px;
+      height: 380px;
+      background: var(--cyan-accent);
+      opacity: 0.1;
+    }
+
+    .login-box-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .login-header-text {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .login-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(34, 211, 238, 0.08);
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--cyan-accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan-accent);
+      box-shadow: 0 0 8px var(--cyan-accent);
+    }
+
+    .login-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 2.5vw, 2.3rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text-white);
+      margin-bottom: 8px;
+    }
+
+    .login-subtitle {
+      font-size: 14px;
+      color: var(--text-slate-300);
+    }
+
+    /* Glassmorphic Login Card */
+    .login-card {
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 36px 36px 32px;
+      box-shadow: 0 25px 60px -15px rgba(2, 6, 23, 0.8), 0 0 30px rgba(34, 211, 238, 0.08);
+    }
+
+    /* Auth Mode Tabs */
+    .auth-tabs {
+      display: flex;
+      background: rgba(5, 8, 22, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 24px;
+      gap: 4px;
+    }
+
+    .auth-tab-btn {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--text-slate-400);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: var(--font-body);
+    }
+
+    .auth-tab-btn.active {
+      background: rgba(37, 99, 235, 0.25);
+      color: var(--cyan-accent);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      box-shadow: 0 2px 10px rgba(34, 211, 238, 0.15);
+    }
+
+    /* Single Sign-On (SSO) Providers */
+    .sso-buttons-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .btn-sso {
+      width: 100%;
+      padding: 11px 16px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text-slate-200);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: var(--font-body);
+    }
+
+    .btn-sso:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(34, 211, 238, 0.4);
+      color: var(--text-white);
+      transform: translateY(-1px);
+    }
+
+    .divider-text {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 18px 0;
+      color: var(--text-slate-500);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .divider-text::before,
+    .divider-text::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .divider-text:not(:empty)::before {
+      margin-right: 12px;
+    }
+
+    .divider-text:not(:empty)::after {
+      margin-left: 12px;
+    }
+
+    /* Form Fields */
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .form-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+    }
+
+    .form-label a {
+      color: var(--cyan-accent);
+      font-size: 12px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .form-label a:hover {
+      opacity: 0.85;
+      text-decoration: underline;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon-left {
+      position: absolute;
+      left: 14px;
+      color: var(--text-slate-400);
+      pointer-events: none;
+      display: flex;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(5, 8, 22, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 12px 14px 12px 42px;
+      color: var(--text-white);
+      font-size: 13.5px;
+      font-family: var(--font-body);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 14px rgba(34, 211, 238, 0.25);
+      background: rgba(5, 8, 22, 0.95);
+    }
+
+    .btn-toggle-password {
+      position: absolute;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: var(--text-slate-400);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 4px;
+    }
+
+    .btn-toggle-password:hover {
+      color: var(--cyan-accent);
+    }
+
+    .form-options-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: -2px;
+    }
+
+    .remember-check {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 12.5px;
+      color: var(--text-slate-300);
+      user-select: none;
+    }
+
+    .remember-check input[type="checkbox"] {
+      accent-color: var(--cyan-accent);
+      width: 15px;
+      height: 15px;
+    }
+
+    .btn-submit-login {
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #0ea5e9);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      font-family: var(--font-body);
+      margin-top: 6px;
+    }
+
+    .btn-submit-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(34, 211, 238, 0.45);
+    }
+
+    .security-guarantee-strip {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: var(--text-slate-400);
+    }
+
+    .security-badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .security-badge-item svg {
+      color: var(--cyan-accent);
+      flex-shrink: 0;
+    }
+
+    .login-footer-help {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--text-slate-400);
+    }
+
+    .login-footer-help a {
+      color: var(--cyan-accent);
+      font-weight: 600;
+    }
+
+    .login-footer-help a:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================
+       4. FOOTER SECTION
+       ========================================== */
+    .footer {
+      background-color: var(--bg-footer);
+      border-top: 1px solid var(--border-glass);
+      padding: 64px 0 32px;
+      color: var(--text-slate-300);
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: #67e8f9;
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: var(--text-slate-400);
+      max-width: 320px;
+    }
+
+    .footer-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--text-slate-400);
+      margin-top: 4px;
+    }
+
+    .footer-address svg {
+      color: var(--cyan-accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .footer-heading {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-white);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan-accent);
+    }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12.5px;
+      color: var(--text-slate-500);
+    }
+
+    .legal-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .legal-links a:hover {
+      color: var(--text-slate-300);
+    }
+
+    .divider {
+      color: #334155;
+    }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS
+       ========================================== */
+    @media (max-width: 1120px) {
+      .desktop-nav,
+      .desktop-ctas {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .login-card {
+        padding: 24px 20px;
+        border-radius: 20px;
+      }
+
+      .login-title {
+        font-size: 1.65rem;
+      }
+
+      .security-guarantee-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-brand {
+        grid-column: span 1;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .mobile-drawer {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       1. NAVBAR & 2. HAMBURGER NAVIGATION
+       ========================================== -->
+  <header id="navbar" class="navbar">
+    <div class="container navbar-container">
+      
+      <!-- Brand Logo (Exact font sizes and layout preserved) -->
+      <a href="index.html" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+        <div class="logo-box">
+          <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
+        </div>
+        <div class="logo-text">
+          <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="about.html" class="nav-link">ABOUT US</a>
+        <a href="services.html" class="nav-link">SERVICES</a>
+        <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
+        <a href="technology.html" class="nav-link">TECHNOLOGY</a>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="desktop-ctas">
+        <!-- Client Login (Active Page) -->
+        <a href="login.html" class="btn-login" aria-current="page">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Client Login
+        </a>
+
+        <!-- Primary CTA: Let's Talk (Linked directly to contact.html) -->
+        <a href="contact.html" class="btn-primary-sm">
+          Let's Talk
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Hamburger Toggle Button (Mobile & Tablet) -->
+      <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle Mobile Navigation" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Backdrop -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+  <!-- Mobile Hamburger Slide-Out Drawer -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="drawer-top">
+      <p class="drawer-label">Navigation Menu</p>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link"><span>HOME</span><span class="arrow">↗</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link"><span>ABOUT US</span><span class="arrow">↗</span></a></li>
+        <li><a href="services.html" class="mobile-nav-link"><span>SERVICES</span><span class="arrow">↗</span></a></li>
+        <li><a href="portfolio.html" class="mobile-nav-link"><span>PORTFOLIO</span><span class="arrow">↗</span></a></li>
+        <li><a href="technology.html" class="mobile-nav-link"><span>TECHNOLOGY</span><span class="arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="drawer-bottom">
+      <a href="contact.html" class="btn-primary-full mobile-close-trigger">
+        Let's Talk →
+      </a>
+      <a href="login.html" class="btn-secondary-full mobile-close-trigger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Client Login
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       3. CLIENT LOGIN PORTAL MAIN
+       ========================================== -->
+  <main class="login-section">
+    <!-- Animated Network Particle Canvas -->
+    <canvas id="network-canvas" class="network-canvas"></canvas>
+
+    <!-- Radial Glow Spheres -->
+    <div class="login-glow glow-1"></div>
+    <div class="login-glow glow-2"></div>
+    <div class="login-glow glow-3"></div>
+
+    <div class="container">
+      <div class="login-box-container">
+        
+        <!-- Header Text Block -->
+        <div class="login-header-text">
+          <div class="login-badge">
+            <span class="badge-dot"></span>
+            <span>SECURE ENTERPRISE AUTHENTICATION</span>
+          </div>
+          <h1 class="login-title">
+            Client &amp; Partner <span class="text-gradient">Portal</span>
+          </h1>
+          <p class="login-subtitle">
+            Access live production pods, architecture deliverables, and SLA dashboards.
+          </p>
+        </div>
+
+        <!-- Glassmorphic Login Card -->
+        <div class="login-card">
+          
+          <!-- Portal Switch Tabs -->
+          <div class="auth-tabs" role="tablist">
+            <button type="button" class="auth-tab-btn active" id="tab-client" onclick="switchAuthTab('client')">Client Access</button>
+            <button type="button" class="auth-tab-btn" id="tab-partner" onclick="switchAuthTab('partner')">Partner / Vendor Ingest</button>
+          </div>
+
+          <!-- Enterprise SSO Buttons -->
+          <div class="sso-buttons-group">
+            <button type="button" class="btn-sso" onclick="handleSSO('Microsoft Azure AD')">
+              <svg width="16" height="16" viewBox="0 0 21 21">
+                <rect x="1" y="1" width="9" height="9" fill="#f25022"/>
+                <rect x="11" y="1" width="9" height="9" fill="#7fba00"/>
+                <rect x="1" y="11" width="9" height="9" fill="#00a4ef"/>
+                <rect x="11" y="11" width="9" height="9" fill="#ffb900"/>
+              </svg>
+              <span>Continue with Microsoft Azure AD</span>
+            </button>
+            <button type="button" class="btn-sso" onclick="handleSSO('Google Workspace')">
+              <svg width="16" height="16" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.27 21.41 7.35 24 12 24z"/>
+                <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.27 2.59 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+              </svg>
+              <span>Continue with Google Workspace</span>
+            </button>
+          </div>
+
+          <!-- Divider -->
+          <div class="divider-text">OR CORPORATE CREDENTIALS</div>
+
+          <!-- Authentication Form -->
+          <form class="login-form" id="client-login-form" onsubmit="handleLoginSubmit(event)">
+            
+            <!-- Corporate Email -->
+            <div class="form-group">
+              <label class="form-label" for="login-email">Corporate Work Email</label>
+              <div class="input-wrapper">
+                <span class="input-icon-left">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </span>
+                <input 
+                  type="email" 
+                  id="login-email" 
+                  class="form-control" 
+                  placeholder="name@company.com" 
+                  required 
+                  autocomplete="username"
+                />
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <div class="form-label">
+                <label for="login-password">Password</label>
+                <a href="#forgot-password" onclick="alert('Password reset link sent to your corporate domain administrator.');">Forgot password?</a>
+              </div>
+              <div class="input-wrapper">
+                <span class="input-icon-left">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                </span>
+                <input 
+                  type="password" 
+                  id="login-password" 
+                  class="form-control" 
+                  placeholder="••••••••••••" 
+                  required 
+                  autocomplete="current-password"
+                />
+                <button type="button" class="btn-toggle-password" id="toggle-password-btn" aria-label="Toggle password visibility" onclick="togglePasswordVisibility()">
+                  <svg id="eye-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Options Row: Remember Me & Security Status -->
+            <div class="form-options-row">
+              <label class="remember-check">
+                <input type="checkbox" id="remember-me" checked>
+                <span>Remember this workstation</span>
+              </label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-submit-login">
+              <span>Sign In to Secure Workspace</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+
+          </form>
+
+          <!-- Security Guarantee Strip -->
+          <div class="security-guarantee-strip">
+            <div class="security-badge-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span>TLS 1.3 &amp; AES-256</span>
+            </div>
+            <div class="security-badge-item">
+              <span class="badge-dot" style="background:#34d399; box-shadow:0 0 6px #34d399;"></span>
+              <span>ISO 27001 &amp; SOC-2</span>
+            </div>
+            <div class="security-badge-item">
+              <span>MFA Enforced</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Help / Support Link -->
+        <div class="login-footer-help">
+          Need access credentials or dedicated pod onboarding? 
+          <a href="contact.html">Contact Executive Desk →</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       4. FOOTER SECTION
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand & Tagline Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+            <div class="logo-box">
+              <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
+            </div>
+            <div class="logo-text">
+              <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+            </div>
+          </a>
+
+          <p class="footer-tagline">
+            Technology • Digital Solutions • Business Growth
+          </p>
+
+          <p class="footer-desc">
+            Reliable, technology-driven solutions that help businesses operate more efficiently and grow sustainably.
+          </p>
+
+          <div class="footer-address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Union Bank Back Side, Kattupudi Street, Pallikonda 635809</span>
+          </div>
+        </div>
+
+        <!-- Column 1: Company -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Company</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Live Projects (6+)</a></li>
+            <li><a href="about.html#leadership">Leadership</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Solutions -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Solutions</h3>
+          <ul class="footer-links">
+            <li><a href="services.html">Digital Operations</a></li>
+            <li><a href="services.html">Data Solutions</a></li>
+            <li><a href="technology.html">Technology Solutions</a></li>
+            <li><a href="services.html">Business Support</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Resources -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="portfolio.html">Case Studies</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Connect -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Connect</h3>
+          <ul class="footer-links">
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+            <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+            <li><a href="mailto:contact@hakasolutions.com">Email ↗</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Legal & Copyright Bar -->
+      <div class="footer-bottom">
+        <p class="copyright">© <span id="year"></span> HAKA SOLUTIONS. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="#privacy-policy">Privacy Policy</a>
+          <span class="divider">|</span>
+          <a href="#terms">Terms &amp; Conditions</a>
+          <span class="divider">|</span>
+          <a href="#cookie-policy">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Dynamic Copyright Year
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // 2. Sticky Header Elevation on Scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // 3. Mobile Hamburger Menu Logic
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileDrawer = document.getElementById("mobile-drawer");
+      const drawerBackdrop = document.getElementById("drawer-backdrop");
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link, .mobile-close-trigger");
+
+      function toggleMobileMenu() {
+        const isOpen = mobileDrawer.classList.contains("open");
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+
+      function openMobileMenu() {
+        hamburgerBtn.classList.add("active");
+        hamburgerBtn.setAttribute("aria-expanded", "true");
+        mobileDrawer.classList.add("open");
+        drawerBackdrop.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileMenu() {
+        hamburgerBtn.classList.remove("active");
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+        mobileDrawer.classList.remove("open");
+        drawerBackdrop.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      hamburgerBtn.addEventListener("click", toggleMobileMenu);
+      drawerBackdrop.addEventListener("click", closeMobileMenu);
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileDrawer.classList.contains("open")) {
+          closeMobileMenu();
+        }
+      });
+
+      // 4. Background Digital Network & Data Particles Canvas
+      const canvas = document.getElementById("network-canvas");
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        const particleCount = window.innerWidth < 768 ? 24 : 50;
+        const maxDistance = 140;
+
+        function resizeCanvas() {
+          canvas.width = canvas.parentElement.offsetWidth;
+          canvas.height = canvas.parentElement.offsetHeight;
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.55;
+            this.vy = (Math.random() - 0.5) * 0.55;
+            this.radius = Math.random() * 1.8 + 1;
+          }
+
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(34, 211, 238, 0.55)";
+            ctx.fill();
+          }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+
+        function animateNetwork() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < maxDistance) {
+                const opacity = (1 - distance / maxDistance) * 0.22;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          }
+          requestAnimationFrame(animateNetwork);
+        }
+
+        animateNetwork();
+      }
+    });
+
+    // 5. Password Show/Hide Toggle
+    function togglePasswordVisibility() {
+      const passwordInput = document.getElementById("login-password");
+      const eyeIcon = document.getElementById("eye-icon");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.innerHTML = `
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        `;
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.innerHTML = `
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        `;
+      }
+    }
+
+    // 6. Switch Tab (Client vs Partner)
+    function switchAuthTab(type) {
+      const tabClient = document.getElementById("tab-client");
+      const tabPartner = document.getElementById("tab-partner");
+      const loginEmail = document.getElementById("login-email");
+
+      if (type === "client") {
+        tabClient.classList.add("active");
+        tabPartner.classList.remove("active");
+        loginEmail.placeholder = "name@company.com";
+      } else {
+        tabPartner.classList.add("active");
+        tabClient.classList.remove("active");
+        loginEmail.placeholder = "vendor@partnerdomain.com";
+      }
+    }
+
+    // 7. Login Submission Simulation
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      alert(`Authenticating ${email}... Verifying Zero-Trust credentials and MFA session token.`);
+    }
+
+    // 8. SSO Handler Simulation
+    function handleSSO(provider) {
+      alert(`Redirecting to ${provider} Enterprise Identity Provider (IdP)...`);
+    }
+  </script>
+</body>
+</html>

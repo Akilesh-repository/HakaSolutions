@@ -1,0 +1,2483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | HAKA SOLUTIONS - Technology & Digital Business Solutions</title>
+  <meta name="description" content="Learn about HAKA SOLUTIONS — our organization, mission, vision, leadership, and commitment to delivering technology-driven digital, data, and business operations solutions." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       DESIGN SYSTEM VARIABLES & RESET
+       ========================================== */
+    :root {
+      --bg-midnight: #050816;
+      --bg-navy: #070b1e;
+      --bg-footer: #030611;
+      --electric-blue: #2563eb;
+      --cyan-accent: #22d3ee;
+      --violet-accent: #7c3aed;
+      --emerald-accent: #34d399;
+      --text-white: #ffffff;
+      --text-slate-300: #cbd5e1;
+      --text-slate-400: #94a3b8;
+      --text-slate-500: #64748b;
+      --border-glass: rgba(255, 255, 255, 0.1);
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-midnight);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .text-cyan { color: var(--cyan-accent); }
+    .text-emerald { color: var(--emerald-accent); }
+    .text-violet { color: #a78bfa; }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #60a5fa 0%, #22d3ee 50%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ==========================================
+       1. NAVBAR (STICKY DESKTOP HEADER)
+       ========================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(5, 8, 22, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 13px 0;
+      background: rgba(5, 8, 22, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: #ffffff;
+      padding: 1.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid rgba(34, 211, 238, 0.45);
+      box-shadow: 0 0 14px rgba(34, 211, 238, 0.3);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .brand-logo:hover .logo-box {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      transform: scale(1.04);
+    }
+
+    .brand-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 26%;
+      border-radius: 7px;
+      display: block;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-slate-400);
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1.6vw, 22px);
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-slate-300);
+      padding: 6px 0;
+      position: relative;
+      white-space: nowrap;
+      display: inline-block;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric-blue), var(--cyan-accent));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--cyan-accent);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .desktop-ctas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .btn-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .btn-login svg { color: var(--cyan-accent); }
+
+    .btn-login:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+    }
+
+    .btn-primary-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #0ea5e9);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary-sm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(34, 211, 238, 0.45);
+    }
+
+    /* ==========================================
+       2. HAMBURGER & MOBILE NAVIGATION DRAWER
+       ========================================== */
+    .hamburger-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      z-index: 110;
+      transition: border-color 0.25s ease;
+    }
+
+    .hamburger-btn:hover { border-color: rgba(34, 211, 238, 0.5); }
+
+    .hamburger-btn .bar {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-btn.active .bar-1 { transform: translateY(7px) rotate(45deg); }
+    .hamburger-btn.active .bar-2 { opacity: 0; }
+    .hamburger-btn.active .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 98;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg-navy);
+      border-left: 1px solid var(--border-glass);
+      z-index: 99;
+      padding: 88px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open { transform: translateX(0); }
+
+    .drawer-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-slate-500);
+      margin-bottom: 12px;
+      padding-left: 12px;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-link .arrow {
+      color: var(--cyan-accent);
+      font-size: 15px;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+      color: var(--text-white);
+    }
+
+    .drawer-bottom {
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary-full {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-secondary-full {
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+    }
+
+    .btn-secondary-full svg { color: var(--cyan-accent); }
+
+    /* ==========================================
+       3. HERO BANNER SECTION
+       ========================================== */
+    .hero-section {
+      position: relative;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      align-items: center;
+      padding: 72px 0 96px;
+      overflow: hidden;
+    }
+
+    .network-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .glow-blue {
+      width: 380px;
+      height: 380px;
+      background: rgba(37, 99, 235, 0.22);
+      top: -100px;
+      left: -100px;
+    }
+
+    .glow-violet {
+      width: 360px;
+      height: 360px;
+      background: rgba(124, 58, 237, 0.16);
+      top: 25%;
+      right: -80px;
+    }
+
+    .glow-cyan {
+      width: 300px;
+      height: 300px;
+      background: rgba(34, 211, 238, 0.12);
+      bottom: -60px;
+      left: 35%;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #67e8f9;
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan-accent);
+      box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(34, 211, 238, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+    }
+
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.25rem, 4.5vw, 3.85rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .line-mask {
+      display: block;
+      overflow: hidden;
+    }
+
+    .line-reveal {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      animation: revealLine 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+
+    @keyframes revealLine {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-subtext {
+      font-size: 17px;
+      color: var(--text-slate-300);
+      max-width: 620px;
+      margin-bottom: 34px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.55s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.7s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-hero-primary {
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.45);
+    }
+
+    .btn-hero-secondary {
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(34, 211, 238, 0.45);
+    }
+
+    .dashboard-glass {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.75);
+      transition: transform 0.2s ease-out;
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .window-dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #f43f5e; }
+    .dot-yellow { background: #fbbf24; }
+    .dot-green { background: #34d399; }
+
+    .dash-title {
+      margin-left: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .status-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .about-hero-banner-wrap {
+      position: relative;
+      width: 100%;
+      height: 210px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-glass);
+      margin-bottom: 14px;
+    }
+
+    .about-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88) contrast(1.08);
+      transition: transform 0.5s ease;
+    }
+
+    .dashboard-glass:hover .about-hero-img {
+      transform: scale(1.04);
+    }
+
+    .about-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 8, 22, 0.1) 0%, rgba(5, 8, 22, 0.85) 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 14px 16px;
+    }
+
+    .about-img-caption {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .about-img-tag {
+      font-family: monospace;
+      font-size: 11px;
+      color: var(--cyan-accent);
+      background: rgba(34, 211, 238, 0.14);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .dash-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dash-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--border-glass);
+    }
+
+    .dash-item-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .dash-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-blue {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--cyan-accent);
+    }
+
+    .icon-violet {
+      background: rgba(124, 58, 237, 0.2);
+      color: #c4b5fd;
+    }
+
+    .dash-item h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .dash-item p {
+      font-size: 11px;
+      color: var(--text-slate-400);
+    }
+
+    .dash-metric {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .dash-footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .security-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .security-tag svg { color: var(--cyan-accent); }
+
+    /* ==========================================
+       SHARED EDITORIAL SECTION STYLES (NON-BOXY)
+       ========================================== */
+    .about-sec {
+      padding: 96px 0;
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .about-sec-alt {
+      background: radial-gradient(circle at 85% 20%, rgba(37, 99, 235, 0.07), transparent 55%),
+                  rgba(7, 11, 30, 0.45);
+    }
+
+    .sec-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--cyan-accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .sec-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric-blue), var(--cyan-accent));
+      display: inline-block;
+    }
+
+    .sec-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text-white);
+    }
+
+    .sec-desc {
+      font-size: 16px;
+      color: var(--text-slate-400);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    /* ------------------------------------------
+       SECTION 1: ABOUT OUR ORGANIZATION (EDITORIAL SPLIT)
+       ------------------------------------------ */
+    .org-editorial-split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .org-lead-quote {
+      font-family: var(--font-heading);
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--text-white);
+      line-height: 1.5;
+      border-left: 3px solid var(--cyan-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+
+    .org-narrative-p {
+      font-size: 15.5px;
+      color: var(--text-slate-300);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .org-inline-kpis {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .org-kpi-item strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .org-kpi-item span {
+      font-size: 12.5px;
+      color: var(--text-slate-400);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .org-visual-collage {
+      position: relative;
+      padding-bottom: 40px;
+    }
+
+    .org-main-photo {
+      width: 88%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 18px;
+      filter: brightness(0.9) contrast(1.06);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+    }
+
+    .org-floating-caption {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 68%;
+      background: rgba(7, 11, 30, 0.92);
+      backdrop-filter: blur(16px);
+      border-left: 3px solid var(--emerald-accent);
+      padding: 20px 24px;
+      border-radius: 0 14px 14px 0;
+      box-shadow: 0 20px 40px rgba(2, 6, 23, 0.8);
+    }
+
+    .org-floating-caption h4 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+
+    .org-floating-caption p {
+      font-size: 12.5px;
+      color: var(--text-slate-400);
+    }
+
+    /* ------------------------------------------
+       SECTION 2: VISION & MISSION (MANIFESTO + HAIRLINE ROWS)
+       ------------------------------------------ */
+    .vision-editorial-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .vision-left-sticky {
+      position: sticky;
+      top: 110px;
+    }
+
+    .vision-big-statement {
+      margin-top: 28px;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--text-slate-300);
+      line-height: 1.6;
+    }
+
+    .vision-stream-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .vision-stream-row {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 20px;
+      align-items: baseline;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border-hairline);
+      transition: padding-left 0.3s ease;
+    }
+
+    .vision-stream-row:hover {
+      padding-left: 12px;
+    }
+
+    .v-row-idx {
+      font-family: monospace;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--cyan-accent);
+    }
+
+    .v-row-body h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 6px;
+    }
+
+    .v-row-body p {
+      font-size: 14.5px;
+      color: var(--text-slate-400);
+      line-height: 1.6;
+    }
+
+    .v-row-tag {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--emerald-accent);
+      white-space: nowrap;
+    }
+
+    /* ------------------------------------------
+       SECTION 3: ORGANIZATIONAL ARCHITECTURE & WINGS
+       ------------------------------------------ */
+    .wings-open-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 52px;
+    }
+
+    .wing-column {
+      position: relative;
+      padding-left: 26px;
+      border-left: 2px solid rgba(34, 211, 238, 0.28);
+      transition: border-color 0.3s ease;
+    }
+
+    .wing-column:nth-child(2) {
+      border-left-color: rgba(52, 211, 153, 0.35);
+    }
+
+    .wing-column:nth-child(3) {
+      border-left-color: rgba(124, 58, 237, 0.4);
+    }
+
+    .wing-column:hover {
+      border-left-color: var(--cyan-accent);
+    }
+
+    .wing-code {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .wing-title {
+      font-family: var(--font-heading);
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 12px;
+    }
+
+    .wing-desc {
+      font-size: 14.5px;
+      color: var(--text-slate-400);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .wing- deliverables {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-slate-300);
+    }
+
+    /* ------------------------------------------
+       SECTION 4: CONTINUOUS SPINE TIMELINE (NO BOXES)
+       ------------------------------------------ */
+    .spine-timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px;
+      margin-top: 56px;
+      padding-top: 32px;
+    }
+
+    .spine-timeline::before {
+      content: '';
+      position: absolute;
+      top: 7px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric-blue), var(--cyan-accent), var(--emerald-accent), var(--violet-accent));
+      opacity: 0.5;
+    }
+
+    .spine-step {
+      position: relative;
+    }
+
+    .spine-dot {
+      position: absolute;
+      top: -32px;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-midnight);
+      border: 3px solid var(--cyan-accent);
+      box-shadow: 0 0 14px var(--cyan-accent);
+    }
+
+    .spine-year {
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--cyan-accent);
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .spine-heading {
+      font-family: var(--font-heading);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 10px;
+    }
+
+    .spine-copy {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .spine-milestone-tag {
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--emerald-accent);
+      font-weight: 600;
+    }
+
+    /* ------------------------------------------
+       SECTION 5: EXECUTIVE DIRECTORY LEDGER (HORIZONTAL ROWS)
+       ------------------------------------------ */
+    .exec-ledger {
+      margin-top: 48px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .exec-row {
+      display: grid;
+      grid-template-columns: 70px 1.2fr 1.8fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 26px 16px;
+      border-bottom: 1px solid var(--border-hairline);
+      transition: background 0.25s ease, padding-left 0.25s ease;
+    }
+
+    .exec-row:hover {
+      background: rgba(255, 255, 255, 0.025);
+      padding-left: 24px;
+    }
+
+    .exec-monogram {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(34, 211, 238, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--cyan-accent);
+      background: rgba(34, 211, 238, 0.06);
+    }
+
+    .exec-title-col h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .exec-title-col span {
+      font-size: 13px;
+      color: var(--cyan-accent);
+      font-weight: 500;
+    }
+
+    .exec-bio-col {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      line-height: 1.55;
+    }
+
+    .exec-meta-col {
+      text-align: right;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-slate-300);
+      white-space: nowrap;
+    }
+
+    /* ------------------------------------------
+       SECTION 6: LIVE PORTFOLIO (SPLIT SHOWCASE + INDEX)
+       ------------------------------------------ */
+    .portfolio-split-showcase {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 56px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    .portfolio-visual-stage {
+      position: sticky;
+      top: 110px;
+    }
+
+    .stage-preview-img {
+      width: 100%;
+      height: 310px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      filter: brightness(0.9) contrast(1.05);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    .stage-caption-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+      font-size: 13px;
+      color: var(--text-slate-400);
+    }
+
+    .portfolio-index-list {
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .port-index-item {
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      gap: 18px;
+      align-items: baseline;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border-hairline);
+      transition: transform 0.25s ease;
+    }
+
+    .port-index-item:hover {
+      transform: translateX(8px);
+    }
+
+    .p-idx-num {
+      font-family: monospace;
+      font-size: 13px;
+      color: var(--cyan-accent);
+      font-weight: 700;
+    }
+
+    .p-idx-main h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+
+    .p-idx-main p {
+      font-size: 13.5px;
+      color: var(--text-slate-400);
+      margin-bottom: 6px;
+    }
+
+    .p-idx-stack {
+      font-family: monospace;
+      font-size: 11.5px;
+      color: var(--text-slate-500);
+    }
+
+    .p-idx-status {
+      font-family: monospace;
+      font-size: 11.5px;
+      color: var(--emerald-accent);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ------------------------------------------
+       SECTION 7: CULTURE & VALUES (OPEN CROSSHAIR MATRIX)
+       ------------------------------------------ */
+    .culture-crosshair-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 48px;
+      border-top: 1px solid var(--border-hairline);
+      border-left: 1px solid var(--border-hairline);
+    }
+
+    .culture-cell {
+      padding: 36px 30px;
+      border-right: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+      position: relative;
+      transition: background 0.3s ease;
+    }
+
+    .culture-cell:hover {
+      background: rgba(34, 211, 238, 0.03);
+    }
+
+    .cell-watermark {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.07);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .culture-cell h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 8px;
+    }
+
+    .culture-cell p {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      line-height: 1.6;
+    }
+
+    /* ------------------------------------------
+       SECTION 8: INFRASTRUCTURE & SECURITY (TERMINAL + STREAM)
+       ------------------------------------------ */
+    .infra-split-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+      margin-top: 44px;
+    }
+
+    .sec-terminal-window {
+      background: #030612;
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+    }
+
+    .sec-term-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid var(--border-hairline);
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .sec-term-body {
+      padding: 24px;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--text-slate-300);
+    }
+
+    .infra-protocol-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .protocol-line {
+      padding-left: 20px;
+      border-left: 2px solid var(--cyan-accent);
+    }
+
+    .protocol-line h4 {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+
+    .protocol-line p {
+      font-size: 14px;
+      color: var(--text-slate-400);
+    }
+
+    .infra-open-badges {
+      display: flex;
+      gap: 32px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-hairline);
+      font-family: monospace;
+      font-size: 12.5px;
+      color: var(--emerald-accent);
+    }
+
+    /* ------------------------------------------
+       SECTION 9: CLIENT IMPACT & MONUMENTAL CTA
+       ------------------------------------------ */
+    .impact-spotlight-sec {
+      text-align: center;
+      background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.16), rgba(5, 8, 22, 0.95) 70%);
+    }
+
+    .impact-giant-metrics {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 56px;
+      margin: 48px 0;
+      padding: 36px 0;
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .giant-metric-item strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 4vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .giant-metric-item span {
+      font-family: monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-slate-400);
+    }
+
+    .impact-cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    /* ==========================================
+       4. FOOTER SECTION
+       ========================================== */
+    .footer {
+      background-color: var(--bg-footer);
+      border-top: 1px solid var(--border-glass);
+      padding: 64px 0 32px;
+      color: var(--text-slate-300);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: #67e8f9;
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: var(--text-slate-400);
+      max-width: 320px;
+    }
+
+    .footer-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--text-slate-400);
+      margin-top: 4px;
+    }
+
+    .footer-address svg {
+      color: var(--cyan-accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .footer-heading {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-white);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--cyan-accent); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12.5px;
+      color: var(--text-slate-500);
+    }
+
+    .legal-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .legal-links a:hover { color: var(--text-slate-300); }
+    .divider { color: #334155; }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS
+       ========================================== */
+    @media (max-width: 1120px) {
+      .desktop-nav, .desktop-ctas { display: none; }
+      .hamburger-btn { display: flex; }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .org-editorial-split,
+      .vision-editorial-layout,
+      .wings-open-columns,
+      .portfolio-split-showcase,
+      .infra-split-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .vision-left-sticky, .portfolio-visual-stage { position: static; }
+      .spine-timeline { grid-template-columns: repeat(2, 1fr); }
+      .spine-timeline::before { display: none; }
+      .spine-dot { position: static; margin-bottom: 10px; }
+      .exec-row { grid-template-columns: 56px 1fr; }
+      .exec-bio-col, .exec-meta-col { grid-column: 2; text-align: left; }
+      .culture-crosshair-matrix { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: span 2; }
+    }
+
+    @media (max-width: 640px) {
+      .about-sec { padding: 64px 0; }
+      .spine-timeline,
+      .culture-crosshair-matrix { grid-template-columns: 1fr; }
+      .vision-stream-row,
+      .port-index-item { grid-template-columns: 1fr; gap: 8px; }
+      .impact-giant-metrics { gap: 32px; flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       1. NAVBAR & 2. HAMBURGER NAVIGATION
+       ========================================== -->
+  <header id="navbar" class="navbar">
+    <div class="container navbar-container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+        <div class="logo-box">
+          <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
+        </div>
+        <div class="logo-text">
+          <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="about.html" class="nav-link active">ABOUT US</a>
+        <a href="services.html" class="nav-link">SERVICES</a>
+        <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
+        <a href="technology.html" class="nav-link">TECHNOLOGY</a>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="desktop-ctas">
+        <a href="login.html" class="btn-login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Client Login
+        </a>
+
+        <a href="contact.html" class="btn-primary-sm">
+          Let's Talk
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Hamburger Toggle Button -->
+      <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle Mobile Navigation" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Backdrop -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+  <!-- Mobile Hamburger Slide-Out Drawer -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="drawer-top">
+      <p class="drawer-label">Navigation Menu</p>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link"><span>HOME</span><span class="arrow">↗</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link active"><span>ABOUT US</span><span class="arrow">↗</span></a></li>
+        <li><a href="services.html" class="mobile-nav-link"><span>SERVICES</span><span class="arrow">↗</span></a></li>
+        <li><a href="portfolio.html" class="mobile-nav-link"><span>PORTFOLIO</span><span class="arrow">↗</span></a></li>
+        <li><a href="technology.html" class="mobile-nav-link"><span>TECHNOLOGY</span><span class="arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="drawer-bottom">
+      <a href="contact.html" class="btn-primary-full mobile-close-trigger">
+        Let's Talk →
+      </a>
+      <a href="login.html" class="btn-secondary-full mobile-close-trigger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Client Login
+      </a>
+    </div>
+  </aside>
+
+
+  <!-- ==========================================
+       3. HERO BANNER SECTION (ABOUT US)
+       ========================================== -->
+  <main>
+    <section id="about-hero" class="hero-section">
+      <canvas id="network-canvas" class="network-canvas"></canvas>
+      <div class="glow glow-blue"></div>
+      <div class="glow glow-violet"></div>
+      <div class="glow glow-cyan"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span>ABOUT HAKA SOLUTIONS • WHO WE ARE</span>
+          </div>
+
+          <h1 class="hero-headline">
+            <span class="line-mask">
+              <span class="line-reveal delay-1">Architecting the Future</span>
+            </span>
+            <span class="line-mask">
+              <span class="line-reveal delay-2">of Enterprise Digital</span>
+            </span>
+            <span class="line-mask">
+              <span class="line-reveal delay-3 text-gradient">Operations &amp; Growth</span>
+            </span>
+          </h1>
+
+          <p class="hero-subtext">
+            Founded on engineering rigor and operational excellence, HAKA SOLUTIONS bridges modern technology and skilled human execution to help organizations streamline workflows, manage high-volume data, and scale with confidence.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#our-organization" class="btn-hero-primary">
+              Discover Our Story →
+            </a>
+            <a href="#portfolio" class="btn-hero-secondary">
+              View Live Portfolio →
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div id="dashboard-card" class="dashboard-glass">
+            <div class="dash-header">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="dash-title">haka-core://corporate-profile</span>
+              </div>
+              <span class="status-pill">● VERIFIED HQ</span>
+            </div>
+
+            <div class="about-hero-banner-wrap">
+              <img 
+                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80" 
+                alt="HAKA SOLUTIONS Engineering and Operations Team" 
+                class="about-hero-img"
+              />
+              <div class="about-img-overlay">
+                <span class="about-img-caption">Technology • People • Progress</span>
+                <span class="about-img-tag">24/7 GLOBAL OPS</span>
+              </div>
+            </div>
+
+            <div class="dash-body">
+              <div class="dash-item">
+                <div class="dash-item-left">
+                  <div class="dash-icon icon-blue">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Our Core Mission</h4>
+                    <p>Empowering businesses through scalable tech &amp; data</p>
+                  </div>
+                </div>
+                <span class="dash-metric text-cyan">99.98% SLA</span>
+              </div>
+
+              <div class="dash-item">
+                <div class="dash-item-left">
+                  <div class="dash-icon icon-violet">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Dedicated Delivery Pods</h4>
+                    <p>250+ deployments &amp; 15M+ processed records</p>
+                  </div>
+                </div>
+                <span class="dash-metric text-emerald">ISO ALIGNED</span>
+              </div>
+            </div>
+
+            <div class="dash-footer">
+              <div class="security-tag">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Pallikonda, Tamil Nadu • Global Delivery Footprint</span>
+              </div>
+              <span class="dash-arrow">→</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 1: ABOUT OUR ORGANIZATION (50 LINES)
+         ========================================== -->
+    <section id="our-organization" class="about-sec">
+      <div class="container org-editorial-split">
+        <div class="org-narrative-col">
+          <span class="sec-eyebrow">01 / ABOUT OUR ORGANIZATION</span>
+          <h2 class="sec-title">Where Engineering Precision Meets <span class="text-gradient">Human Execution</span></h2>
+          <blockquote class="org-lead-quote">
+            "We founded HAKA SOLUTIONS on a singular belief: enterprise-grade technology and disciplined digital operations should be accessible, transparent, and frictionless."
+          </blockquote>
+          <p class="org-narrative-p">
+            Headquartered in Pallikonda, Tamil Nadu, HAKA SOLUTIONS PRIVATE LIMITED operates as a next-generation technology and managed operations partner. Rather than offering disconnected software or generic outsourcing, we unify custom software architecture, high-volume data pipelines, and dedicated human-in-the-loop operational pods under one roof.
+          </p>
+          <div class="org-inline-kpis">
+            <div class="org-kpi-item">
+              <strong class="text-cyan">2021</strong>
+              <span>Established HQ</span>
+            </div>
+            <div class="org-kpi-item">
+              <strong class="text-emerald">99.94%</strong>
+              <span>Verified Data Accuracy</span>
+            </div>
+            <div class="org-kpi-item">
+              <strong class="text-gradient">24/7/365</strong>
+              <span>Global Pod Coverage</span>
+            </div>
+          </div>
+        </div>
+        <div class="org-visual-collage">
+          <img 
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80" 
+            alt="HAKA SOLUTIONS Operations Center" 
+            class="org-main-photo"
+          />
+          <div class="org-floating-caption">
+            <h4>HAKA SOLUTIONS PRIVATE LIMITED</h4>
+            <p>Union Bank Back Side, Kattupudi Street, Pallikonda – 635809 • Serving Global Enterprises</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: FOUNDING VISION & MISSION (50 LINES)
+         ========================================== -->
+    <section id="vision-mission" class="about-sec about-sec-alt">
+      <div class="container vision-editorial-layout">
+        <div class="vision-left-sticky">
+          <span class="sec-eyebrow">02 / STRATEGIC PURPOSE</span>
+          <h2 class="sec-title">Our Founding Vision &amp; <span class="text-gradient">Operational Mandate</span></h2>
+          <p class="sec-desc">
+            We exist to eliminate operational friction—turning complex data streams and manual back-office bottlenecks into autonomous, high-velocity digital ecosystems.
+          </p>
+          <p class="vision-big-statement">
+            Every system we architect and every pod we deploy is governed by strict service-level accountability.
+          </p>
+        </div>
+        <div class="vision-stream-list">
+          <div class="vision-stream-row">
+            <span class="v-row-idx">01</span>
+            <div class="v-row-body">
+              <h3>Uncompromising Engineering Rigor</h3>
+              <p>We build resilient web platforms, internal portals, and cloud databases designed to handle peak enterprise loads without degradation.</p>
+            </div>
+            <span class="v-row-tag">99.98% SLA</span>
+          </div>
+          <div class="vision-stream-row">
+            <span class="v-row-idx">02</span>
+            <div class="v-row-body">
+              <h3>Elastic Operational Agility</h3>
+              <p>Our modular delivery pods integrate directly into your existing tools and communication channels in under 72 hours.</p>
+            </div>
+            <span class="v-row-tag">&lt; 72H DEPLOY</span>
+          </div>
+          <div class="vision-stream-row">
+            <span class="v-row-idx">03</span>
+            <div class="v-row-body">
+              <h3>Zero-Trust Information Governance</h3>
+              <p>End-to-end AES-256 encryption, role-based access isolation, and mutual NDA compliance safeguard every client workflow.</p>
+            </div>
+            <span class="v-row-tag">ISO ALIGNED</span>
+          </div>
+          <div class="vision-stream-row">
+            <span class="v-row-idx">04</span>
+            <div class="v-row-body">
+              <h3>Compounding Commercial ROI</h3>
+              <p>We align technical execution with measurable business outcomes, cutting operational cycle times by an average of 40%.</p>
+            </div>
+            <span class="v-row-tag">40% FASTER</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: ORGANIZATIONAL STRUCTURE (50 LINES)
+         ========================================== -->
+    <section id="org-structure" class="about-sec">
+      <div class="container">
+        <span class="sec-eyebrow">03 / ORGANIZATIONAL ECOSYSTEM</span>
+        <h2 class="sec-title">Three Specialized Wings Operating <span class="text-gradient">As One Engine</span></h2>
+        <p class="sec-desc">
+          Our internal organization is structured into three interconnected operational divisions, ensuring seamless handoffs between software engineering, data processing, and quality governance.
+        </p>
+        <div class="wings-open-columns">
+          <div class="wing-column">
+            <span class="wing-code text-cyan">WING 01 // ENGINEERING LAB</span>
+            <h3 class="wing-title">Full-Stack &amp; Cloud Systems</h3>
+            <p class="wing-desc">
+              Architects custom web applications, enterprise dashboards, API integrations, and automated RPA bots tailored to client workflows.
+            </p>
+            <div class="wing-deliverables">
+              <span>→ Custom Web &amp; Portal Architecture</span>
+              <span>→ REST / GraphQL &amp; Webhook Sync</span>
+              <span>→ Cloud Database Optimization</span>
+            </div>
+          </div>
+          <div class="wing-column">
+            <span class="wing-code text-emerald">WING 02 // DATA OPERATIONS</span>
+            <h3 class="wing-title">High-Volume Data &amp; BPO Pods</h3>
+            <p class="wing-desc">
+              Executes large-scale data ingestion, document digitization, catalog management, and back-office process support with human-in-the-loop precision.
+            </p>
+            <div class="wing-deliverables">
+              <span>→ Multi-Million Row ETL &amp; Cleansing</span>
+              <span>→ Document OCR &amp; Verification</span>
+              <span>→ Dedicated 24/7 Back-Office Pods</span>
+            </div>
+          </div>
+          <div class="wing-column">
+            <span class="wing-code text-violet">WING 03 // GOVERNANCE OFFICE</span>
+            <h3 class="wing-title">QA, Security &amp; SLA Auditing</h3>
+            <p class="wing-desc">
+              Independently audits every deliverable, monitors real-time sprint telemetry, and enforces zero-trust security across all active engagements.
+            </p>
+            <div class="wing-deliverables">
+              <span>→ Dual-Stage Automated &amp; Human QA</span>
+              <span>→ Weekly Telemetry &amp; KPI Reporting</span>
+              <span>→ Strict DPDP &amp; NDA Enforcement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: COMPANY JOURNEY TIMELINE (50 LINES)
+         ========================================== -->
+    <section id="milestones" class="about-sec about-sec-alt">
+      <div class="container">
+        <span class="sec-eyebrow">04 / EVOLUTION &amp; GROWTH</span>
+        <h2 class="sec-title">Our Trajectory From Genesis to <span class="text-gradient">Global Delivery</span></h2>
+        <p class="sec-desc">
+          A continuous timeline of disciplined expansion, technological upgrades, and expanding enterprise partnerships.
+        </p>
+        <div class="spine-timeline">
+          <div class="spine-step">
+            <span class="spine-dot"></span>
+            <span class="spine-year">2021 // GENESIS</span>
+            <h3 class="spine-heading">Foundation in Pallikonda</h3>
+            <p class="spine-copy">
+              Established our core operational center in Tamil Nadu with a specialized team focused on digital data operations and workflow streamlining.
+            </p>
+            <span class="spine-milestone-tag">✓ First 10 Enterprise Clients</span>
+          </div>
+          <div class="spine-step">
+            <span class="spine-dot"></span>
+            <span class="spine-year">2023 // EXPANSION</span>
+            <h3 class="spine-heading">Dedicated Delivery Pods</h3>
+            <p class="spine-copy">
+              Scaled infrastructure to launch full-stack engineering and 24/7 managed support pods with real-time client telemetry.
+            </p>
+            <span class="spine-milestone-tag">✓ 100+ Active Workflows</span>
+          </div>
+          <div class="spine-step">
+            <span class="spine-dot"></span>
+            <span class="spine-year">2025 // AUTOMATION</span>
+            <h3 class="spine-heading">Intelligent Pipeline Suite</h3>
+            <p class="spine-copy">
+              Integrated automated schema validation, webhook orchestrators, and multi-region cloud deployment architectures.
+            </p>
+            <span class="spine-milestone-tag">✓ 15M+ Records Verified</span>
+          </div>
+          <div class="spine-step">
+            <span class="spine-dot"></span>
+            <span class="spine-year">2026+ // HORIZON</span>
+            <h3 class="spine-heading">Omni-Channel Scale</h3>
+            <p class="spine-copy">
+              Powering cross-industry production platforms, headless commerce, and autonomous enterprise operations worldwide.
+            </p>
+            <span class="spine-milestone-tag">✓ 250+ Live Deployments</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: EXECUTIVE LEADERSHIP LEDGER (50 LINES)
+         ========================================== -->
+    <section id="leadership" class="about-sec">
+      <div class="container">
+        <span class="sec-eyebrow">05 / EXECUTIVE LEADERSHIP</span>
+        <h2 class="sec-title">Seasoned Principals Guiding <span class="text-gradient">Every Engagement</span></h2>
+        <p class="sec-desc">
+          Our leadership directory brings together deep systems architecture heritage, operational rigor, and direct hands-on accountability.
+        </p>
+        <div class="exec-ledger">
+          <div class="exec-row">
+            <div class="exec-monogram">DT</div>
+            <div class="exec-title-col">
+              <h3>Director of Technology</h3>
+              <span>Principal Systems Architect</span>
+            </div>
+            <p class="exec-bio-col">Oversees cloud infrastructure, distributed system reliability, and zero-defect code standards across all client platforms.</p>
+            <div class="exec-meta-col">CLOUD &amp; SYSTEMS • 12+ YRS</div>
+          </div>
+          <div class="exec-row">
+            <div class="exec-monogram">VP</div>
+            <div class="exec-title-col">
+              <h3>VP of Global Operations</h3>
+              <span>Head of Delivery Excellence</span>
+            </div>
+            <p class="exec-bio-col">Directs 24/7 operational workflows, SLA governance, compliance audits, and rapid elastic pod resource allocation.</p>
+            <div class="exec-meta-col">SLA &amp; GOVERNANCE • ISO LEAD</div>
+          </div>
+          <div class="exec-row">
+            <div class="exec-monogram">DE</div>
+            <div class="exec-title-col">
+              <h3>Head of Data Engineering</h3>
+              <span>Analytics &amp; Pipeline Lead</span>
+            </div>
+            <p class="exec-bio-col">Architects high-throughput ETL ingestion engines, automated deduplication pipelines, and enterprise data hygiene protocols.</p>
+            <div class="exec-meta-col">DATA &amp; ETL • 15M+ RECORDS</div>
+          </div>
+          <div class="exec-row">
+            <div class="exec-monogram">CS</div>
+            <div class="exec-title-col">
+              <h3>Client Solutions Principal</h3>
+              <span>Enterprise Partnerships Director</span>
+            </div>
+            <p class="exec-bio-col">Aligns client commercial goals with bespoke technical roadmaps to guarantee rapid onboarding and measurable ROI.</p>
+            <div class="exec-meta-col">STRATEGY • GLOBAL DESK</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 6: LIVE PORTFOLIO INDEX (50 LINES)
+         ========================================== -->
+    <section id="portfolio" class="about-sec about-sec-alt">
+      <div class="container">
+        <span class="sec-eyebrow">06 / PRODUCTION LEDGER</span>
+        <h2 class="sec-title">Verified Enterprise Deployments &amp; <span class="text-gradient">Live Running Systems</span></h2>
+        <div class="portfolio-split-showcase">
+          <div class="portfolio-visual-stage">
+            <img 
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" 
+              alt="HAKA SOLUTIONS Live Production Platforms" 
+              class="stage-preview-img"
+            />
+            <p class="sec-desc">Every platform in our production ledger is actively monitored, CDN-accelerated, and backed by our 99.98% uptime guarantee.</p>
+            <div class="stage-caption-bar">
+              <span>● 6 Flagship Industry Platforms</span>
+              <a href="index.html#contact" class="text-cyan">Request Live Demo ↗</a>
+            </div>
+          </div>
+          <div class="portfolio-index-list">
+            <div class="port-index-item">
+              <span class="p-idx-num">01</span>
+              <div class="p-idx-main">
+                <h3>Luxury Fashion E-Commerce Showcase</h3>
+                <p>Headless luxury storefront with instant checkout, lookbooks, and omnichannel inventory sync.</p>
+                <span class="p-idx-stack">Next.js • Stripe • Sub-second Edge CDN</span>
+              </div>
+              <span class="p-idx-status">● 99.99% UP</span>
+            </div>
+            <div class="port-index-item">
+              <span class="p-idx-num">02</span>
+              <div class="p-idx-main">
+                <h3>TS Landscaping &amp; Construction Site</h3>
+                <p>Corporate construction portal with interactive project estimators and geo-targeted lead funnels.</p>
+                <span class="p-idx-stack">Custom Estimator • Technical SEO • Cloud CDN</span>
+              </div>
+              <span class="p-idx-status">● LIVE PROD</span>
+            </div>
+            <div class="port-index-item">
+              <span class="p-idx-num">03</span>
+              <div class="p-idx-main">
+                <h3>Healthcare Provider Clinic Network</h3>
+                <p>Multi-clinic patient intake, doctor scheduling pipeline, and HIPAA-aligned digital records portal.</p>
+                <span class="p-idx-stack">HIPAA Aligned • Telehealth Sync • AES-256</span>
+              </div>
+              <span class="p-idx-status">● 99.98% SLA</span>
+            </div>
+            <div class="port-index-item">
+              <span class="p-idx-num">04</span>
+              <div class="p-idx-main">
+                <h3>Grand Event &amp; Conference Hub</h3>
+                <p>Real-time attendee ticketing, QR check-in verification, and live symposium streaming hub.</p>
+                <span class="p-idx-stack">Live Seat Engine • QR Auth • WebSockets</span>
+              </div>
+              <span class="p-idx-status">● REAL-TIME</span>
+            </div>
+            <div class="port-index-item">
+              <span class="p-idx-num">05</span>
+              <div class="p-idx-main">
+                <h3>Real Estate Property Acquisition Portal</h3>
+                <p>Interactive geospatial property marketplace with 3D floorplans and broker lead routing.</p>
+                <span class="p-idx-stack">Mapbox GL • MLS Sync • Instant Inquiry</span>
+              </div>
+              <span class="p-idx-status">● 99.95% UP</span>
+            </div>
+            <div class="port-index-item">
+              <span class="p-idx-num">06</span>
+              <div class="p-idx-main">
+                <h3>Premium Restaurant &amp; Café Platform</h3>
+                <p>Hospitality web app featuring live table reservations, QR table ordering, and POS webhooks.</p>
+                <span class="p-idx-stack">POS Webhook • Zero-Latency Menu • Loyalty</span>
+              </div>
+              <span class="p-idx-status">● ACTIVE STREAM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 7: CULTURE & VALUES MATRIX (50 LINES)
+         ========================================== -->
+    <section id="culture-values" class="about-sec">
+      <div class="container">
+        <span class="sec-eyebrow">07 / ENGINEERING CULTURE</span>
+        <h2 class="sec-title">Six Cultural Tenets That Anchor <span class="text-gradient">Our Daily Craft</span></h2>
+        <p class="sec-desc">
+          We reject black-box outsourcing. Our culture is built on radical visibility, disciplined verification, and shared ownership of client outcomes.
+        </p>
+        <div class="culture-crosshair-matrix">
+          <div class="culture-cell">
+            <div class="cell-watermark">01</div>
+            <h3>Zero-Defect Code Ethics</h3>
+            <p>Automated regression testing, strict static analysis, and peer code reviews gate every production release.</p>
+          </div>
+          <div class="culture-cell">
+            <div class="cell-watermark">02</div>
+            <h3>Radical Transparency</h3>
+            <p>Clients receive direct access to live sprint boards, operational telemetry, and daily standup summaries.</p>
+          </div>
+          <div class="culture-cell">
+            <div class="cell-watermark">03</div>
+            <h3>Human + Machine Synergy</h3>
+            <p>We pair automated scripts with trained domain specialists to guarantee 99.94% data accuracy.</p>
+          </div>
+          <div class="culture-cell">
+            <div class="cell-watermark">04</div>
+            <h3>Long-Term Stewardship</h3>
+            <p>We engineer maintainable systems and durable operational playbooks designed to scale for years.</p>
+          </div>
+          <div class="culture-cell">
+            <div class="cell-watermark">05</div>
+            <h3>Relentless Optimization</h3>
+            <p>Monthly latency and workflow audits continuously strip away manual overhead and reduce costs.</p>
+          </div>
+          <div class="culture-cell">
+            <div class="cell-watermark">06</div>
+            <h3>Single-Point Accountability</h3>
+            <p>Every engagement is led by a dedicated Technical Pod Lead with direct 2-hour executive response SLAs.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 8: INFRASTRUCTURE & SECURITY (50 LINES)
+         ========================================== -->
+    <section id="infrastructure" class="about-sec about-sec-alt">
+      <div class="container">
+        <span class="sec-eyebrow">08 / SECURITY ARCHITECTURE</span>
+        <h2 class="sec-title">Hardened Infrastructure Built for <span class="text-gradient">Zero Downtime</span></h2>
+        <div class="infra-split-layout">
+          <div class="sec-terminal-window">
+            <div class="sec-term-bar">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span>haka-sec://compliance-audit-stream</span>
+              <span class="text-emerald">● VERIFIED</span>
+            </div>
+            <div class="sec-term-body">
+              <p><span class="text-cyan">$</span> haka-security --audit-all --strict</p>
+              <p>[OK] Network Isolation: Zero-Trust VPC &amp; MFA Enforced</p>
+              <p>[OK] Encryption Transit: TLS 1.3 Perfect Forward Secrecy</p>
+              <p>[OK] Encryption Rest: AES-256 Hardware Key Vaults</p>
+              <p>[OK] Facility Continuity: Dual UPS + Multi-Homed Fiber</p>
+              <p>[OK] Legal Governance: Mutual NDA &amp; DPDP Compliant</p>
+              <p class="text-emerald">&gt; STATUS: 0 VULNERABILITIES DETECTED (99.98% UPTIME)</p>
+            </div>
+          </div>
+          <div class="infra-protocol-stream">
+            <div class="protocol-line">
+              <h4>Zero-Trust Network Access (ZTNA)</h4>
+              <p>Strict role-based permissions and encrypted tunnels isolate client workspaces from unauthorized access.</p>
+            </div>
+            <div class="protocol-line">
+              <h4>End-to-End Cryptographic Pipelines</h4>
+              <p>Every dataset ingested or processed is protected by AES-256 encryption at rest and TLS 1.3 in transit.</p>
+            </div>
+            <div class="protocol-line">
+              <h4>Redundant Power &amp; Failover Uplinks</h4>
+              <p>Our operational center runs on dual uninterruptible power arrays and multi-carrier fiber lines.</p>
+            </div>
+            <div class="infra-open-badges">
+              <span>✓ ISO-ALIGNED OPS</span>
+              <span>✓ ZERO DATA LEAKS</span>
+              <span>✓ 24/7 SOC MONITOR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 9: CLIENT IMPACT & CTA (50 LINES)
+         ========================================== -->
+    <section id="client-impact" class="about-sec impact-spotlight-sec">
+      <div class="container">
+        <span class="sec-eyebrow">09 / PROVEN ENTERPRISE IMPACT</span>
+        <h2 class="sec-title">Transforming Operational Complexity Into <span class="text-gradient">Measurable Velocity</span></h2>
+        <p class="sec-desc" style="margin: 0 auto;">
+          Partner with HAKA SOLUTIONS to modernize your technology stack, automate high-volume data workflows, and deploy dedicated operational pods within 72 hours.
+        </p>
+        <div class="impact-giant-metrics">
+          <div class="giant-metric-item">
+            <strong class="text-cyan">250+</strong>
+            <span>Enterprise Deployments</span>
+          </div>
+          <div class="giant-metric-item">
+            <strong class="text-emerald">15M+</strong>
+            <span>Records Processed</span>
+          </div>
+          <div class="giant-metric-item">
+            <strong class="text-gradient">40%</strong>
+            <span>Avg Cycle Reduction</span>
+          </div>
+          <div class="giant-metric-item">
+            <strong class="text-violet">&lt; 72h</strong>
+            <span>Pod Onboarding Speed</span>
+          </div>
+        </div>
+        <div class="impact-cta-actions">
+          <a href="index.html#contact" class="btn-hero-primary">
+            Initiate Confidential Consultation →
+          </a>
+          <a href="index.html#services" class="btn-hero-secondary">
+            Explore Service Capabilities →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ==========================================
+       4. FOOTER SECTION
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+            <div class="logo-box">
+              <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
+            </div>
+            <div class="logo-text">
+              <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+            </div>
+          </a>
+
+          <p class="footer-tagline">
+            Technology • Digital Solutions • Business Growth
+          </p>
+
+          <p class="footer-desc">
+            Reliable, technology-driven solutions that help businesses operate more efficiently and grow sustainably.
+          </p>
+
+          <div class="footer-address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Union Bank Back Side, Kattupudi Street, Pallikonda 635809</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-heading">Company</h3>
+          <ul class="footer-links">
+            <li><a href="#our-organization">Our Organization</a></li>
+            <li><a href="portfolio.html">Live Projects (6+)</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-heading">Solutions</h3>
+          <ul class="footer-links">
+            <li><a href="services.html">Digital Operations</a></li>
+            <li><a href="services.html">Data Solutions</a></li>
+            <li><a href="technology.html">Technology Solutions</a></li>
+            <li><a href="services.html">Business Support</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-heading">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#org-structure">Delivery Model</a></li>
+            <li><a href="#infrastructure">Security &amp; SLA</a></li>
+            <li><a href="#culture-values">Engineering Culture</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-heading">Connect</h3>
+          <ul class="footer-links">
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+            <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+            <li><a href="mailto:contact@hakasolutions.com">Email ↗</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">© <span id="year"></span> HAKA SOLUTIONS. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="#privacy-policy">Privacy Policy</a>
+          <span class="divider">|</span>
+          <a href="#terms">Terms &amp; Conditions</a>
+          <span class="divider">|</span>
+          <a href="#cookie-policy">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Dynamic Copyright Year
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // 2. Sticky Header Elevation on Scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // 3. Mobile Hamburger Menu Logic
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileDrawer = document.getElementById("mobile-drawer");
+      const drawerBackdrop = document.getElementById("drawer-backdrop");
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link, .mobile-close-trigger");
+
+      function toggleMobileMenu() {
+        const isOpen = mobileDrawer.classList.contains("open");
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+
+      function openMobileMenu() {
+        hamburgerBtn.classList.add("active");
+        hamburgerBtn.setAttribute("aria-expanded", "true");
+        mobileDrawer.classList.add("open");
+        drawerBackdrop.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileMenu() {
+        hamburgerBtn.classList.remove("active");
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+        mobileDrawer.classList.remove("open");
+        drawerBackdrop.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      hamburgerBtn.addEventListener("click", toggleMobileMenu);
+      drawerBackdrop.addEventListener("click", closeMobileMenu);
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileDrawer.classList.contains("open")) {
+          closeMobileMenu();
+        }
+      });
+
+      // 4. Hero Background Digital Network & Data Particles Canvas
+      const canvas = document.getElementById("network-canvas");
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        const particleCount = window.innerWidth < 768 ? 28 : 55;
+        const maxDistance = 140;
+
+        function resizeCanvas() {
+          canvas.width = canvas.parentElement.offsetWidth;
+          canvas.height = canvas.parentElement.offsetHeight;
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.55;
+            this.vy = (Math.random() - 0.5) * 0.55;
+            this.radius = Math.random() * 1.8 + 1;
+          }
+
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(34, 211, 238, 0.55)";
+            ctx.fill();
+          }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+
+        function animateNetwork() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < maxDistance) {
+                const opacity = (1 - distance / maxDistance) * 0.22;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          }
+          requestAnimationFrame(animateNetwork);
+        }
+
+        animateNetwork();
+      }
+
+      // 5. Subtle Parallax Tilt on Hero Glassmorphic Dashboard (Desktop)
+      const dashCard = document.getElementById("dashboard-card");
+      if (dashCard && window.matchMedia("(min-width: 1024px)").matches) {
+        dashCard.addEventListener("mousemove", (e) => {
+          const rect = dashCard.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const rotateX = (-y / 25).toFixed(2);
+          const rotateY = (x / 25).toFixed(2);
+          dashCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        dashCard.addEventListener("mouseleave", () => {
+          dashCard.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+        });
+      }
+    });
+  </script>
+</body>
+</html>

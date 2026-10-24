@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | HAKA SOLUTIONS - Technology & Digital Business Solutions</title>
+  <meta name="description" content="Explore HAKA SOLUTIONS services — Data & Digital Operations, Custom Technology Solutions, Business Process Support, and Intelligent Automation." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================
+       DESIGN SYSTEM VARIABLES & RESET
+       ========================================== */
+    :root {
+      --bg-midnight: #050816;
+      --bg-navy: #070b1e;
+      --bg-footer: #030611;
+      --electric-blue: #2563eb;
+      --cyan-accent: #22d3ee;
+      --violet-accent: #7c3aed;
+      --emerald-accent: #34d399;
+      --text-white: #ffffff;
+      --text-slate-300: #cbd5e1;
+      --text-slate-400: #94a3b8;
+      --text-slate-500: #64748b;
+      --border-glass: rgba(255, 255, 255, 0.1);
+      --border-hairline: rgba(255, 255, 255, 0.08);
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-midnight);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .text-cyan { color: var(--cyan-accent); }
+    .text-emerald { color: var(--emerald-accent); }
+    .text-violet { color: #a78bfa; }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #60a5fa 0%, #22d3ee 50%, #a78bfa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ==========================================
+       1. NAVBAR (STICKY DESKTOP HEADER)
+       ========================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(5, 8, 22, 0.65);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 13px 0;
+      background: rgba(5, 8, 22, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    }
+
+    .navbar-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: #ffffff;
+      padding: 1.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid rgba(34, 211, 238, 0.45);
+      box-shadow: 0 0 14px rgba(34, 211, 238, 0.3);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .brand-logo:hover .logo-box {
+      border-color: var(--cyan-accent);
+      box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+      transform: scale(1.04);
+    }
+
+    .brand-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 26%;
+      border-radius: 7px;
+      display: block;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+    }
+
+    .brand-subtitle {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-slate-400);
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 1.6vw, 22px);
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+
+    .nav-link {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-slate-300);
+      padding: 6px 0;
+      position: relative;
+      white-space: nowrap;
+      display: inline-block;
+      transition: color 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric-blue), var(--cyan-accent));
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--cyan-accent);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .desktop-ctas {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .btn-login {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .btn-login svg { color: var(--cyan-accent); }
+
+    .btn-login:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+    }
+
+    .btn-primary-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #0ea5e9);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary-sm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(34, 211, 238, 0.45);
+    }
+
+    /* ==========================================
+       2. HAMBURGER & MOBILE NAVIGATION DRAWER
+       ========================================== */
+    .hamburger-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      z-index: 110;
+      transition: border-color 0.25s ease;
+    }
+
+    .hamburger-btn:hover { border-color: rgba(34, 211, 238, 0.5); }
+
+    .hamburger-btn .bar {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text-white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-btn.active .bar-1 { transform: translateY(7px) rotate(45deg); }
+    .hamburger-btn.active .bar-2 { opacity: 0; }
+    .hamburger-btn.active .bar-3 { transform: translateY(-7px) rotate(-45deg); }
+
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.72);
+      backdrop-filter: blur(4px);
+      z-index: 98;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 380px;
+      background: var(--bg-navy);
+      border-left: 1px solid var(--border-glass);
+      z-index: 99;
+      padding: 88px 24px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow-y: auto;
+    }
+
+    .mobile-drawer.open { transform: translateX(0); }
+
+    .drawer-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-slate-500);
+      margin-bottom: 12px;
+      padding-left: 12px;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav-link .arrow {
+      color: var(--cyan-accent);
+      font-size: 15px;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-glass);
+      color: var(--text-white);
+    }
+
+    .drawer-bottom {
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-primary-full {
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-secondary-full {
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-glass);
+    }
+
+    .btn-secondary-full svg { color: var(--cyan-accent); }
+
+    /* ==========================================
+       3. HERO BANNER SECTION
+       ========================================== */
+    .hero-section {
+      position: relative;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      align-items: center;
+      padding: 72px 0 96px;
+      overflow: hidden;
+    }
+
+    .network-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .glow-blue {
+      width: 380px;
+      height: 380px;
+      background: rgba(37, 99, 235, 0.22);
+      top: -100px;
+      left: -100px;
+    }
+
+    .glow-violet {
+      width: 360px;
+      height: 360px;
+      background: rgba(124, 58, 237, 0.16);
+      top: 25%;
+      right: -80px;
+    }
+
+    .glow-cyan {
+      width: 300px;
+      height: 300px;
+      background: rgba(34, 211, 238, 0.12);
+      bottom: -60px;
+      left: 35%;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 7fr 5fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #67e8f9;
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan-accent);
+      box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(34, 211, 238, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 211, 238, 0); }
+    }
+
+    .hero-headline {
+      font-family: var(--font-heading);
+      font-size: clamp(2.25rem, 4.5vw, 3.85rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .line-mask {
+      display: block;
+      overflow: hidden;
+    }
+
+    .line-reveal {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      animation: revealLine 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+
+    @keyframes revealLine {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .hero-subtext {
+      font-size: 17px;
+      color: var(--text-slate-300);
+      max-width: 620px;
+      margin-bottom: 34px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.55s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.7s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn-hero-primary {
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-white);
+      background: linear-gradient(90deg, var(--electric-blue), #06b6d4);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.45);
+    }
+
+    .btn-hero-secondary {
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-slate-300);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-hero-secondary:hover {
+      color: var(--text-white);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(34, 211, 238, 0.45);
+    }
+
+    .dashboard-glass {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.75);
+      transition: transform 0.2s ease-out;
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .window-dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #f43f5e; }
+    .dot-yellow { background: #fbbf24; }
+    .dot-green { background: #34d399; }
+
+    .dash-title {
+      margin-left: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .status-pill {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .services-hero-banner-wrap {
+      position: relative;
+      width: 100%;
+      height: 210px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-glass);
+      margin-bottom: 14px;
+    }
+
+    .services-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88) contrast(1.08);
+      transition: transform 0.5s ease;
+    }
+
+    .dashboard-glass:hover .services-hero-img {
+      transform: scale(1.04);
+    }
+
+    .services-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 8, 22, 0.1) 0%, rgba(5, 8, 22, 0.88) 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 14px 16px;
+    }
+
+    .services-img-caption {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .services-img-tag {
+      font-family: monospace;
+      font-size: 11px;
+      color: var(--cyan-accent);
+      background: rgba(34, 211, 238, 0.14);
+      border: 1px solid rgba(34, 211, 238, 0.35);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .dash-body {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .dash-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid var(--border-glass);
+    }
+
+    .dash-item-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .dash-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-blue {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--cyan-accent);
+    }
+
+    .icon-violet {
+      background: rgba(124, 58, 237, 0.2);
+      color: #c4b5fd;
+    }
+
+    .dash-item h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-white);
+    }
+
+    .dash-item p {
+      font-size: 11px;
+      color: var(--text-slate-400);
+    }
+
+    .dash-metric {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .dash-footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .security-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .security-tag svg { color: var(--cyan-accent); }
+
+    /* ==========================================
+       SHARED EDITORIAL SERVICE SECTIONS (NON-BOXY)
+       ========================================== */
+    .srv-sec {
+      padding: 96px 0;
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .srv-sec-alt {
+      background: radial-gradient(circle at 85% 20%, rgba(37, 99, 235, 0.07), transparent 55%),
+                  rgba(7, 11, 30, 0.45);
+    }
+
+    .sec-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--cyan-accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .sec-eyebrow::before {
+      content: '';
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--electric-blue), var(--cyan-accent));
+      display: inline-block;
+    }
+
+    .sec-title {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.16;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--text-white);
+    }
+
+    .sec-desc {
+      font-size: 16px;
+      color: var(--text-slate-400);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    /* ------------------------------------------
+       SECTION 1: DATA & DIGITAL OPERATIONS (EDITORIAL + PIPELINE)
+       ------------------------------------------ */
+    .data-editorial-split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .data-pull-quote {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-white);
+      line-height: 1.5;
+      border-left: 3px solid var(--cyan-accent);
+      padding-left: 20px;
+      margin: 24px 0;
+    }
+
+    .data-inline-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      padding-top: 24px;
+      margin-top: 24px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .data-metric-item strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .data-metric-item span {
+      font-size: 12px;
+      color: var(--text-slate-400);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .pipeline-open-track {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      padding-left: 28px;
+      border-left: 2px solid rgba(34, 211, 238, 0.3);
+    }
+
+    .pipe-stage {
+      position: relative;
+    }
+
+    .pipe-stage::before {
+      content: '';
+      position: absolute;
+      left: -35px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg-midnight);
+      border: 2.5px solid var(--cyan-accent);
+      box-shadow: 0 0 10px var(--cyan-accent);
+    }
+
+    .pipe-code {
+      font-family: monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cyan-accent);
+      letter-spacing: 0.08em;
+    }
+
+    .pipe-stage h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin: 2px 0 4px;
+    }
+
+    .pipe-stage p {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      line-height: 1.55;
+    }
+
+    /* ------------------------------------------
+       SECTION 2: TECHNOLOGY SOLUTIONS (STICKY + HAIRLINE STREAM)
+       ------------------------------------------ */
+    .tech-editorial-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .tech-left-sticky {
+      position: sticky;
+      top: 110px;
+    }
+
+    .tech-showcase-img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-top: 24px;
+      filter: brightness(0.9) contrast(1.06);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    }
+
+    .tech-stream-list {
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .tech-stream-row {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: 20px;
+      align-items: baseline;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--border-hairline);
+      transition: padding-left 0.3s ease;
+    }
+
+    .tech-stream-row:hover {
+      padding-left: 12px;
+    }
+
+    .t-row-idx {
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--cyan-accent);
+    }
+
+    .t-row-body h3 {
+      font-family: var(--font-heading);
+      font-size: 19.5px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 6px;
+    }
+
+    .t-row-body p {
+      font-size: 14.5px;
+      color: var(--text-slate-400);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .t-row-stack {
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-slate-500);
+    }
+
+    .t-row-badge {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--emerald-accent);
+      white-space: nowrap;
+    }
+
+    /* ------------------------------------------
+       SECTION 3: BUSINESS PROCESS SUPPORT (LEDGER DIRECTORY)
+       ------------------------------------------ */
+    .bpo-ledger {
+      margin-top: 48px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .bpo-row {
+      display: grid;
+      grid-template-columns: 70px 1.25fr 1.75fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: 26px 16px;
+      border-bottom: 1px solid var(--border-hairline);
+      transition: background 0.25s ease, padding-left 0.25s ease;
+    }
+
+    .bpo-row:hover {
+      background: rgba(255, 255, 255, 0.025);
+      padding-left: 24px;
+    }
+
+    .bpo-code-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(52, 211, 153, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--emerald-accent);
+      background: rgba(52, 211, 153, 0.06);
+    }
+
+    .bpo-title-col h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+
+    .bpo-title-col span {
+      font-size: 13px;
+      color: var(--cyan-accent);
+      font-weight: 500;
+    }
+
+    .bpo-desc-col {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      line-height: 1.55;
+    }
+
+    .bpo-sla-col {
+      text-align: right;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--emerald-accent);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ------------------------------------------
+       SECTION 4: AUTOMATION & INTEGRATION (TERMINAL + STREAM)
+       ------------------------------------------ */
+    .auto-split-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+      margin-top: 44px;
+    }
+
+    .auto-terminal-window {
+      background: #030612;
+      border: 1px solid rgba(34, 211, 238, 0.28);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+    }
+
+    .auto-term-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: rgba(15, 23, 42, 0.9);
+      border-bottom: 1px solid var(--border-hairline);
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-slate-400);
+    }
+
+    .auto-term-body {
+      padding: 24px;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--text-slate-300);
+    }
+
+    .auto-trigger-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .trigger-line {
+      padding-left: 20px;
+      border-left: 2px solid var(--violet-accent);
+    }
+
+    .trigger-line h4 {
+      font-family: var(--font-heading);
+      font-size: 17.5px;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+
+    .trigger-line p {
+      font-size: 14px;
+      color: var(--text-slate-400);
+    }
+
+    .auto-open-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-hairline);
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--cyan-accent);
+    }
+
+    /* ------------------------------------------
+       SECTION 5: CUSTOM SOLUTIONS & POD MODELS (OPEN WINGS)
+       ------------------------------------------ */
+    .pods-open-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 52px;
+    }
+
+    .pod-wing {
+      position: relative;
+      padding-left: 26px;
+      border-left: 2px solid rgba(34, 211, 238, 0.3);
+      transition: border-color 0.3s ease;
+    }
+
+    .pod-wing:nth-child(2) { border-left-color: rgba(52, 211, 153, 0.4); }
+    .pod-wing:nth-child(3) { border-left-color: rgba(124, 58, 237, 0.45); }
+    .pod-wing:hover { border-left-color: var(--cyan-accent); }
+
+    .pod-code {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .pod-title {
+      font-family: var(--font-heading);
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 12px;
+    }
+
+    .pod-desc {
+      font-size: 14.5px;
+      color: var(--text-slate-400);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .pod-specs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-slate-300);
+    }
+
+    /* ------------------------------------------
+       SECTION 6: INDUSTRY VERTICALS (OPEN CROSSHAIR MATRIX)
+       ------------------------------------------ */
+    .verticals-crosshair-matrix {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 48px;
+      border-top: 1px solid var(--border-hairline);
+      border-left: 1px solid var(--border-hairline);
+    }
+
+    .vertical-cell {
+      padding: 36px 30px;
+      border-right: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+      transition: background 0.3s ease;
+    }
+
+    .vertical-cell:hover {
+      background: rgba(34, 211, 238, 0.03);
+    }
+
+    .v-cell-tag {
+      font-family: monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--cyan-accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .vertical-cell h3 {
+      font-family: var(--font-heading);
+      font-size: 18.5px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 8px;
+    }
+
+    .vertical-cell p {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      line-height: 1.6;
+    }
+
+    /* ------------------------------------------
+       SECTION 7: SLA GOVERNANCE & 72-HR ONBOARDING CTA
+       ------------------------------------------ */
+    .sla-spotlight-sec {
+      text-align: center;
+      background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.16), rgba(5, 8, 22, 0.95) 70%);
+    }
+
+    .sla-giant-metrics {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 56px;
+      margin: 48px 0;
+      padding: 36px 0;
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .sla-metric-item strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: clamp(2.4rem, 3.8vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .sla-metric-item span {
+      font-family: monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-slate-400);
+    }
+
+    .sla-cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    /* ==========================================
+       4. FOOTER SECTION
+       ========================================== */
+    .footer {
+      background-color: var(--bg-footer);
+      border-top: 1px solid var(--border-glass);
+      padding: 64px 0 32px;
+      color: var(--text-slate-300);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: #67e8f9;
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: var(--text-slate-400);
+      max-width: 320px;
+    }
+
+    .footer-address {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--text-slate-400);
+      margin-top: 4px;
+    }
+
+    .footer-address svg {
+      color: var(--cyan-accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .footer-heading {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-white);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-slate-400);
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--cyan-accent); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12.5px;
+      color: var(--text-slate-500);
+    }
+
+    .legal-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .legal-links a:hover { color: var(--text-slate-300); }
+    .divider { color: #334155; }
+
+    /* ==========================================
+       RESPONSIVE BREAKPOINTS
+       ========================================== */
+    @media (max-width: 1120px) {
+      .desktop-nav, .desktop-ctas { display: none; }
+      .hamburger-btn { display: flex; }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .data-editorial-split,
+      .tech-editorial-layout,
+      .auto-split-layout,
+      .pods-open-columns {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .tech-left-sticky { position: static; }
+      .bpo-row { grid-template-columns: 56px 1fr; }
+      .bpo-desc-col, .bpo-sla-col { grid-column: 2; text-align: left; }
+      .verticals-crosshair-matrix { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: span 2; }
+    }
+
+    @media (max-width: 640px) {
+      .srv-sec { padding: 64px 0; }
+      .verticals-crosshair-matrix { grid-template-columns: 1fr; }
+      .tech-stream-row { grid-template-columns: 1fr; gap: 8px; }
+      .sla-giant-metrics { gap: 32px; flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-brand { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       1. NAVBAR & 2. HAMBURGER NAVIGATION
+       ========================================== -->
+  <header id="navbar" class="navbar">
+    <div class="container navbar-container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+        <div class="logo-box">
+          <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
+        </div>
+        <div class="logo-text">
+          <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="about.html" class="nav-link">ABOUT US</a>
+        <a href="services.html" class="nav-link active">SERVICES</a>
+        <a href="portfolio.html" class="nav-link">PORTFOLIO</a>
+        <a href="technology.html" class="nav-link">TECHNOLOGY</a>
+      </nav>
+
+      <!-- Desktop CTAs -->
+      <div class="desktop-ctas">
+        <a href="login.html" class="btn-login">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Client Login
+        </a>
+
+        <a href="contact.html" class="btn-primary-sm">
+          Let's Talk
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Hamburger Toggle Button -->
+      <button id="hamburger-btn" class="hamburger-btn" aria-label="Toggle Mobile Navigation" aria-expanded="false" aria-controls="mobile-drawer">
+        <span class="bar bar-1"></span>
+        <span class="bar bar-2"></span>
+        <span class="bar bar-3"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Backdrop -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+  <!-- Mobile Hamburger Slide-Out Drawer -->
+  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
+    <div class="drawer-top">
+      <p class="drawer-label">Navigation Menu</p>
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link"><span>HOME</span><span class="arrow">↗</span></a></li>
+        <li><a href="about.html" class="mobile-nav-link"><span>ABOUT US</span><span class="arrow">↗</span></a></li>
+        <li><a href="services.html" class="mobile-nav-link active"><span>SERVICES</span><span class="arrow">↗</span></a></li>
+        <li><a href="portfolio.html" class="mobile-nav-link"><span>PORTFOLIO</span><span class="arrow">↗</span></a></li>
+        <li><a href="technology.html" class="mobile-nav-link"><span>TECHNOLOGY</span><span class="arrow">↗</span></a></li>
+      </ul>
+    </div>
+
+    <div class="drawer-bottom">
+      <a href="contact.html" class="btn-primary-full mobile-close-trigger">
+        Let's Talk →
+      </a>
+      <a href="login.html" class="btn-secondary-full mobile-close-trigger">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        Client Login
+      </a>
+    </div>
+  </aside>
+
+
+  <!-- ==========================================
+       3. HERO BANNER SECTION (SERVICES)
+       ========================================== -->
+  <main>
+    <section id="services-hero" class="hero-section">
+      <canvas id="network-canvas" class="network-canvas"></canvas>
+      <div class="glow glow-blue"></div>
+      <div class="glow glow-violet"></div>
+      <div class="glow glow-cyan"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            <span>HAKA SOLUTIONS • CAPABILITIES &amp; SERVICES</span>
+          </div>
+
+          <h1 class="hero-headline">
+            <span class="line-mask">
+              <span class="line-reveal delay-1">Modular Technology</span>
+            </span>
+            <span class="line-mask">
+              <span class="line-reveal delay-2">&amp; Digital Operations</span>
+            </span>
+            <span class="line-mask">
+              <span class="line-reveal delay-3 text-gradient">Built for Enterprise Scale</span>
+            </span>
+          </h1>
+
+          <p class="hero-subtext">
+            From high-volume data operations and custom web platforms to intelligent workflow automation and dedicated back-office pods, HAKA SOLUTIONS delivers end-to-end execution tailored to your business goals.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#data-operations" class="btn-hero-primary">
+              Explore Service Disciplines →
+            </a>
+            <a href="index.html#contact" class="btn-hero-secondary">
+              Request Custom Proposal →
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div id="dashboard-card" class="dashboard-glass">
+            <div class="dash-header">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+                <span class="dash-title">haka-core://service-architecture</span>
+              </div>
+              <span class="status-pill">● 99.98% SLA</span>
+            </div>
+
+            <div class="services-hero-banner-wrap">
+              <img 
+                src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1000&q=80" 
+                alt="HAKA SOLUTIONS Technology and Digital Operations Services" 
+                class="services-hero-img"
+              />
+              <div class="services-img-overlay">
+                <span class="services-img-caption">5 Core Service Disciplines</span>
+                <span class="services-img-tag">ON-DEMAND PODS</span>
+              </div>
+            </div>
+
+            <div class="dash-body">
+              <div class="dash-item">
+                <div class="dash-item-left">
+                  <div class="dash-icon icon-blue">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                      <polyline points="2 17 12 22 22 17"></polyline>
+                      <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Data &amp; Digital Operations</h4>
+                    <p>High-volume ETL, QA &amp; document digitization</p>
+                  </div>
+                </div>
+                <span class="dash-metric text-cyan">99.94% QA</span>
+              </div>
+
+              <div class="dash-item">
+                <div class="dash-item-left">
+                  <div class="dash-icon icon-violet">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="16 18 22 12 16 6"></polyline>
+                      <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4>Custom Tech &amp; BPO Support</h4>
+                    <p>Web portals, API automation &amp; managed pods</p>
+                  </div>
+                </div>
+                <span class="dash-metric text-emerald">&lt; 72H DEPLOY</span>
+              </div>
+            </div>
+
+            <div class="dash-footer">
+              <div class="security-tag">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Zero-Trust Security &amp; Dedicated SLA Governance</span>
+              </div>
+              <span class="dash-arrow">→</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 1: DATA & DIGITAL OPERATIONS (50 LINES)
+         ========================================== -->
+    <section id="data-operations" class="srv-sec">
+      <div class="container data-editorial-split">
+        <div class="data-narrative-col">
+          <span class="sec-eyebrow">01 / FLAGSHIP DISCIPLINE</span>
+          <h2 class="sec-title">Data &amp; Digital Operations At <span class="text-gradient">Enterprise Scale</span></h2>
+          <blockquote class="data-pull-quote">
+            "Raw, unstructured data slows organizations down. We transform fragmented feeds and documents into verified, query-ready assets."
+          </blockquote>
+          <p class="sec-desc">
+            Our flagship discipline combines automated ETL ingestion scripts with trained human-in-the-loop quality analysts. Whether digitizing legacy records, enriching e-commerce catalogs, or validating financial datasets, we guarantee 99.94% schema accuracy.
+          </p>
+          <div class="data-inline-metrics">
+            <div class="data-metric-item">
+              <strong class="text-cyan">15M+</strong>
+              <span>Records Processed</span>
+            </div>
+            <div class="data-metric-item">
+              <strong class="text-emerald">99.94%</strong>
+              <span>Validation Accuracy</span>
+            </div>
+            <div class="data-metric-item">
+              <strong class="text-gradient">&lt; 4ms</strong>
+              <span>Pipeline Latency</span>
+            </div>
+          </div>
+        </div>
+        <div class="pipeline-open-track">
+          <div class="pipe-stage">
+            <span class="pipe-code">STAGE 01 // INGESTION</span>
+            <h3>Multi-Source Raw Data Intake</h3>
+            <p>Automated collection from REST webhooks, PDF/OCR documents, spreadsheets, and legacy SQL dumps.</p>
+          </div>
+          <div class="pipe-stage">
+            <span class="pipe-code">STAGE 02 // CLEANSING</span>
+            <h3>Automated Deduplication &amp; Normalization</h3>
+            <p>Python ETL scripts strip duplicates, standardize formats, and flag anomalies in real time.</p>
+          </div>
+          <div class="pipe-stage">
+            <span class="pipe-code">STAGE 03 // VERIFICATION</span>
+            <h3>Human-in-the-Loop Domain QA</h3>
+            <p>Dedicated operational specialists audit edge cases and verify complex business logic.</p>
+          </div>
+          <div class="pipe-stage">
+            <span class="pipe-code">STAGE 04 // DELIVERY</span>
+            <h3>Encrypted Warehouse &amp; API Sync</h3>
+            <p>Clean, structured data is pushed directly into your production CRM, ERP, or cloud database.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: TECHNOLOGY SOLUTIONS (50 LINES)
+         ========================================== -->
+    <section id="tech-solutions" class="srv-sec srv-sec-alt">
+      <div class="container tech-editorial-layout">
+        <div class="tech-left-sticky">
+          <span class="sec-eyebrow">02 / SOFTWARE ENGINEERING</span>
+          <h2 class="sec-title">Custom Technology &amp; <span class="text-gradient">Platform Architecture</span></h2>
+          <p class="sec-desc">
+            We engineer fast, secure, and maintainable web applications, internal admin portals, and cloud database architectures built around your exact operational workflows.
+          </p>
+          <img 
+            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80" 
+            alt="HAKA SOLUTIONS Software Architecture" 
+            class="tech-showcase-img"
+          />
+        </div>
+        <div class="tech-stream-list">
+          <div class="tech-stream-row">
+            <span class="t-row-idx">01</span>
+            <div class="t-row-body">
+              <h3>Custom Web Applications &amp; Storefronts</h3>
+              <p>High-conversion customer portals, headless e-commerce platforms, and responsive corporate web applications.</p>
+              <span class="t-row-stack">Next.js • React • TypeScript • Tailwind • Edge CDN</span>
+            </div>
+            <span class="t-row-badge">SUB-SECOND LOAD</span>
+          </div>
+          <div class="tech-stream-row">
+            <span class="t-row-idx">02</span>
+            <div class="t-row-body">
+              <h3>Internal Admin &amp; Operations Dashboards</h3>
+              <p>Role-based command centers for inventory tracking, staff scheduling, telemetry monitoring, and KPI reporting.</p>
+              <span class="t-row-stack">RBAC Auth • Real-Time Charts • Custom CRUD</span>
+            </div>
+            <span class="t-row-badge">LIVE TELEMETRY</span>
+          </div>
+          <div class="tech-stream-row">
+            <span class="t-row-idx">03</span>
+            <div class="t-row-body">
+              <h3>Scalable Database &amp; API Engineering</h3>
+              <p>High-availability relational and NoSQL database schemas paired with documented REST and GraphQL APIs.</p>
+              <span class="t-row-stack">PostgreSQL • Redis • Node.js • Python FastAPI</span>
+            </div>
+            <span class="t-row-badge">99.98% UPTIME</span>
+          </div>
+          <div class="tech-stream-row">
+            <span class="t-row-idx">04</span>
+            <div class="t-row-body">
+              <h3>Legacy System Modernization</h3>
+              <p>Zero-downtime migration of outdated monoliths and spreadsheet workflows into modern cloud-native platforms.</p>
+              <span class="t-row-stack">AWS Cloud • Docker • Zero-Loss Migration</span>
+            </div>
+            <span class="t-row-badge">ZERO DATA LOSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: BUSINESS PROCESS SUPPORT (50 LINES)
+         ========================================== -->
+    <section id="process-support" class="srv-sec">
+      <div class="container">
+        <span class="sec-eyebrow">03 / MANAGED OPERATIONS</span>
+        <h2 class="sec-title">Business Process Support &amp; <span class="text-gradient">Dedicated Back-Office Pods</span></h2>
+        <p class="sec-desc">
+          Offload repetitive operational workflows to our trained, SLA-governed execution teams—freeing your core leadership to focus on strategy and market expansion.
+        </p>
+        <div class="bpo-ledger">
+          <div class="bpo-row">
+            <div class="bpo-code-circle">BPO1</div>
+            <div class="bpo-title-col">
+              <h3>Back-Office Workflow Execution</h3>
+              <span>Order, Invoice &amp; Claims Processing</span>
+            </div>
+            <p class="bpo-desc-col">End-to-end verification of purchase orders, vendor invoices, billing reconciliations, and compliance documentation.</p>
+            <div class="bpo-sla-col">● 99.95% ACCURACY</div>
+          </div>
+          <div class="bpo-row">
+            <div class="bpo-code-circle">BPO2</div>
+            <div class="bpo-title-col">
+              <h3>Catalog &amp; Content Operations</h3>
+              <span>SKU Onboarding &amp; Digital Merchandising</span>
+            </div>
+            <p class="bpo-desc-col">Rapid product listing creation, attribute tagging, image compliance checks, and pricing updates across omnichannel storefronts.</p>
+            <div class="bpo-sla-col">● SAME-DAY SYNC</div>
+          </div>
+          <div class="bpo-row">
+            <div class="bpo-code-circle">BPO3</div>
+            <div class="bpo-title-col">
+              <h3>CRM Hygiene &amp; Lead Research</h3>
+              <span>B2B Account Enrichment &amp; Verification</span>
+            </div>
+            <p class="bpo-desc-col">Continuous CRM deduplication, contact validation, and structured market research to keep sales pipelines clean.</p>
+            <div class="bpo-sla-col">● VERIFIED LEADS</div>
+          </div>
+          <div class="bpo-row">
+            <div class="bpo-code-circle">BPO4</div>
+            <div class="bpo-title-col">
+              <h3>24/7 Technical &amp; Customer Desk</h3>
+              <span>Multi-Channel Ticket Triage &amp; L1/L2 Support</span>
+            </div>
+            <p class="bpo-desc-col">Dedicated support specialists managing live chat, email queues, and escalation workflows under strict response SLAs.</p>
+            <div class="bpo-sla-col">● &lt; 15M RESPONSE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: AUTOMATION & INTEGRATION (50 LINES)
+         ========================================== -->
+    <section id="automation-integration" class="srv-sec srv-sec-alt">
+      <div class="container">
+        <span class="sec-eyebrow">04 / WORKFLOW ORCHESTRATION</span>
+        <h2 class="sec-title">Intelligent Automation, <span class="text-gradient">APIs &amp; RPA Bots</span></h2>
+        <div class="auto-split-layout">
+          <div class="auto-terminal-window">
+            <div class="auto-term-bar">
+              <div class="window-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span>haka-auto://webhook-orchestrator</span>
+              <span class="text-emerald">● ACTIVE</span>
+            </div>
+            <div class="auto-term-body">
+              <p><span class="text-cyan">$</span> haka-bot --watch-events --pipeline=enterprise-sync</p>
+              <p>[EVENT] Incoming Webhook: Order #HK-9042 received (0.8ms)</p>
+              <p>[RPA] Extracting PDF invoice fields via OCR engine... DONE</p>
+              <p>[SYNC] Pushing validated payload to PostgreSQL &amp; ERP... OK</p>
+              <p>[NOTIFY] Slack &amp; WhatsApp dispatch sent to Ops Lead... OK</p>
+              <p class="text-emerald">&gt; EFFICIENCY GAIN: 42 mins manual work completed in 1.4s</p>
+            </div>
+          </div>
+          <div class="auto-trigger-stream">
+            <div class="trigger-line">
+              <h4>Cross-Application API &amp; Webhook Sync</h4>
+              <p>Connect your CRM, ERP, payment gateways, and internal databases so data flows automatically without manual copy-pasting.</p>
+            </div>
+            <div class="trigger-line">
+              <h4>Robotic Process Automation (RPA) &amp; Cron Bots</h4>
+              <p>Deploy scheduled headless bots to scrape reports, reconcile daily ledgers, and execute rule-based back-office tasks.</p>
+            </div>
+            <div class="trigger-line">
+              <h4>Intelligent Document OCR &amp; Auto-Routing</h4>
+              <p>Automatically extract structured tables from invoices, IDs, and forms with instant anomaly alerts.</p>
+            </div>
+            <div class="auto-open-badges">
+              <span>⚡ ZERO MANUAL ENTRY</span>
+              <span>⚡ 100% AUDIT LOGGED</span>
+              <span>⚡ 24/7 AUTONOMOUS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: CUSTOM SOLUTIONS & POD MODELS (50 LINES)
+         ========================================== -->
+    <section id="custom-pods" class="srv-sec">
+      <div class="container">
+        <span class="sec-eyebrow">05 / ENGAGEMENT MODELS</span>
+        <h2 class="sec-title">Flexible Delivery Models Built Around <span class="text-gradient">Your Operational Pace</span></h2>
+        <p class="sec-desc">
+          Scale up or down without rigid lock-in contracts. Choose the engagement structure that matches your technical roadmap and volume requirements.
+        </p>
+        <div class="pods-open-columns">
+          <div class="pod-wing">
+            <span class="pod-code text-cyan">MODEL 01 // DEDICATED PODS</span>
+            <h3 class="pod-title">Elastic Operational &amp; Tech Pods</h3>
+            <p class="pod-desc">
+              A dedicated cross-functional team of engineers, data analysts, and QA leads working exclusively on your backlog and daily operations.
+            </p>
+            <div class="pod-specs">
+              <span>→ Scale from 2 to 50+ specialists in days</span>
+              <span>→ Dedicated Technical Pod Manager included</span>
+              <span>→ Direct Slack, Teams &amp; Jira integration</span>
+            </div>
+          </div>
+          <div class="pod-wing">
+            <span class="pod-code text-emerald">MODEL 02 // OUTCOME SLA</span>
+            <h3 class="pod-title">Managed Volume &amp; SLA Contracts</h3>
+            <p class="pod-desc">
+              Predictable per-unit or monthly fixed-SLA pricing for ongoing data processing, catalog management, and 24/7 process support.
+            </p>
+            <div class="pod-specs">
+              <span>→ Guaranteed 99.98% turnaround adherence</span>
+              <span>→ Dual-stage automated &amp; human QA</span>
+              <span>→ Weekly executive telemetry reports</span>
+            </div>
+          </div>
+          <div class="pod-wing">
+            <span class="pod-code text-violet">MODEL 03 // TURNKEY BUILD</span>
+            <h3 class="pod-title">Fixed-Scope Platform Delivery</h3>
+            <p class="pod-desc">
+              End-to-end architecture, development, testing, and deployment of custom web applications, portals, and automation pipelines.
+            </p>
+            <div class="pod-specs">
+              <span>→ Transparent 2-week agile sprint milestones</span>
+              <span>→ Complete source-code &amp; IP ownership</span>
+              <span>→ Post-launch maintenance &amp; L3 support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 6: INDUSTRY VERTICALS MATRIX (50 LINES)
+         ========================================== -->
+    <section id="industry-verticals" class="srv-sec srv-sec-alt">
+      <div class="container">
+        <span class="sec-eyebrow">06 / DOMAIN SPECIALIZATION</span>
+        <h2 class="sec-title">Tailored Service Execution Across <span class="text-gradient">Six Core Industries</span></h2>
+        <p class="sec-desc">
+          Our service pods bring pre-built validation playbooks and production experience across high-compliance commercial sectors.
+        </p>
+        <div class="verticals-crosshair-matrix">
+          <div class="vertical-cell">
+            <span class="v-cell-tag">01 // E-COMMERCE &amp; RETAIL</span>
+            <h3>Headless Storefronts &amp; SKU Ops</h3>
+            <p>High-speed commerce builds, omnichannel inventory sync, automated supplier feed ingestion, and catalog enrichment.</p>
+          </div>
+          <div class="vertical-cell">
+            <span class="v-cell-tag">02 // HEALTHCARE &amp; CLINICS</span>
+            <h3>Patient Portals &amp; Records QA</h3>
+            <p>HIPAA-aligned appointment networks, telehealth scheduling, medical claims digitization, and encrypted patient intake.</p>
+          </div>
+          <div class="vertical-cell">
+            <span class="v-cell-tag">03 // REAL ESTATE &amp; PROPTECH</span>
+            <h3>Geospatial Portals &amp; MLS Sync</h3>
+            <p>Interactive property marketplaces, 3D tour integrations, automated listing verification, and broker lead routing.</p>
+          </div>
+          <div class="vertical-cell">
+            <span class="v-cell-tag">04 // CONSTRUCTION &amp; INFRA</span>
+            <h3>Project Estimators &amp; Bid Portals</h3>
+            <p>Custom bidding calculators, contractor documentation hubs, equipment tracking dashboards, and local SEO funnels.</p>
+          </div>
+          <div class="vertical-cell">
+            <span class="v-cell-tag">05 // HOSPITALITY &amp; DINING</span>
+            <h3>Table Booking &amp; POS Webhooks</h3>
+            <p>Zero-latency digital QR menus, real-time reservation engines, loyalty programs, and kitchen POS integrations.</p>
+          </div>
+          <div class="vertical-cell">
+            <span class="v-cell-tag">06 // EVENTS &amp; CONFERENCES</span>
+            <h3>Ticketing &amp; Live Symposium Hubs</h3>
+            <p>High-concurrency attendee registration, instant QR check-in verification, speaker schedules, and live stream portals.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 7: SLA GOVERNANCE & ONBOARDING CTA (50 LINES)
+         ========================================== -->
+    <section id="sla-onboarding" class="srv-sec sla-spotlight-sec">
+      <div class="container">
+        <span class="sec-eyebrow">07 / RAPID POD ONBOARDING</span>
+        <h2 class="sec-title">From Discovery Call to Active Execution <span class="text-gradient">In Under 72 Hours</span></h2>
+        <p class="sec-desc" style="margin: 0 auto;">
+          Every HAKA SOLUTIONS service engagement is backed by mutual NDA protection, ISO-aligned zero-trust security, and direct executive accountability.
+        </p>
+        <div class="sla-giant-metrics">
+          <div class="sla-metric-item">
+            <strong class="text-cyan">&lt; 2 Hr</strong>
+            <span>Executive Response SLA</span>
+          </div>
+          <div class="sla-metric-item">
+            <strong class="text-emerald">72 Hrs</strong>
+            <span>Pod Deployment Speed</span>
+          </div>
+          <div class="sla-metric-item">
+            <strong class="text-gradient">99.98%</strong>
+            <span>Service SLA Adherence</span>
+          </div>
+          <div class="sla-metric-item">
+            <strong class="text-violet">100%</strong>
+            <span>NDA &amp; IP Protection</span>
+          </div>
+        </div>
+        <div class="sla-cta-actions">
+          <a href="index.html#contact" class="btn-hero-primary">
+            Deploy Your Service Pod Now →
+          </a>
+          <a href="portfolio.html" class="btn-hero-secondary">
+            Inspect Live Production Projects →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ==========================================
+       4. FOOTER SECTION
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <!-- Brand & Tagline Column -->
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo" aria-label="HAKA SOLUTIONS Home">
+            <div class="logo-box">
+              <img src="images/WhatsApp Image 2026-10-22 at 9.45.18 AM.jpeg" alt="HAKA SOLUTIONS Logo" class="brand-logo-img">
+            </div>
+            <div class="logo-text">
+              <span class="brand-title">HAKA <span class="text-cyan">SOLUTIONS</span></span>
+            </div>
+          </a>
+
+          <p class="footer-tagline">
+            Technology • Digital Solutions • Business Growth
+          </p>
+
+          <p class="footer-desc">
+            Reliable, technology-driven solutions that help businesses operate more efficiently and grow sustainably.
+          </p>
+
+          <div class="footer-address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Union Bank Back Side, Kattupudi Street, Pallikonda 635809</span>
+          </div>
+        </div>
+
+        <!-- Column 1: Company -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Company</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="portfolio.html">Live Projects (6+)</a></li>
+            <li><a href="about.html#leadership">Leadership</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 2: Solutions -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Solutions</h3>
+          <ul class="footer-links">
+            <li><a href="#data-operations">Digital Operations</a></li>
+            <li><a href="#tech-solutions">Technology Solutions</a></li>
+            <li><a href="#process-support">Business Support</a></li>
+            <li><a href="#automation-integration">Automation &amp; RPA</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Resources -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#custom-pods">Engagement Models</a></li>
+            <li><a href="#industry-verticals">Industry Verticals</a></li>
+            <li><a href="#sla-onboarding">SLA Governance</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Connect -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Connect</h3>
+          <ul class="footer-links">
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+            <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></li>
+            <li><a href="mailto:contact@hakasolutions.com">Email ↗</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Legal & Copyright Bar -->
+      <div class="footer-bottom">
+        <p class="copyright">© <span id="year"></span> HAKA SOLUTIONS. All rights reserved.</p>
+        <div class="legal-links">
+          <a href="#privacy-policy">Privacy Policy</a>
+          <span class="divider">|</span>
+          <a href="#terms">Terms &amp; Conditions</a>
+          <span class="divider">|</span>
+          <a href="#cookie-policy">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT
+       ========================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Dynamic Copyright Year
+      const yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // 2. Sticky Header Elevation on Scroll
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+      });
+
+      // 3. Mobile Hamburger Menu Logic
+      const hamburgerBtn = document.getElementById("hamburger-btn");
+      const mobileDrawer = document.getElementById("mobile-drawer");
+      const drawerBackdrop = document.getElementById("drawer-backdrop");
+      const mobileLinks = document.querySelectorAll(".mobile-nav-link, .mobile-close-trigger");
+
+      function toggleMobileMenu() {
+        const isOpen = mobileDrawer.classList.contains("open");
+        if (isOpen) {
+          closeMobileMenu();
+        } else {
+          openMobileMenu();
+        }
+      }
+
+      function openMobileMenu() {
+        hamburgerBtn.classList.add("active");
+        hamburgerBtn.setAttribute("aria-expanded", "true");
+        mobileDrawer.classList.add("open");
+        drawerBackdrop.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeMobileMenu() {
+        hamburgerBtn.classList.remove("active");
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+        mobileDrawer.classList.remove("open");
+        drawerBackdrop.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      hamburgerBtn.addEventListener("click", toggleMobileMenu);
+      drawerBackdrop.addEventListener("click", closeMobileMenu);
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && mobileDrawer.classList.contains("open")) {
+          closeMobileMenu();
+        }
+      });
+
+      // 4. Hero Background Digital Network & Data Particles Canvas
+      const canvas = document.getElementById("network-canvas");
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+        const particleCount = window.innerWidth < 768 ? 28 : 55;
+        const maxDistance = 140;
+
+        function resizeCanvas() {
+          canvas.width = canvas.parentElement.offsetWidth;
+          canvas.height = canvas.parentElement.offsetHeight;
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+          constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.55;
+            this.vy = (Math.random() - 0.5) * 0.55;
+            this.radius = Math.random() * 1.8 + 1;
+          }
+
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+          }
+
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(34, 211, 238, 0.55)";
+            ctx.fill();
+          }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+          particles.push(new Particle());
+        }
+
+        function animateNetwork() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+
+              if (distance < maxDistance) {
+                const opacity = (1 - distance / maxDistance) * 0.22;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(56, 189, 248, ${opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          }
+          requestAnimationFrame(animateNetwork);
+        }
+
+        animateNetwork();
+      }
+
+      // 5. Subtle Parallax Tilt on Hero Glassmorphic Dashboard (Desktop)
+      const dashCard = document.getElementById("dashboard-card");
+      if (dashCard && window.matchMedia("(min-width: 1024px)").matches) {
+        dashCard.addEventListener("mousemove", (e) => {
+          const rect = dashCard.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const rotateX = (-y / 25).toFixed(2);
+          const rotateY = (x / 25).toFixed(2);
+          dashCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        dashCard.addEventListener("mouseleave", () => {
+          dashCard.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
